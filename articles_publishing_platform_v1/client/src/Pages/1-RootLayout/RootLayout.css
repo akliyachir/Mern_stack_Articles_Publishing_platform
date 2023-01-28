@@ -1,0 +1,8 @@
+.RootLayout {
+  background-color: var(--clr-2);
+  height: 100vh;
+}
+
+.RootLayoutContent {
+  padding-top: 2.5rem;
+}
