@@ -23,7 +23,7 @@ export const loginErrorReducer = (loginErrorState, action) => {
       return {
         ...loginErrorState,
         isError: true,
-        errorMessage: 'LOGIN SUCCESS',
+        errorMessage: 'Welcome!',
       };
     default:
       return loginErrorState;

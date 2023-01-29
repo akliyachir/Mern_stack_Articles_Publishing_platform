@@ -29,7 +29,7 @@ export default function SignUpContainer() {
       setIsErrorToDisplay(false);
     }, 3000);
   };
-  // -- useNavigate
+  // -- useNavigate initialisation
   const navigate = useNavigate();
   //-- user context
   const user = useContext(UserContext);
@@ -59,7 +59,7 @@ export default function SignUpContainer() {
         globalThis.localStorage.getItem('user');
         // -- reset the form after login
         setFormDataSign({ email: '', password: '' });
-
+        // -- say welcome te the new user before redirect to home page
         loginErrorDispatch({ type: 'LOGIN_SUCCESS' });
         setIsErrorToDisplay(true);
         setTimeout(() => {
