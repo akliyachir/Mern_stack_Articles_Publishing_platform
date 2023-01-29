@@ -1,4 +1,4 @@
-import { backendUrl } from '../../listsAndReusedConsts/backendUrl';
+import backendUrl from '../../listsAndReusedConsts/backendUrl.js';
 import { useNavigate } from 'react-router-dom';
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
@@ -38,7 +38,7 @@ export default function SignUpContainer() {
 	const handleOnSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(backendUrl + '/user/signup', {
+			const response = await fetch(backendUrl + 'user/signup', {
 				method: 'POST',
 				headers: {
 					'Content-type': 'application/json',
