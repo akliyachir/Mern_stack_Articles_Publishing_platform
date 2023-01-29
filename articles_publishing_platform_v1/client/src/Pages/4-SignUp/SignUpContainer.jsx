@@ -35,7 +35,7 @@ export default function SignUpContainer() {
       });
       const result = await response.json();
       if (!response.ok) {
-        console.log('this is not ok ->', result.message);
+        loginErrorDispatch({ type: 'IS_ERROR', payload: result.message });
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
@@ -52,7 +52,7 @@ export default function SignUpContainer() {
   return (
     <div className='SignUpContainer'>
       <div className='SignUpContainerContent'>
-        <div className='formStitleStyling'>Create an account</div>
+        <div className='formStitleStyling'>{loginErrorState.errorMessage}</div>
         <form className='formSignStyling'>
           <div className='inputSignStyling'>
             <label htmlFor='email' className='labelSignStyling'>
