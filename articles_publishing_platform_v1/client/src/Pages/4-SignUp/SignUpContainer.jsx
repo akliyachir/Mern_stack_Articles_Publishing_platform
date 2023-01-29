@@ -53,23 +53,28 @@ export default function SignUpContainer() {
 				displayLogginErrorMessages();
 			}
 			if (response.ok) {
-				userDispatch({ type: 'SIGN_IN', payload: result });
+				await userDispatch({ type: 'SIGN_IN', payload: result });
+				const { email: userEmail, token: userToken } = userState;
+				console.log('from the context ->', userEmail, userToken);
 				globalThis.localStorage.setItem(
 					'user',
-					JSON.stringify({
-						/*  */
-					})
+					JSON.stringify({ email: userEmail, token: userToken })
 				);
-				globalThis.localStorage.getItem('user');
+
+				console.log(
+					'from local storage ->' + globalThis.localStorage.getItem('user')
+				);
 				// -- reset the form after login
-				setFormDataSign({ email: '', password: '' });
+
+				//setFormDataSign({ email: '', password: '' });
+
 				// -- say welcome te the new user before redirect to home page
 				loginErrorDispatch({ type: 'LOGIN_SUCCESS' });
 				setIsErrorToDisplay(true);
 				setTimeout(() => {
 					loginErrorDispatch({ type: 'NO_ERROR' });
 					setIsErrorToDisplay(false);
-					navigate('/');
+					//	navigate('/');
 				}, 3000);
 			}
 		} catch (error) {
