@@ -30,6 +30,7 @@ export default function SignUpContainer() {
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
+        console.log(userState);
       }
     } catch (error) {
       console.error(error.message);
