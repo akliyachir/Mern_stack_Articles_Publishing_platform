@@ -4,7 +4,9 @@ import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
 
 const createToken = (id) => {
-  return jsonwebtoken.sign({ id }, process.env.NOT_A_SECRET, {});
+  return jsonwebtoken.sign({ id }, process.env.NOT_A_SECRET, {
+    expiresIn: '3d',
+  });
 };
 
 const signUp = async (req, res) => {
@@ -38,11 +40,12 @@ const signUp = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
 
     const user = await User.create({ email, password: hash });
-    console.log({ user });
 
     // -- generate token
 
-    res.status(200).json({ user });
+    const token = createToken(user._id);
+
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
