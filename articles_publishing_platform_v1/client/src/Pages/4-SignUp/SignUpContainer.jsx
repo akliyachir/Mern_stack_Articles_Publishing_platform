@@ -29,8 +29,7 @@ export default function SignUpContainer() {
         console.log('this is not ok ->', result.message);
       }
       if (response.ok) {
-        console.log('ok ->', result);
-        console.log(user);
+        await userDispatch({ type: 'SIGN_IN', payload: result });
       }
     } catch (error) {
       console.error(error.message);

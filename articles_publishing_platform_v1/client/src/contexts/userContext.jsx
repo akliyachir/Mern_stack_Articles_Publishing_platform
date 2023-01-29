@@ -3,14 +3,15 @@ import { createContext, useReducer } from 'react';
 export const UserContext = createContext();
 
 const userReducer = (userState, action) => {
-  const {} = action;
-  switch (type) {
+  switch (action.type) {
     case 'SIGN_IN':
       return {
         ...userState,
-        email: '',
-        token: '',
+        email: action.payload.email,
+        token: action.payload.token,
       };
+    default:
+      return userState;
   }
 };
 
