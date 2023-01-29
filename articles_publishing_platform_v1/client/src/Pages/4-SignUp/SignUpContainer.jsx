@@ -30,12 +30,8 @@ export default function SignUpContainer() {
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
-        globalThis.localStorage.setItem('user', {
-          email: userState.email,
-          token: userState.token,
-        });
+        globalThis.localStorage.setItem('user', JSON.stringify(userState));
         globalThis.localStorage.getItem('user');
-        console.log(globalThis.localStorage.getItem('user'));
       }
     } catch (error) {
       console.error(error.message);
