@@ -1,6 +1,7 @@
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../../Contexts/UserContext';
 
 export default function SignUpContainer() {
   const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
@@ -8,6 +9,9 @@ export default function SignUpContainer() {
   const handleInputOnChange = (e) => {
     setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
   };
+
+  //-- context
+  const user = useContext(UserContext);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -25,6 +29,7 @@ export default function SignUpContainer() {
       }
       if (response.ok) {
         console.log('ok ->', result);
+        console.log(user);
       }
     } catch (error) {
       console.error(error.message);
