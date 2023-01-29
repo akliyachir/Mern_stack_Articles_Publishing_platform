@@ -1,3 +1,5 @@
+//-- todo : delete display log in success, from handle login and the reducer errorMessageReducer
+
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
 import { useState, useContext, useReducer } from 'react';
@@ -20,6 +22,24 @@ export default function SignUpContainer() {
     loginErrorReducer,
     loginErrorDefaultState
   );
+  const displayLogginErrorMessages = (action_type_message) => {
+    if (action_type_message === 'IS_ERROR') {
+      setIsErrorToDisplay(true);
+      loginErrorDispatch({ type: action_type_message });
+      setTimeout(() => {
+        loginErrorDispatch({ type: 'NO_ERROR' });
+        setIsErrorToDisplay(false);
+      }, 3000);
+    }
+    if (action_type_message === 'LOGIN_SUCCESS') {
+      setIsErrorToDisplay(true);
+      setTimeout(() => {
+        loginErrorDispatch({ type: action_type_message });
+        setIsErrorToDisplay(false);
+      }, 3000);
+    }
+  };
+
   //-- context
   const user = useContext(UserContext);
   const { userState, userDispatch } = user;
@@ -39,13 +59,8 @@ export default function SignUpContainer() {
         const { message } = result;
         console.log(message);
         loginErrorDispatch({ type: 'IS_ERROR', payload: { message } });
-        setIsErrorToDisplay(true);
-        console.log(loginErrorDefaultState.isError);
-        setTimeout(() => {
-          loginErrorDispatch({ type: 'NO_ERROR' });
-          setIsErrorToDisplay(false);
-          console.log(loginErrorDefaultState.isError);
-        }, 3000);
+
+        displayLogginErrorMessages('NO_ERROR');
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
@@ -53,6 +68,7 @@ export default function SignUpContainer() {
         globalThis.localStorage.getItem('user');
         // -- reset the form after login
         setFormDataSign({ email: '', password: '' });
+        displayLogginErrorMessages('LOGIN_SUCCESS');
       }
     } catch (error) {
       console.error(error.message);

@@ -19,6 +19,12 @@ export const loginErrorReducer = (loginErrorState, action) => {
         isError: false,
         errorMessage: 'Create an account',
       };
+    case 'LOGIN_SUCCESS':
+      return {
+        ...loginErrorState,
+        isError: true,
+        errorMessage: 'LOGIN SUCCESS',
+      };
     default:
       return loginErrorState;
   }
