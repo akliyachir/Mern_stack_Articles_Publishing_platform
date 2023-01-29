@@ -7,11 +7,28 @@ export default function SignUpContainer() {
   const { email, password } = formDataSign;
   const handleInputOnChange = (e) => {
     setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
-    console.log(formDataSign);
   };
 
-  const handleOnSubmitForm = (e) => {
+  const handleOnSubmitForm = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:4001/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(formDataSign),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        console.log('this is not ok ->', result.message);
+      }
+      if (response.ok) {
+        console.log('ok ->', result);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
