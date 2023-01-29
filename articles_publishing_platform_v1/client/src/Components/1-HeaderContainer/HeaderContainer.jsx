@@ -2,10 +2,9 @@ import './HeaderContainer.css';
 import { FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import SideBarMenu from '../2-SideBarMenu/SideBarMenu';
-import { useState } from 'react';
-import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
+import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
 
 export default function HeaderContainer() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,8 +17,7 @@ export default function HeaderContainer() {
 		}
 	};
 	// -- userContext
-	const user = useContext(userContext);
-
+	const user = useContext(UserContext);
 	// -- return
 	return (
 		<div className='HeaderContainer'>
