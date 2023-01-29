@@ -1,4 +1,3 @@
-//-- todo : delete display log in success, from handle login and the reducer errorMessageReducer
 import { useNavigate } from 'react-router-dom';
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
