@@ -1,5 +1,5 @@
 //-- todo : delete display log in success, from handle login and the reducer errorMessageReducer
-
+import { useNavigate } from 'react-router-dom';
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
 import { useState, useContext, useReducer } from 'react';
@@ -22,25 +22,16 @@ export default function SignUpContainer() {
     loginErrorReducer,
     loginErrorDefaultState
   );
-  const displayLogginErrorMessages = (action_type_message) => {
-    if (action_type_message === 'IS_ERROR') {
-      setIsErrorToDisplay(true);
-      loginErrorDispatch({ type: action_type_message });
-      setTimeout(() => {
-        loginErrorDispatch({ type: 'NO_ERROR' });
-        setIsErrorToDisplay(false);
-      }, 3000);
-    }
-    if (action_type_message === 'LOGIN_SUCCESS') {
-      setIsErrorToDisplay(true);
-      setTimeout(() => {
-        loginErrorDispatch({ type: action_type_message });
-        setIsErrorToDisplay(false);
-      }, 3000);
-    }
+  const displayLogginErrorMessages = () => {
+    setIsErrorToDisplay(true);
+    setTimeout(() => {
+      loginErrorDispatch({ type: 'NO_ERROR' });
+      setIsErrorToDisplay(false);
+    }, 3000);
   };
-
-  //-- context
+  // -- useNavigate
+  const navigate = useNavigate();
+  //-- user context
   const user = useContext(UserContext);
   const { userState, userDispatch } = user;
 
@@ -60,7 +51,7 @@ export default function SignUpContainer() {
         console.log(message);
         loginErrorDispatch({ type: 'IS_ERROR', payload: { message } });
 
-        displayLogginErrorMessages('NO_ERROR');
+        displayLogginErrorMessages();
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
@@ -68,7 +59,14 @@ export default function SignUpContainer() {
         globalThis.localStorage.getItem('user');
         // -- reset the form after login
         setFormDataSign({ email: '', password: '' });
-        displayLogginErrorMessages('LOGIN_SUCCESS');
+
+        loginErrorDispatch({ type: 'LOGIN_SUCCESS' });
+        setIsErrorToDisplay(true);
+        setTimeout(() => {
+          loginErrorDispatch({ type: 'NO_ERROR' });
+          setIsErrorToDisplay(false);
+          navigate('/');
+        }, 3000);
       }
     } catch (error) {
       console.error(error.message);
