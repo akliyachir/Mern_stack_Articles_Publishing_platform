@@ -17,7 +17,7 @@ export default function HeaderContainer() {
 		}
 	};
 	// -- userContext
-	const user = useContext(UserContext);
+
 	// -- return
 	return (
 		<div className='HeaderContainer'>

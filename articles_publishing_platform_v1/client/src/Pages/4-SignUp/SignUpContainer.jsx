@@ -32,8 +32,7 @@ export default function SignUpContainer() {
 	// -- useNavigate initialisation
 	const navigate = useNavigate();
 	//-- user context
-	const user = useContext(UserContext);
-	const { userState, userDispatch } = user;
+	const { userState, userDispatch } = useContext(UserContext);
 
 	const handleOnSubmitForm = async (e) => {
 		e.preventDefault();
@@ -54,8 +53,13 @@ export default function SignUpContainer() {
 				displayLogginErrorMessages();
 			}
 			if (response.ok) {
-				await userDispatch({ type: 'SIGN_IN', payload: result });
-				globalThis.localStorage.setItem('user', JSON.stringify(userState));
+				userDispatch({ type: 'SIGN_IN', payload: result });
+				globalThis.localStorage.setItem(
+					'user',
+					JSON.stringify({
+						/*  */
+					})
+				);
 				globalThis.localStorage.getItem('user');
 				// -- reset the form after login
 				setFormDataSign({ email: '', password: '' });
