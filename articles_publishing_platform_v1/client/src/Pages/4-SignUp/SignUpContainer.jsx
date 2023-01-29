@@ -1,15 +1,24 @@
 import './SignUpContainer.css';
 import '../SignInUpCommunStyling.css';
-import { useState, useContext } from 'react';
+import { useState, useContext, useReducer } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
+import {
+  loginErrorDefaultState,
+  loginErrorReducer,
+} from '../../reducers/loginErrorReducer';
 
 export default function SignUpContainer() {
   const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
+
   const { email, password } = formDataSign;
   const handleInputOnChange = (e) => {
     setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
   };
-
+  //-- display login error messages
+  const [loginErrorState, loginErrorDispatch] = useReducer(
+    loginErrorReducer,
+    loginErrorDefaultState
+  );
   //-- context
   const user = useContext(UserContext);
   const { userState, userDispatch } = user;
@@ -32,6 +41,8 @@ export default function SignUpContainer() {
         await userDispatch({ type: 'SIGN_IN', payload: result });
         globalThis.localStorage.setItem('user', JSON.stringify(userState));
         globalThis.localStorage.getItem('user');
+        // -- reset the form after login
+        setFormDataSign({ email: '', password: '' });
       }
     } catch (error) {
       console.error(error.message);
