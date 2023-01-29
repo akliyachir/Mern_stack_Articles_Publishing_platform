@@ -17,7 +17,8 @@ export default function HeaderContainer() {
 		}
 	};
 	// -- userContext
-
+	const { userState } = useContext(UserContext);
+	console.log('from header', userState);
 	// -- return
 	return (
 		<div className='HeaderContainer'>
@@ -26,6 +27,7 @@ export default function HeaderContainer() {
 					<NavLink to='/'>
 						<FaHome />
 					</NavLink>
+					<div className='toggleUserMenu'>{userState.email}</div>
 				</span>
 				<div className='hamburgerIcon' onClick={handleToggleSideBar}>
 					<span></span>
