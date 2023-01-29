@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 const user = {
   email: 'firstuser@gmail.com',
