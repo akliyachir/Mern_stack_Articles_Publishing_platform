@@ -4,12 +4,13 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import HeaderContainer from './Components/1-HeaderContainer/HeaderContainer';
 // -- pages import
 import RootLayout from './Pages/1-RootLayout/RootLayout';
 import ErrorPage from './Pages/2-ErrorPage/ErrorPage';
 import SignUpContainer from './Pages/4-SignUp/SignUpContainer';
 import SignInContainer from './Pages/3-SignIn/SignInContainer';
+// -- contexts
+import UserContextProvider from './contexts/userContext';
 
 //-- create router
 const router = createBrowserRouter(
@@ -30,7 +31,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <UserContextProvider>
+      <RouterProvider router={router} />{' '}
+    </UserContextProvider>
+  );
 }
 
 export default App;
