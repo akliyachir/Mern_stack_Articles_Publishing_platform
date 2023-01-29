@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
@@ -11,7 +11,7 @@ import ErrorPage from './Pages/2-ErrorPage/ErrorPage';
 import SignUpContainer from './Pages/4-SignUp/SignUpContainer';
 import SignInContainer from './Pages/3-SignIn/SignInContainer';
 // -- contexts
-import UserContextProvider from './Contexts/UserContext';
+import UserContextProvider, { UserContext } from './Contexts/UserContext';
 
 //-- create router
 const router = createBrowserRouter(
@@ -32,6 +32,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
+	const user = useContext(UserContext);
 	useEffect(() => {
 		console.log('rak chayef', globalThis.localStorage.getItem('user'));
 	}, []);
