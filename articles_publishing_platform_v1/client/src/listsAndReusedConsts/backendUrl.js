@@ -1,1 +1,3 @@
-export const backendUrl = 'http://127.0.0.1/api/';
+const backendUrl = 'http://localhost:4001/api/';
+
+export default backendUrl;
