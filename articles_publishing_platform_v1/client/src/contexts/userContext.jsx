@@ -1,7 +1,31 @@
-import { createContext } from 'react';
+import { createContext, useReducer } from 'react';
 
 export const UserContext = createContext();
 
+const userReducer = (userState, action) => {
+  const {} = action;
+  switch (type) {
+    case 'SIGN_IN':
+      return {
+        ...userState,
+        email: '',
+        token: '',
+      };
+  }
+};
+
+const userDefaultState = {
+  email: '',
+  token: '',
+};
+
 export default function UserContextProvider({ children }) {
-  return <UserContext.Provider value={'user'}>{children}</UserContext.Provider>;
+  // -- useReducer
+  const [userState, userDispatch] = useReducer(userReducer, userDefaultState);
+  // -- return
+  return (
+    <UserContext.Provider value={{ userState, userDispatch }}>
+      {children}
+    </UserContext.Provider>
+  );
 }

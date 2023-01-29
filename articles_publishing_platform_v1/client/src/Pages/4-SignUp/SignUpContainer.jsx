@@ -12,6 +12,7 @@ export default function SignUpContainer() {
 
   //-- context
   const user = useContext(UserContext);
+  const { userState, userDispatch } = user;
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
