@@ -8,8 +8,22 @@ const signUp = async (req, res) => {
       res.status(400).json({ message: 'all fields must be filled' });
       return;
     }
+
+    const exists = await User.findOne({ email });
+
+    if (exists) {
+      res.status(400).json({ message: 'email already in use' });
+      return;
+    }
+
     if (!validator.isEmail(email)) {
       res.status(400).json({ message: 'please enter a valid email' });
+      return;
+    }
+    if (password.length < 9) {
+      res.status(400).json({
+        message: 'Must be at least 8 characters.',
+      });
       return;
     }
 
