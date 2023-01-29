@@ -1,5 +1,4 @@
 import User from '../../models/userModel.js';
-import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
 
@@ -24,11 +23,7 @@ const signIn = async (req, res) => {
       return;
     }
 
-    //-- check the password
-
     const match = await bcrypt.compare(password, user.password);
-
-    console.log(match);
 
     if (match === false) {
       res.status(400).json({ message: 'incorrect password' });
