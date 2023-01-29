@@ -5,13 +5,13 @@ export const loginErrorDefaultState = {
 
 export const loginErrorReducer = (loginErrorState, action) => {
   const { type, payload } = action;
-  const { message } = payload;
+
   switch (type) {
     case 'IS_ERROR':
       return {
         ...loginErrorState,
         isError: true,
-        errorMessage: message,
+        errorMessage: payload.message,
       };
     case 'NO_ERROR':
       return {

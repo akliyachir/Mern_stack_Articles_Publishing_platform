@@ -9,6 +9,7 @@ import {
 
 export default function SignUpContainer() {
   const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
+  const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);
 
   const { email, password } = formDataSign;
   const handleInputOnChange = (e) => {
@@ -35,10 +36,16 @@ export default function SignUpContainer() {
       });
       const result = await response.json();
       if (!response.ok) {
-        loginErrorDispatch({ type: 'IS_ERROR', payload: result.message });
+        const { message } = result;
+        console.log(message);
+        loginErrorDispatch({ type: 'IS_ERROR', payload: { message } });
+        setIsErrorToDisplay(true);
+        console.log(loginErrorDefaultState.isError);
         setTimeout(() => {
           loginErrorDispatch({ type: 'NO_ERROR' });
-        }, 4000);
+          setIsErrorToDisplay(false);
+          console.log(loginErrorDefaultState.isError);
+        }, 3000);
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
@@ -51,11 +58,17 @@ export default function SignUpContainer() {
       console.error(error.message);
     }
   };
-
+  // -- return
   return (
     <div className='SignUpContainer'>
       <div className='SignUpContainerContent'>
-        <div className='formStitleStyling'>{loginErrorState.errorMessage}</div>
+        <div
+          className={
+            isErrorToDisplay ? 'isErrorFormStitleStyling' : 'formStitleStyling'
+          }
+        >
+          {loginErrorState.errorMessage}
+        </div>
         <form className='formSignStyling'>
           <div className='inputSignStyling'>
             <label htmlFor='email' className='labelSignStyling'>

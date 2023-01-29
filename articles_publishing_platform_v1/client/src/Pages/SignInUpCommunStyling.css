@@ -73,10 +73,23 @@
   padding: 1.5rem;
   background-color: var(--clr-3);
   color: var(--clr-2);
-  width: 100%;
+  width: 17.5rem;
+  height: 6rem;
   margin-bottom: 0.7rem;
   text-align: center;
   font-size: 1.5rem;
+}
+
+.isErrorFormStitleStyling {
+  padding: 1.5rem;
+  background-color: var(--clr-2);
+  color: var(--clr-3);
+  width: 17.5rem;
+  height: 6rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 1px var(--clr-3);
 }
 
 .labelSignStyling {
