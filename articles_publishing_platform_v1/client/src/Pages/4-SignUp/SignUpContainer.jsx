@@ -36,6 +36,9 @@ export default function SignUpContainer() {
       const result = await response.json();
       if (!response.ok) {
         loginErrorDispatch({ type: 'IS_ERROR', payload: result.message });
+        setTimeout(() => {
+          loginErrorDispatch({ type: 'NO_ERROR' });
+        }, 4000);
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
