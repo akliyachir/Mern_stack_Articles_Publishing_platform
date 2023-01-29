@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
+	Route,
+	RouterProvider,
 } from 'react-router-dom';
 // -- pages import
 import RootLayout from './Pages/1-RootLayout/RootLayout';
@@ -14,28 +15,32 @@ import UserContextProvider from './Contexts/UserContext';
 
 //-- create router
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<RootLayout />} errorElement={<ErrorPage />}>
-      <Route
-        path='/signin'
-        element={<SignInContainer />}
-        errorElement={<ErrorPage />}
-      />
-      <Route
-        path='/signup'
-        element={<SignUpContainer />}
-        errorElement={<ErrorPage />}
-      />
-    </Route>
-  )
+	createRoutesFromElements(
+		<Route path='/' element={<RootLayout />} errorElement={<ErrorPage />}>
+			<Route
+				path='/signin'
+				element={<SignInContainer />}
+				errorElement={<ErrorPage />}
+			/>
+			<Route
+				path='/signup'
+				element={<SignUpContainer />}
+				errorElement={<ErrorPage />}
+			/>
+		</Route>
+	)
 );
 
 function App() {
-  return (
-    <UserContextProvider>
-      <RouterProvider router={router} />{' '}
-    </UserContextProvider>
-  );
+	useEffect(() => {
+		console.log('rak chayef', globalThis.localStorage.getItem('user'));
+	}, []);
+
+	return (
+		<UserContextProvider>
+			<RouterProvider router={router} />{' '}
+		</UserContextProvider>
+	);
 }
 
 export default App;
