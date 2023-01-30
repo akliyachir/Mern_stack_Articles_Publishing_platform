@@ -1,3 +1,5 @@
+import './TextAreaFormTemplate.css';
+
 export default function TextAreaFormTemplate({
   label,
   type,
@@ -6,9 +8,10 @@ export default function TextAreaFormTemplate({
   handleInputOnChange,
 }) {
   return (
-    <div className='InputFormTemplateContainer'>
+    <div className='TextAreaFormTemplateContainer'>
       <label htmlFor='article_title'>{label}</label>
       <textarea
+        className='textarea'
         type={type}
         name={name}
         id={name}

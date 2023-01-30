@@ -8,8 +8,10 @@ export default function CreateArticle() {
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
+    article_body: '',
   });
-  const { article_title, article_image_url } = createArticleFormData;
+  const { article_title, article_image_url, article_body } =
+    createArticleFormData;
   //-- handle submitNewArticleData
   const submitNewArticleData = () => {};
   //-- auto handle Input On Change
@@ -38,7 +40,13 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-          <TextAreaFormTemplate />
+          <TextAreaFormTemplate
+            label='body'
+            type='textarea'
+            name='article_body'
+            value={article_body}
+            handleInputOnChange={handleInputOnChange}
+          />
         </form>
       </div>
     </div>
