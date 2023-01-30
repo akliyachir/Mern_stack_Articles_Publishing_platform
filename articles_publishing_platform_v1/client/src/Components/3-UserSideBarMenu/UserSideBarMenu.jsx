@@ -3,7 +3,7 @@ import { userMenuItemsList } from '../../listsAndReusedConsts/UserSideBarMenuIte
 import { NavLink } from 'react-router-dom';
 import { FaRegWindowClose } from 'react-icons/fa';
 
-export default function UserSideBarMenu({ isUserMenuOpen }) {
+export default function UserSideBarMenu({ isUserMenuOpen, closeUserSideMenu }) {
   const userCloseSideMenu = () => {};
   return (
     <div
@@ -22,7 +22,7 @@ export default function UserSideBarMenu({ isUserMenuOpen }) {
               <div key={menu_item_id}>
                 <span
                   className='NavLinkMenuItemStyling'
-                  onClick={userCloseSideMenu}
+                  onClick={closeUserSideMenu}
                 >
                   <NavLink to={url}>{title}</NavLink>
                 </span>

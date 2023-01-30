@@ -8,26 +8,28 @@ import { UserContext } from '../../Contexts/UserContext';
 import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
 
 export default function HeaderContainer() {
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleToggleSideBar = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };
   const closeSideMenu = () => {
     if (isMenuOpen === true) {
-      setIsMenuOpen((isMenuOpen) => false);
+      setIsMenuOpen(false);
+      closeUserSideMenu();
     }
   };
   // -- user the same
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const handleUserToggleSideBar = () => {
-    setIsUserMenuOpen(!isUserMenuOpen);
+    setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen);
   };
-  const closeUserSideMenu = () => {};
+  const closeUserSideMenu = () => {
+    setIsUserMenuOpen((isUserMenuOpen) => false);
+  };
   // -- userContext
   const { userState } = useContext(UserContext);
 
   // -- toggleUserMenu
-  const toggleUserMenu = () => {};
 
   // -- return
   return (
