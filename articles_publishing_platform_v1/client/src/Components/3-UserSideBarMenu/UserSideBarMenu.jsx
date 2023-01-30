@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { FaRegWindowClose } from 'react-icons/fa';
 
 export default function UserSideBarMenu({ isUserMenuOpen, closeUserSideMenu }) {
-  const userCloseSideMenu = () => {};
   return (
     <div
       className={
