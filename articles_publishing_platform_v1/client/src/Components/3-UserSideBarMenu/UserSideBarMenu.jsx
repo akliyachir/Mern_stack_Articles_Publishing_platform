@@ -3,15 +3,15 @@ import { userMenuItemsList } from '../../listsAndReusedConsts/UserSideBarMenuIte
 import { NavLink } from 'react-router-dom';
 import { FaRegWindowClose } from 'react-icons/fa';
 
-export default function UserSideBarMenu({ closeUserSideMenu, isUserMenuOpen }) {
-  const closeUserSideMenu = () => {};
+export default function UserSideBarMenu() {
+  const userCloseSideMenu = () => {};
   return (
     <div className='UserSideBarMenu'>
       <div className='UserSideBarMenuContent'>UserSideBarMenu</div>
       {/* imported from sideBarMenu */}
-      <div className={isUserMenuOpen ? 'SideBarMenuOpen' : 'SideBarMenuClosed'}>
-        <div className='SideBarMenuContent'>
-          <div className='closeSideBarCross' onClick={closeUserSideMenu}>
+      <div className={true ? 'userSideBarMenuClosed' : 'userSideBarMenuOpen'}>
+        <div className='userSideBarMenuContent'>
+          <div className='closeUserSideBarCross' onClick={userCloseSideMenu}>
             <FaRegWindowClose />
           </div>
           <div className='menuItem'>
@@ -21,7 +21,7 @@ export default function UserSideBarMenu({ closeUserSideMenu, isUserMenuOpen }) {
                 <div key={menu_item_id}>
                   <span
                     className='NavLinkMenuItemStyling'
-                    onClick={closeUserSideMenu}
+                    onClick={userCloseSideMenu}
                   >
                     <NavLink to={url}>{title}</NavLink>
                   </span>
