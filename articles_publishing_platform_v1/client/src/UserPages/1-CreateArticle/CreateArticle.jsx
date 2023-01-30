@@ -1,6 +1,7 @@
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import './CreateArticle.css';
 import { useState } from 'react';
+import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 
 export default function CreateArticle() {
   // -- form data useState
@@ -37,6 +38,7 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
+          <TextAreaFormTemplate />
         </form>
       </div>
     </div>

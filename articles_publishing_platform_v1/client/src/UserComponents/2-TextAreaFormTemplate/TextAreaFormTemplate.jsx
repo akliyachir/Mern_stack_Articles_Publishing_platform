@@ -8,7 +8,7 @@ export default function TextAreaFormTemplate({
   return (
     <div className='InputFormTemplateContainer'>
       <label htmlFor='article_title'>{label}</label>
-      <input
+      <textarea
         type={type}
         name={name}
         id={name}
