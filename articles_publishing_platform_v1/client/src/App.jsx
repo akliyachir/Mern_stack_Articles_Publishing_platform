@@ -10,7 +10,7 @@ import ErrorPage from './Pages/2-ErrorPage/ErrorPage';
 import SignUpContainer from './Pages/4-SignUp/SignUpContainer';
 import SignInContainer from './Pages/3-SignIn/SignInContainer';
 // -- contexts
-import UserContextProvider, { UserContext } from './Contexts/UserContext';
+import UserContextProvider from './Contexts/UserContext';
 
 //-- create router
 const router = createBrowserRouter(
