@@ -17,6 +17,12 @@ export default function HeaderContainer() {
       setIsMenuOpen((isMenuOpen) => false);
     }
   };
+  // -- user the same
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const handleUserToggleSideBar = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
+  const closeUserSideMenu = () => {};
   // -- userContext
   const { userState } = useContext(UserContext);
 
@@ -32,7 +38,7 @@ export default function HeaderContainer() {
             <FaHome />
           </NavLink>
           {!!userState.email && (
-            <div className='toggleUserMenu' onClick={toggleUserMenu}>
+            <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
               {userState.email}
             </div>
           )}
@@ -43,7 +49,10 @@ export default function HeaderContainer() {
           <span></span>
         </div>
         <SideBarMenu isMenuOpen={isMenuOpen} closeSideMenu={closeSideMenu} />
-        <UserSideBarMenu />
+        <UserSideBarMenu
+          isUserMenuOpen={isUserMenuOpen}
+          closeUserSideMenu={closeUserSideMenu}
+        />
       </div>
       <GlobalVoileCloseMenu
         closeSideMenu={closeSideMenu}

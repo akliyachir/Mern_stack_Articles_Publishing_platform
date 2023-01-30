@@ -3,35 +3,34 @@ import { userMenuItemsList } from '../../listsAndReusedConsts/UserSideBarMenuIte
 import { NavLink } from 'react-router-dom';
 import { FaRegWindowClose } from 'react-icons/fa';
 
-export default function UserSideBarMenu() {
+export default function UserSideBarMenu({ isUserMenuOpen }) {
   const userCloseSideMenu = () => {};
   return (
-    <div className='UserSideBarMenu'>
-      <div className='UserSideBarMenuContent'>UserSideBarMenu</div>
-      {/* imported from sideBarMenu */}
-      <div className={true ? 'userSideBarMenuClosed' : 'userSideBarMenuOpen'}>
-        <div className='userSideBarMenuContent'>
-          <div className='closeUserSideBarCross' onClick={userCloseSideMenu}>
-            <FaRegWindowClose />
-          </div>
-          <div className='menuItem'>
-            {userMenuItemsList.map((item) => {
-              const { menu_item_id, title, url } = item;
-              return (
-                <div key={menu_item_id}>
-                  <span
-                    className='NavLinkMenuItemStyling'
-                    onClick={userCloseSideMenu}
-                  >
-                    <NavLink to={url}>{title}</NavLink>
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+    <div
+      className={
+        isUserMenuOpen ? 'userSideBarMenuClosed' : 'userSideBarMenuOpen'
+      }
+    >
+      <div className='UserSideBarMenuContent'>
+        <div className='userCloseUserSideBarCross' onClick={userCloseSideMenu}>
+          <FaRegWindowClose />
+        </div>
+        <div className='menuItem'>
+          {userMenuItemsList.map((item) => {
+            const { menu_item_id, title, url } = item;
+            return (
+              <div key={menu_item_id}>
+                <span
+                  className='NavLinkMenuItemStyling'
+                  onClick={userCloseSideMenu}
+                >
+                  <NavLink to={url}>{title}</NavLink>
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
-      {/* imported from sideBarMenu end */}
     </div>
   );
 }
