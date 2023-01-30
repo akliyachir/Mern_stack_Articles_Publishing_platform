@@ -12,26 +12,27 @@ export default function HeaderContainer() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleToggleSideBar = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
-    setIsUserMenuOpen((isUserMenuOpen) => false);
+    if (isUserMenuOpen === true) {
+      setIsUserMenuOpen(false);
+    }
   };
+  // -- user the same
+  const handleUserToggleSideBar = () => {
+    setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen);
+    if (isMenuOpen === true) {
+      setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+    }
+  };
+
   const closeSideMenu = () => {
     if (isMenuOpen === true) {
       setIsMenuOpen(false);
     }
   };
-  // -- user the same
-  const handleUserToggleSideBar = () => {
-    if (isUserMenuOpen === true) {
-      setIsUserMenuOpen(false);
-    }
-    if (isUserMenuOpen === false) {
-      setIsUserMenuOpen(true);
-      setIsMenuOpen(false);
-    }
-  };
+
   const closeUserSideMenu = () => {
     if (isUserMenuOpen === true) {
-      setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen);
+      setIsUserMenuOpen(false);
     }
   };
   // -- userContext

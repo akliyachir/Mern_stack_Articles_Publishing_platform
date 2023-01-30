@@ -12,7 +12,7 @@ export default function UserSideBarMenu({ isUserMenuOpen, closeUserSideMenu }) {
       }
     >
       <div className='UserSideBarMenuContent'>
-        <div className='userCloseUserSideBarCross' onClick={userCloseSideMenu}>
+        <div className='userCloseUserSideBarCross' onClick={closeUserSideMenu}>
           <FaRegWindowClose />
         </div>
         <div className='menuItem'>
