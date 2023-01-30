@@ -1,10 +1,20 @@
-export default function GlobalVoileCloseMenu({ isMenuOpen, closeSideMenu }) {
+export default function GlobalVoileCloseMenu({
+  isMenuOpen,
+  closeSideMenu,
+  closeUserSideMenu,
+  isUserMenuOpen,
+}) {
   return (
     <div
       className={
-        isMenuOpen ? 'GlobalVoileCloseMenuOpen' : 'GlobalVoileCloseMenuClosed'
+        isMenuOpen || isUserMenuOpen
+          ? 'GlobalVoileCloseMenuOpen'
+          : 'GlobalVoileCloseMenuClosed'
       }
-      onClick={closeSideMenu}
+      onClick={() => {
+        closeUserSideMenu();
+        closeSideMenu();
+      }}
     ></div>
   );
 }

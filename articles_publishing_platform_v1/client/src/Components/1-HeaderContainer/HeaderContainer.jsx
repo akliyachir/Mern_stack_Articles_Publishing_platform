@@ -74,6 +74,8 @@ export default function HeaderContainer() {
       <GlobalVoileCloseMenu
         closeSideMenu={closeSideMenu}
         isMenuOpen={isMenuOpen}
+        closeUserSideMenu={closeUserSideMenu}
+        isUserMenuOpen={isUserMenuOpen}
       />
     </div>
   );
