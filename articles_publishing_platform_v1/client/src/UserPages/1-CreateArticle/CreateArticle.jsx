@@ -24,10 +24,19 @@ export default function CreateArticle() {
       <div className='CreateArticleContent'>
         <form onSubmit={submitNewArticleData}>
           <InputFormTemplate
+            input_or_textarea='input'
             label='Title'
             type='text'
             name='article_title'
             value={article_title}
+            handleInputOnChange={handleInputOnChange}
+          />
+          <InputFormTemplate
+            input_or_textarea='input'
+            label='Image link'
+            type='text'
+            name='article_image_url'
+            value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
           <InputFormTemplate
@@ -37,7 +46,6 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-          <textarea name=''></textarea>
         </form>
       </div>
     </div>

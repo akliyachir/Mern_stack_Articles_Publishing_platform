@@ -1,6 +1,7 @@
 import './InputFormTemplate.css';
 
 export default function InputFormTemplate({
+  input_or_textarea,
   label,
   type,
   name,
@@ -10,7 +11,7 @@ export default function InputFormTemplate({
   return (
     <div className='InputFormTemplateContainer'>
       <label htmlFor='article_title'>{label}</label>
-      <input
+      <{input_or_textarea}
         type={type}
         name={name}
         id={name}
