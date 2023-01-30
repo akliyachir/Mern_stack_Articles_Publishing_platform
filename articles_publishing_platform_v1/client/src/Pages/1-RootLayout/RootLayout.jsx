@@ -5,27 +5,26 @@ import { UserContext } from '../../Contexts/UserContext';
 import './RootLayout.css';
 
 export default function RootLayout() {
-	const { userState, userDispatch } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
 
-	useEffect(() => {
-		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
-		if (userFromLocalStorageAsJson) {
-			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
-			const { email, token } = userFromLocalStorage;
-			console.log(userFromLocalStorage);
-			userDispatch({ type: 'SIGN_IN', payload: { email, token } });
-		}
-	}, []);
-	return (
-		<div className='RootLayout'>
-			<div className='RootLayoutContent'>
-				<nav>
-					<HeaderContainer />
-				</nav>
-				<main>
-					<Outlet />
-				</main>
-			</div>
-		</div>
-	);
+  useEffect(() => {
+    const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
+    if (userFromLocalStorageAsJson) {
+      const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
+      const { email, token } = userFromLocalStorage;
+      userDispatch({ type: 'SIGN_IN', payload: { email, token } });
+    }
+  }, []);
+  return (
+    <div className='RootLayout'>
+      <div className='RootLayoutContent'>
+        <nav>
+          <HeaderContainer />
+        </nav>
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
 }
