@@ -1,4 +1,3 @@
-import { useEffect, useContext } from 'react';
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
@@ -32,20 +31,9 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-	const { userState, userDispatch } = useContext(UserContext);
-	console.log('hey');
-
-	useEffect(() => {
-		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
-		if (userFromLocalStorageAsJson) {
-			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
-			console.log(userFromLocalStorage);
-		}
-	}, []);
-
 	return (
 		<UserContextProvider>
-			<RouterProvider router={router} />{' '}
+			<RouterProvider router={router} />
 		</UserContextProvider>
 	);
 }
