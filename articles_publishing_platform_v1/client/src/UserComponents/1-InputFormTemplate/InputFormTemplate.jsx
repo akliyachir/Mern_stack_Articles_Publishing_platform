@@ -11,7 +11,7 @@ export default function InputFormTemplate({
   return (
     <div className='InputFormTemplateContainer'>
       <label htmlFor='article_title'>{label}</label>
-      <{input_or_textarea}
+      <input
         type={type}
         name={name}
         id={name}
@@ -21,3 +21,7 @@ export default function InputFormTemplate({
     </div>
   );
 }
+
+InputFormTemplate.defaultProps = {
+  input_or_textarea: 'input',
+};
