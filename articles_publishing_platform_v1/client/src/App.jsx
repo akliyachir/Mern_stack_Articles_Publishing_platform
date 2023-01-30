@@ -11,7 +11,8 @@ import SignUpContainer from './Pages/4-SignUp/SignUpContainer';
 import SignInContainer from './Pages/3-SignIn/SignInContainer';
 // -- contexts
 import UserContextProvider from './Contexts/UserContext';
-import CreateArticle from './Pages/UserPages/1-CreateArticle/CreateArticle';
+import CreateArticle from './UserPages/1-CreateArticle/CreateArticle';
+
 // -- user routes import
 //-- create router
 const router = createBrowserRouter(
