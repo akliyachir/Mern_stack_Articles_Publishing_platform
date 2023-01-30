@@ -1,7 +1,6 @@
 import './InputFormTemplate.css';
 
 export default function InputFormTemplate({
-  input_or_textarea,
   label,
   type,
   name,
@@ -21,7 +20,3 @@ export default function InputFormTemplate({
     </div>
   );
 }
-
-InputFormTemplate.defaultProps = {
-  input_or_textarea: 'input',
-};
