@@ -1,3 +1,4 @@
+import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import './CreateArticle.css';
 import { useState } from 'react';
 
@@ -5,8 +6,9 @@ export default function CreateArticle() {
   // -- form data useState
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
+    article_image_url: '',
   });
-  const { article_title } = createArticleFormData;
+  const { article_title, article_image_url } = createArticleFormData;
   //-- handle submitNewArticleData
   const submitNewArticleData = () => {};
   //-- auto handle Input On Change
@@ -21,16 +23,21 @@ export default function CreateArticle() {
     <div className='CreateArticle'>
       <div className='CreateArticleContent'>
         <form onSubmit={submitNewArticleData}>
-          <div className='articleInputContainer'>
-            <label htmlFor='article_title'>Title</label>
-            <input
-              type='text'
-              name='article_title'
-              id='article_title'
-              value={article_title}
-              onChange={handleInputOnChange}
-            />
-          </div>
+          <InputFormTemplate
+            label='Title'
+            type='text'
+            name='article_title'
+            value={article_title}
+            handleInputOnChange={handleInputOnChange}
+          />
+          <InputFormTemplate
+            label='Image link'
+            type='text'
+            name='article_image_url'
+            value={article_image_url}
+            handleInputOnChange={handleInputOnChange}
+          />
+          <textarea name=''></textarea>
         </form>
       </div>
     </div>

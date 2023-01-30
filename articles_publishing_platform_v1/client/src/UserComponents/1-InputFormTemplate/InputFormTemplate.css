@@ -1,0 +1,18 @@
+.InputFormTemplateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
+}
+
+.InputFormTemplateContainer input {
+  padding: 0.1rem 0.4rem;
+  width: 70%;
+}
+
+.InputFormTemplateContainer label {
+  width: 30%;
+  transform: translateY(-0.12rem);
+  text-align: right;
+}
