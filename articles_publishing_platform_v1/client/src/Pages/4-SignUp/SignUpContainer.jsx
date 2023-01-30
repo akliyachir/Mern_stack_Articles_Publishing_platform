@@ -61,12 +61,9 @@ export default function SignUpContainer() {
 					JSON.stringify({ email: userEmail, token: userToken })
 				);
 
-				console.log(
-					'from local storage ->' + globalThis.localStorage.getItem('user')
-				);
 				// -- reset the form after login
 
-				//setFormDataSign({ email: '', password: '' });
+				setFormDataSign({ email: '', password: '' });
 
 				// -- say welcome te the new user before redirect to home page
 				loginErrorDispatch({ type: 'LOGIN_SUCCESS' });
