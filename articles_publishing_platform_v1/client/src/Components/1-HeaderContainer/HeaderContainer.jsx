@@ -6,11 +6,9 @@ import UserSideBarMenu from '../3-UserSideBarMenu/UserSideBarMenu';
 import { useState, useContext } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
 import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
-import HamburgerButton from '../4-HamburgerButton/HamburgerButton';
 
 export default function HeaderContainer() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState();
   const handleToggleSideBar = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };
@@ -39,12 +37,13 @@ export default function HeaderContainer() {
             </div>
           )}
         </span>
-        <HamburgerButton />
+        <div className='hamburgerIcon' onClick={handleToggleSideBar}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <SideBarMenu isMenuOpen={isMenuOpen} closeSideMenu={closeSideMenu} />
-        <UserSideBarMenu
-          isUserMenuOpen={'isUserMenuOpen'}
-          closeUserSideMenu={'closeUserSideMenu'}
-        />
+        <UserSideBarMenu />
       </div>
       <GlobalVoileCloseMenu
         closeSideMenu={closeSideMenu}
