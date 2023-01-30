@@ -46,7 +46,7 @@
 .closeSideBarCross {
 	position: absolute;
 	top: 0.2rem;
-	right: 0.3rem;
+	left: 0.3rem;
 	font-size: 1.7rem;
 	color: var(--clr-4);
 	cursor: pointer;
