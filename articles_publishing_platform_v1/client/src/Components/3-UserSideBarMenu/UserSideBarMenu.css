@@ -65,6 +65,6 @@
   cursor: pointer;
 }
 
-.closeSideBarCross:hover {
+.userCloseUserSideBarCross:hover {
   color: var(--clr-3);
 }
