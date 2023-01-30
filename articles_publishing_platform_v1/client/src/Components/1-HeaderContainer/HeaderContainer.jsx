@@ -12,19 +12,27 @@ export default function HeaderContainer() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleToggleSideBar = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+    setIsUserMenuOpen((isUserMenuOpen) => false);
   };
   const closeSideMenu = () => {
     if (isMenuOpen === true) {
       setIsMenuOpen(false);
-      closeUserSideMenu();
     }
   };
   // -- user the same
   const handleUserToggleSideBar = () => {
-    setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen);
+    if (isUserMenuOpen === true) {
+      setIsUserMenuOpen(false);
+    }
+    if (isUserMenuOpen === false) {
+      setIsUserMenuOpen(true);
+      setIsMenuOpen(false);
+    }
   };
   const closeUserSideMenu = () => {
-    setIsUserMenuOpen((isUserMenuOpen) => false);
+    if (isUserMenuOpen === true) {
+      setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen);
+    }
   };
   // -- userContext
   const { userState } = useContext(UserContext);
@@ -34,8 +42,14 @@ export default function HeaderContainer() {
   // -- return
   return (
     <div className='HeaderContainer'>
-      <div className='HeaderContainerContent' onClick={closeSideMenu}>
-        <span className='homeLogo'>
+      <div className='HeaderContainerContent'>
+        <span
+          className='homeLogo'
+          onClick={() => {
+            closeSideMenu();
+            closeUserSideMenu();
+          }}
+        >
           <NavLink to='/'>
             <FaHome />
           </NavLink>
