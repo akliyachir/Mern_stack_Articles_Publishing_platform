@@ -17,8 +17,8 @@ export default function HeaderContainer() {
 		}
 	};
 	// -- userContext
-	const { userState } = useContext(UserContext);
-	console.log('from header', userState);
+	const { userState, userDispatch } = useContext(UserContext);
+
 	// -- return
 	return (
 		<div className='HeaderContainer'>

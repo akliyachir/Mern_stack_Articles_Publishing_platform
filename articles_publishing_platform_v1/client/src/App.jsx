@@ -31,10 +31,16 @@ const router = createBrowserRouter(
 	)
 );
 
-function App() {
-	const user = useContext(UserContext);
+export default function App() {
+	const { userState, userDispatch } = useContext(UserContext);
+	console.log('hey');
+
 	useEffect(() => {
-		console.log('rak chayef', globalThis.localStorage.getItem('user'));
+		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
+		if (userFromLocalStorageAsJson) {
+			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
+			console.log(userFromLocalStorage);
+		}
 	}, []);
 
 	return (
@@ -43,5 +49,3 @@ function App() {
 		</UserContextProvider>
 	);
 }
-
-export default App;
