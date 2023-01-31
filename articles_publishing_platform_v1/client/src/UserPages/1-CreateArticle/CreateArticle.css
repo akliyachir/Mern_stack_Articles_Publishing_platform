@@ -22,6 +22,7 @@
   color: var(--clr-2);
   width: 100%;
   text-align: center;
+  padding-block: 2rem;
 }
 
 .formCreateArticle {
