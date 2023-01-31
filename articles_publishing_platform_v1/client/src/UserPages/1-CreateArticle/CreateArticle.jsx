@@ -1,5 +1,5 @@
-import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import './CreateArticle.css';
+import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import { useState } from 'react';
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 
@@ -21,6 +21,9 @@ export default function CreateArticle() {
       [e.target.name]: e.target.value,
     });
   };
+  // -- handle on submit
+  const handleOnSubmitCreateNewArticle = () => {};
+
   //-- return jsx
   return (
     <div className='CreateArticle'>
@@ -48,6 +51,15 @@ export default function CreateArticle() {
             value={article_body}
             handleInputOnChange={handleInputOnChange}
           />
+          <div className='buttonOnSubmitCreateNewArticleContainer'>
+            <button
+              type='submit'
+              className='buttonOnSubmitCreateNewArticle'
+              onClick={handleOnSubmitCreateNewArticle}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
