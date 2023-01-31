@@ -3,12 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0.1rem;
+
   width: 100%;
 }
 
 .InputFormTemplateContainer input {
-  padding: 0.1rem 0.4rem;
   width: 100%;
 }
 

@@ -3,18 +3,17 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .TextAreaFormTemplateContainer label {
   width: 100%;
-  transform: translateY(-0.12rem);
   text-align: left;
 }
 
 .TextAreaFormTemplateContainer .textarea {
   resize: none;
-  padding: 0.3rem 0.4rem;
+  padding: 0.4rem 0.5rem;
+  text-indent: 1rem;
   width: 100%;
   height: 12rem;
   overflow-y: scroll;
