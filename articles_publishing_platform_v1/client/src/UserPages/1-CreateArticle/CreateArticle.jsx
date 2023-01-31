@@ -25,7 +25,9 @@ export default function CreateArticle() {
   return (
     <div className='CreateArticle'>
       <div className='CreateArticleContent'>
+        <h1 className='createArticlePageName'>Create an article</h1>
         <form onSubmit={submitNewArticleData}>
+          <h1 className='createArticlePageName'>Create an article</h1>
           <InputFormTemplate
             label='Title'
             type='text'

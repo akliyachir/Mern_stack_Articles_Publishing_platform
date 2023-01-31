@@ -8,7 +8,7 @@
 }
 
 .CreateArticleContent {
-  margin: 2rem;
+  margin-top: 2rem;
   width: 17.5rem;
   display: flex;
   justify-content: center;
@@ -16,4 +16,12 @@
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--clr-1);
+}
+
+.createArticlePageName {
+  background-color: var(--clr-3);
+  color: var(--clr-2);
+  width: 100%;
+  padding: 0.8rem;
+  text-align: center;
 }
