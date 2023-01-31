@@ -2,17 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.2rem;
+  width: 100%;
 }
 
 .InputFormTemplateContainer input {
   padding: 0.1rem 0.4rem;
-  width: 70%;
+  width: 100%;
 }
 
 .InputFormTemplateContainer label {
-  width: 30%;
+  width: 100%;
   transform: translateY(-0.12rem);
-  text-align: right;
+  text-align: left;
 }

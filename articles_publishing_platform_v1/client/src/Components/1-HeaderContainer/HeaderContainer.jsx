@@ -38,8 +38,6 @@ export default function HeaderContainer() {
   // -- userContext
   const { userState } = useContext(UserContext);
 
-  // -- toggleUserMenu
-
   // -- return
   return (
     <div className='HeaderContainer'>
@@ -66,10 +64,12 @@ export default function HeaderContainer() {
           <span></span>
         </div>
         <SideBarMenu isMenuOpen={isMenuOpen} closeSideMenu={closeSideMenu} />
-        <UserSideBarMenu
-          isUserMenuOpen={isUserMenuOpen}
-          closeUserSideMenu={closeUserSideMenu}
-        />
+        {!!userState.email && (
+          <UserSideBarMenu
+            isUserMenuOpen={isUserMenuOpen}
+            closeUserSideMenu={closeUserSideMenu}
+          />
+        )}
       </div>
       <GlobalVoileCloseMenu
         closeSideMenu={closeSideMenu}

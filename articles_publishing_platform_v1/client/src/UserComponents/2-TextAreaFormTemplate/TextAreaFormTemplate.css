@@ -7,15 +7,26 @@
   padding: 0.3rem;
 }
 
-.TextAreaFormTemplateContainer .textarea {
-  resize: none;
-  padding: 0.1rem 0.4rem;
+.TextAreaFormTemplateContainer label {
   width: 100%;
-  height: 12rem;
+  transform: translateY(-0.12rem);
+  text-align: left;
 }
 
-.TextAreaFormTemplateContainer label {
-  width: 30%;
-  transform: translateY(-0.12rem);
-  text-align: right;
+.TextAreaFormTemplateContainer .textarea {
+  resize: none;
+  padding: 0.3rem 0.4rem;
+  width: 100%;
+  height: 12rem;
+  overflow-y: scroll;
+}
+
+.TextAreaFormTemplateContainer textarea::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: var(--clr-1);
+}
+.TextAreaFormTemplateContainer textarea::-webkit-scrollbar-thumb {
+  width: 0.5rem;
+  background-color: var(--clr-3);
+  border-radius: 0.3rem;
 }
