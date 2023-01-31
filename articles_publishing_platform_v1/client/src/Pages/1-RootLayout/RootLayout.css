@@ -4,9 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .RootLayoutContent {
   padding-top: 2.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 }
