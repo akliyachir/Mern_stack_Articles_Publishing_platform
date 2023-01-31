@@ -3,13 +3,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   width: 100%;
+  padding-block: 2rem;
 }
 
 .CreateArticleContent {
-  margin-top: 2rem;
   width: 17.5rem;
+  margin-block: 2rem;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

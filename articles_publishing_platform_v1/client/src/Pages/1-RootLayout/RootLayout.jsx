@@ -1,8 +1,9 @@
+import './RootLayout.css';
 import { useContext, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import HeaderContainer from '../../Components/1-HeaderContainer/HeaderContainer';
+import FooterHomePage from '../../Components/5-FooterHomePage/FooterHomePage';
 import { UserContext } from '../../Contexts/UserContext';
-import './RootLayout.css';
 
 export default function RootLayout() {
   const { userState, userDispatch } = useContext(UserContext);
@@ -24,6 +25,7 @@ export default function RootLayout() {
         <main>
           <Outlet />
         </main>
+        <FooterHomePage />
       </div>
     </div>
   );

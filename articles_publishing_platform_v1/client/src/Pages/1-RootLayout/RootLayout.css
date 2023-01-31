@@ -1,8 +1,12 @@
 .RootLayout {
   background-color: var(--clr-2);
-  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .RootLayoutContent {
   padding-top: 2.5rem;
+  padding-bottom: 2rem;
 }
