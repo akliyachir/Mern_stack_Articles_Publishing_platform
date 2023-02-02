@@ -1,7 +1,7 @@
 import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
@@ -22,12 +22,15 @@ export default function CreateArticle() {
 		});
 	};
 
-	//-- get token from user credencials
+	//-- create response area
+	const [serverResponse, setServerResponse] = useState('');
+	// -- and redirect in case of success
+	const navigate = useNavigate();
 
 	//-- handle submitNewArticleData
-
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
+		// -- get token from localStorage
 		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
 		const response = await fetch(backendUrl + 'user_article', {
@@ -41,12 +44,24 @@ export default function CreateArticle() {
 
 		const result = await response.json();
 
-		if (response.ok) {
-			console.log('ok ->', result);
+		if (!response.ok) {
+			console.log('not ok');
+			setServerResponse('article created');
+			console.log(result);
 		}
 
-		if (!response.ok) {
-			console.log('not ok ->', result);
+		if (response.ok) {
+			console.log('ok');
+			setServerResponse(result.message);
+      setTimeout({() =>{
+
+        setCreateArticleFormData({
+          article_title: '',
+          article_image_url: '',
+          article_body: '',
+      }
+    });   
+      }, 3000)
 		}
 	};
 
@@ -58,7 +73,10 @@ export default function CreateArticle() {
 					onSubmit={handleOnSubmitCreateNewArticle}
 					className='formCreateArticle'
 				>
-					<h1 className='createArticlePageName'>Create an article</h1>
+					<div className='createArticlePageName'>
+						{serverResponse ? serverResponse : <h1>Create an article</h1>}
+					</div>
+
 					<InputFormTemplate
 						label='Title'
 						type='text'

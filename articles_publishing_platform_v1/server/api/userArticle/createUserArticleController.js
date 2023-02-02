@@ -3,8 +3,6 @@ import User from '../../models/userModel.js';
 import jsonwebtoken from 'jsonwebtoken';
 
 const createUserArticle = async (req, res) => {
-	console.log(req.body);
-	console.log(req.headers.authorization);
 	const { article_title, article_body } = req.body;
 
 	if (!article_title) {
@@ -27,11 +25,12 @@ const createUserArticle = async (req, res) => {
 
 		if (!user) {
 			res.status(400).json({ message: 'not authorized' });
+			return;
 		}
 
 		const article = await Article.create({ ...req.body, user_id: id });
 
-		res.status(200).json({ message: article });
+		res.status(200).json({ message: 'acticle created' });
 	} catch (error) {
 		console.error(error.message);
 		res.status(400).json({ message: error.message });
