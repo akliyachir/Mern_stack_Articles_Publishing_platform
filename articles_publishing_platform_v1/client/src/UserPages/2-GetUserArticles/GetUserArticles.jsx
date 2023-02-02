@@ -3,13 +3,17 @@ import { useState, useEffect } from 'react';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function GetUserArticles() {
-	const [artilce, setArtilce] = useState([]);
+	const [article, setArticle] = useState([]);
 
 	useEffect(() => {
 		const getArticles = async () => {
-			const { token } = globalThis.localStorage('user');
+			const user = globalThis.localStorage.getItem('user');
+			const { token } = JSON.parse(user);
 			const response = await fetch(backendUrl + 'user_article', {
+				method: 'GET',
+
 				headers: {
+					'Content-Type': 'application/json',
 					authorization: JSON.stringify(`Bearer ${token}`),
 				},
 			});
@@ -27,12 +31,16 @@ export default function GetUserArticles() {
 				console.log(result.message);
 			}
 		};
+
+		getArticles();
 	}, []);
 
 	return (
 		<div className='GetUserArticles'>
 			<div className='GetUserArticlesContainer'>
-				ceci et cela, les articles a disposition
+				{article.map((item) => {
+					return <div key={item._id}>{item.article_title}</div>;
+				})}
 			</div>
 		</div>
 	);
