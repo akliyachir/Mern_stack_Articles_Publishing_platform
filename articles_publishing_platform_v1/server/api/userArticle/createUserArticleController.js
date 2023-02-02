@@ -7,9 +7,11 @@ const createUserArticle = async (req, res) => {
 
 	if (!article_title) {
 		res.status(400).json({ message: "can't create an article without a title" });
+		return;
 	}
 	if (!article_body) {
 		res.status(400).json({ message: "can't create an article without content" });
+		return;
 	}
 
 	const { authorization } = req.headers;

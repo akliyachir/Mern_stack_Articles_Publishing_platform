@@ -46,22 +46,23 @@ export default function CreateArticle() {
 
 		if (!response.ok) {
 			console.log('not ok');
-			setServerResponse('article created');
-			console.log(result);
+			setServerResponse(result.message);
+			setTimeout(() => {
+				setServerResponse('');
+			}, 3000);
 		}
 
 		if (response.ok) {
 			console.log('ok');
 			setServerResponse(result.message);
-      setTimeout({() =>{
-
-        setCreateArticleFormData({
-          article_title: '',
-          article_image_url: '',
-          article_body: '',
-      }
-    });   
-      }, 3000)
+			setTimeout(() => {
+				setCreateArticleFormData({
+					article_title: '',
+					article_image_url: '',
+					article_body: '',
+				});
+				navigate('/');
+			}, 3000);
 		}
 	};
 
