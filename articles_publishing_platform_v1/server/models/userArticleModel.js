@@ -16,6 +16,11 @@ const articleSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
+
+	article_last_update: {
+		type: Date,
+	},
+
 	user_id: {
 		type: String,
 	},
@@ -24,3 +29,13 @@ const articleSchema = new Schema({
 const Article = mongoose.model('Article', articleSchema);
 
 export default Article;
+
+/* 
+
+	article_title: {
+	article_image: {
+	article_body: {
+	article_creation_date: {
+	user_id: {
+
+*/
