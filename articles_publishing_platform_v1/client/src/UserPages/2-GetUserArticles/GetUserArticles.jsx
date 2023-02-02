@@ -10,8 +10,6 @@ export default function GetUserArticles() {
 			const user = globalThis.localStorage.getItem('user');
 			const { token } = JSON.parse(user);
 			const response = await fetch(backendUrl + 'user_article', {
-				method: 'GET',
-
 				headers: {
 					'Content-Type': 'application/json',
 					authorization: JSON.stringify(`Bearer ${token}`),
@@ -25,10 +23,9 @@ export default function GetUserArticles() {
 				console.error(result.message);
 			}
 
-			if (!response.ok) {
+			if (response.ok) {
 				console.log('ok');
-				setArtilce(result.message);
-				console.log(result.message);
+				setArticle(result.message);
 			}
 		};
 
