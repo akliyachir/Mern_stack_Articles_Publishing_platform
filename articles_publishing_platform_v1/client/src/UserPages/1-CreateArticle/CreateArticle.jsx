@@ -24,19 +24,19 @@ export default function CreateArticle() {
 
 	//-- get token from user credencials
 
-	const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
-
 	//-- handle submitNewArticleData
 
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
-		const { token } = console.log(createArticleFormData);
-		const response = await fetch(backendUrl + user_article, {
+		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
+
+		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json',
-				authorization: token,
+				authorization: JSON.stringify(token),
 			},
+			body: JSON.stringify(createArticleFormData),
 		});
 
 		const result = await response.json();
