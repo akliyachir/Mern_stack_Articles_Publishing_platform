@@ -32,10 +32,10 @@ export default Article;
 
 /* 
 
-	article_title: {
-	article_image: {
-	article_body: {
-	article_creation_date: {
-	user_id: {
+	article_title
+	article_image
+	article_body
+	article_creation_date
+	user_id
 
 */

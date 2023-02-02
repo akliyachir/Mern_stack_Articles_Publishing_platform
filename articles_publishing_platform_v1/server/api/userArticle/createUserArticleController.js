@@ -1,4 +1,6 @@
 import Article from '../../models/userArticleModel.js';
+import User from '../../models/userModel.js';
+import jsonwebtoken from 'jsonwebtoken';
 
 const createUserArticle = async (req, res) => {
 	const { article_title, article_body, user_id } = req.body;
@@ -19,7 +21,10 @@ const createUserArticle = async (req, res) => {
 		const token = JSON.parse(authorization).split(' ')[1];
 		const { id } = jsonwebtoken.verify(token, process.env.NOT_A_SECRET);
 
-		const article = await article.create({ ...req.body, user_id: id });
+		const user = await User.findOne({ _id: id }).select(_id);
+		console.log(user);
+
+		const article = await Article.create({ ...req.body, user_id: id });
 
 		res.status(200).json({ message: article });
 	} catch (error) {
