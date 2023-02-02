@@ -34,7 +34,7 @@ export default function CreateArticle() {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json',
-				authorization: JSON.stringify(token),
+				authorization: JSON.stringify(`Bearer ${token}`),
 			},
 			body: JSON.stringify(createArticleFormData),
 		});

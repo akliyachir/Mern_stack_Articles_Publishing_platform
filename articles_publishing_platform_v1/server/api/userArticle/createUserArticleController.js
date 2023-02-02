@@ -3,6 +3,8 @@ import User from '../../models/userModel.js';
 import jsonwebtoken from 'jsonwebtoken';
 
 const createUserArticle = async (req, res) => {
+	console.log(req.body);
+	console.log(req.headers.authorization);
 	const { article_title, article_body } = req.body;
 
 	if (!article_title) {
