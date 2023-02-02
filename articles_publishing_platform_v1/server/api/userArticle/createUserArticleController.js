@@ -3,7 +3,7 @@ import User from '../../models/userModel.js';
 import jsonwebtoken from 'jsonwebtoken';
 
 const createUserArticle = async (req, res) => {
-	const { article_title, article_body, user_id } = req.body;
+	const { article_title, article_body } = req.body;
 
 	if (!article_title) {
 		res.status(400).json({ message: "can't create an article without a title" });
@@ -21,8 +21,11 @@ const createUserArticle = async (req, res) => {
 		const token = JSON.parse(authorization).split(' ')[1];
 		const { id } = jsonwebtoken.verify(token, process.env.NOT_A_SECRET);
 
-		const user = await User.findOne({ _id: id }).select(_id);
-		console.log(user);
+		const user = await User.findOne({ _id: id });
+
+		if (!user) {
+			res.status(400).json({ message: 'not authorized' });
+		}
 
 		const article = await Article.create({ ...req.body, user_id: id });
 

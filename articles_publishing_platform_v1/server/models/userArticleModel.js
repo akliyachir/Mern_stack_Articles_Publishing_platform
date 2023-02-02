@@ -5,7 +5,7 @@ const articleSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	article_image: {
+	article_image_url: {
 		type: String,
 	},
 	article_body: {
