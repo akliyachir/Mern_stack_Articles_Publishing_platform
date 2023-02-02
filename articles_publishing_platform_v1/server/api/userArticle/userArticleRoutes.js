@@ -3,6 +3,6 @@ import { getUserArticles } from './getUserArticles.js';
 
 const router = Router();
 
-router.post('/', getUserArticles);
+router.get('/', getUserArticles);
 
 export default router;
