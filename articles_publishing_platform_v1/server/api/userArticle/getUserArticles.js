@@ -10,8 +10,10 @@ const getUserArticles = async (req, res) => {
 			return;
 		}
 		const token = JSON.parse(authorization).split(' ')[1];
-		const result = jsonwebtoken.verify(token, process.env.NOT_A_SECRET);
-		res.status(200).json({ message: result });
+		const { id } = jsonwebtoken.verify(token, process.env.NOT_A_SECRET);
+		console.log(id);
+		const articles = await Article.find({ _id: id });
+		res.status(200).json({ message: articles });
 	} catch (error) {
 		console.error(error.message);
 		res.status(400).json({ message: error.message });
