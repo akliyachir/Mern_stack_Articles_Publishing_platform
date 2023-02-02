@@ -1,7 +1,9 @@
 import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import { useState } from 'react';
+
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
+import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
 	// -- form data useState
@@ -19,11 +21,33 @@ export default function CreateArticle() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	//-- get token from user credencials
+
+	const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
+
 	//-- handle submitNewArticleData
 
-	const handleOnSubmitCreateNewArticle = (e) => {
+	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
-		console.log(createArticleFormData);
+		const { token } = console.log(createArticleFormData);
+		const response = await fetch(backendUrl + user_article, {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+				authorization: token,
+			},
+		});
+
+		const result = await response.json();
+
+		if (response.ok) {
+			console.log('ok ->', result);
+		}
+
+		if (!response.ok) {
+			console.log('not ok ->', result);
+		}
 	};
 
 	//-- return jsx
