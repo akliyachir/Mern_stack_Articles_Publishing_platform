@@ -16,7 +16,9 @@ const getUserArticles = async (req, res) => {
 			res.status(400).json({ message: 'no way!' });
 			return;
 		}
-		const articles = await Article.find({ user_id: id });
+		const articles = await Article.find({ user_id: id }).sort({
+			article_creation_date: -1,
+		});
 		res.status(200).json({ message: articles });
 	} catch (error) {
 		console.error(error.message);

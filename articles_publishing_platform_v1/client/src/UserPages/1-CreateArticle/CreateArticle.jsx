@@ -61,7 +61,7 @@ export default function CreateArticle() {
 					article_image_url: '',
 					article_body: '',
 				});
-				navigate('/');
+				navigate('/user_articles');
 			}, 3000);
 		}
 	};
