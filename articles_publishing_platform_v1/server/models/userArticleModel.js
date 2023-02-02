@@ -20,3 +20,5 @@ const articleSchema = new Schema({
 		type: String,
 	},
 });
+
+const Article = mongoose.model('Article', articleSchema);
