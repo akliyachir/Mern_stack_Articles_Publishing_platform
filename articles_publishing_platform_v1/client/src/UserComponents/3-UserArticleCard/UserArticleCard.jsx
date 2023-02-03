@@ -1,4 +1,5 @@
 import './UserArticleCard.css';
+import { useParams, NavLink } from 'react-router-dom';
 
 export default function UserArticleCard({ item }) {
   const {
@@ -10,31 +11,36 @@ export default function UserArticleCard({ item }) {
     article_is_public,
     article_user_publisher,
   } = item;
+
+  const { user_id } = useParams();
+
   return (
     <article key={article_id} className='UserArticleCard'>
-      <div className='UserArticleCardContent'>
-        <div
-          style={{ backgroundImage: `url(${article_image_url})` }}
-          className='article_image_url'
-        ></div>
-        <div className='article_title'>
-          {article_title.slice(0, 52)}
-          {article_title.length >= 52 && '...'}
-        </div>
-        <p className='article_body'>
-          {article_body.slice(0, 173)}
-          {article_body.length >= 173 && '...'}
-        </p>
-        <div className='dateAndPublished'>
-          <p className='article_user_publisher'>{article_user_publisher}</p>
-          {/*     <p className='article_is_public'>
+      <NavLink to={'/user_articles/' + article_id}>
+        <div className='UserArticleCardContent'>
+          <div
+            style={{ backgroundImage: `url(${article_image_url})` }}
+            className='article_image_url'
+          ></div>
+          <div className='article_title'>
+            {article_title.slice(0, 52)}
+            {article_title.length >= 52 && '...'}
+          </div>
+          <p className='article_body'>
+            {article_body.slice(0, 173)}
+            {article_body.length >= 173 && '...'}
+          </p>
+          <div className='dateAndPublished'>
+            <p className='article_user_publisher'>{article_user_publisher}</p>
+            {/*     <p className='article_is_public'>
             {article_is_public ? 'Published' : 'private'}
           </p> */}
-          <p className='article_creation_date'>
-            {article_creation_date.toLocaleString().slice(0, 10)}
-          </p>
+            <p className='article_creation_date'>
+              {article_creation_date.toLocaleString().slice(0, 10)}
+            </p>
+          </div>
         </div>
-      </div>
+      </NavLink>
     </article>
   );
 }

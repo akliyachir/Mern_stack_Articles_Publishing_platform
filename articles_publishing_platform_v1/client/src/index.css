@@ -25,6 +25,7 @@ body::-webkit-scrollbar-thumb {
   --clr-2: #f7f7f7;
   --clr-3: #333;
   --clr-4: #555;
+  --clr-5: #111;
 }
 
 a {

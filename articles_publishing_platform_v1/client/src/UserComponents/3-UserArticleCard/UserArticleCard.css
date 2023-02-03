@@ -15,6 +15,11 @@
   transition-timing-function: ease-in-out;
 }
 
+.UserArticleCard a {
+  color: var(--clr-3);
+  text-decoration: none;
+}
+
 .UserArticleCardContent {
   width: 100%;
 }
@@ -29,6 +34,7 @@
 }
 
 .UserArticleCard .article_title {
+  color: var(--clr-5);
   display: flex;
   justify-content: flex-start;
   align-items: center;
