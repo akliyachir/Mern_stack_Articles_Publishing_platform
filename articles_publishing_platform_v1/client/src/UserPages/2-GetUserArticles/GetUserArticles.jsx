@@ -4,6 +4,7 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function GetUserArticles() {
   const [article, setArticle] = useState([]);
+  const [articleAuthor, setArticleAuthor] = useState('');
 
   useEffect(() => {
     const getArticles = async () => {
@@ -26,6 +27,7 @@ export default function GetUserArticles() {
       if (response.ok) {
         console.log('ok');
         setArticle(result.message);
+        setArticleAuthor(result.user);
       }
     };
 
@@ -55,6 +57,7 @@ export default function GetUserArticles() {
               <p className='article_creation_date'>
                 {article_creation_date.toLocaleString().slice(0, 10)}
               </p>
+              <p className='setArticleAuthor'>{articleAuthor}</p>
             </article>
           );
         })}
