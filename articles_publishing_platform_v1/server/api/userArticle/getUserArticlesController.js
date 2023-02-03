@@ -21,8 +21,6 @@ const getUserArticles = async (req, res) => {
         article_creation_date: -1,
       })
       .select({
-        article_creation_date: 0,
-        article_last_update: 0,
         user_id: 0,
         _id: 0,
         __v: 0,

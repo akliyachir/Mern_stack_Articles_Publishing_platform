@@ -25,7 +25,6 @@ export default function GetUserArticles() {
 
       if (response.ok) {
         console.log('ok');
-        console.log(result.message);
         setArticle(result.message);
       }
     };
@@ -35,7 +34,36 @@ export default function GetUserArticles() {
 
   return (
     <div className='GetUserArticles'>
-      <div className='GetUserArticlesContainer'></div>
+      <div className='GetUserArticlesContainer'>
+        {article.map((item) => {
+          const {
+            article_title,
+            article_image_url,
+            article_body,
+            article_id,
+            article_creation_date,
+          } = item;
+          return (
+            <article key={article_id} className='userArticleCard'>
+              <img
+                src={article_image_url}
+                alt={article_image_url}
+                className='article_image_url'
+              />
+              <div className='article_title'></div>
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 }
+
+/* 
+
+article_title
+article_image_url
+article_body
+article_id
+article_creation_date
+*/
