@@ -43,4 +43,16 @@ article_last_update,
 article_id,
 user_id,
 
+
+article_title,
+article_image_url,
+article_body,
+article_creation_date,
+article_id,
+
+{article_creation_date: 0,},
+{article_last_update:0,},
+{article_id:0,},
+{_id:0},
+
 */
