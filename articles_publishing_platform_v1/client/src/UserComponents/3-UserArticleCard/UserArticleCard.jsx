@@ -8,6 +8,7 @@ export default function UserArticleCard({ item }) {
     article_id,
     article_creation_date,
     article_is_public,
+    article_user_publisher,
   } = item;
   return (
     <article key={article_id} className='UserArticleCard'>
@@ -21,13 +22,14 @@ export default function UserArticleCard({ item }) {
           {article_title.length >= 52 && '...'}
         </div>
         <p className='article_body'>
-          {article_body.slice(0, 190)}
-          {article_body.length >= 190 && '...'}
+          {article_body.slice(0, 173)}
+          {article_body.length >= 173 && '...'}
         </p>
         <div className='dateAndPublished'>
-          <p className='article_is_public'>
+          <p className='article_user_publisher'>{article_user_publisher}</p>
+          {/*     <p className='article_is_public'>
             {article_is_public ? 'Published' : 'private'}
-          </p>
+          </p> */}
           <p className='article_creation_date'>
             {article_creation_date.toLocaleString().slice(0, 10)}
           </p>

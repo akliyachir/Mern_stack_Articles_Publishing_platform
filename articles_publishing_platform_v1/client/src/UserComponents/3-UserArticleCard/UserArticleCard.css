@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: flex-start;
   padding-bottom: 0.5rem;
-  height: 26.2rem;
+  height: 26.7rem;
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
 }
@@ -14,11 +14,13 @@
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
 }
-/* 
+
 .UserArticleCardContent {
+  width: 100%;
 }
- */
+
 .UserArticleCard .article_image_url {
+  width: 100%;
   background-color: var(--clr-3, #456);
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,6 +38,7 @@
 }
 
 .UserArticleCard .article_body {
+  width: 100%;
   padding: 0.5rem;
   color: var(--clr-3);
   height: 9rem;
@@ -43,18 +46,12 @@
 
 .dateAndPublished {
   display: flex;
-  justify-content: right;
-  gap: 0.55rem;
+  justify-content: space-between;
+  text-transform: capitalize;
   align-items: center;
   padding: 0.1rem 0.5rem;
   background-color: var(--clr-3);
   color: var(--clr-2);
   font-size: 0.9rem;
-}
-
-.UserArticleCard .article_creation_date {
-  text-align: right;
-}
-.UserArticleCard .article_is_public {
-  text-align: right;
+  margin-top: 0.2rem;
 }

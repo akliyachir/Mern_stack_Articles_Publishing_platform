@@ -20,7 +20,9 @@ const articleSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-
+  article_user_publisher: {
+    type: String,
+  },
   article_last_update: {
     type: Date,
   },
