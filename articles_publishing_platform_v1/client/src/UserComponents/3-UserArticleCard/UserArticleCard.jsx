@@ -12,7 +12,7 @@ export default function UserArticleCard({ item }) {
     article_user_publisher,
   } = item;
 
-  const { user_id } = useParams();
+  let { id } = useParams();
 
   return (
     <article key={article_id} className='UserArticleCard'>
