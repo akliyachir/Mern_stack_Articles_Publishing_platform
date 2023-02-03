@@ -41,8 +41,8 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       >
         <Route
-          path='/user_articles:id'
-          element={<GetUserArticles />}
+          path='/:id'
+          element={<TestComponent />}
           errorElement={<ErrorPage />}
         />
       </Route>
