@@ -1,20 +1,20 @@
 .UserArticleCard {
-  max-width: 16.5rem;
-  box-shadow: 0 0 4px var(--clr-3, #333);
+  box-shadow: 0 0 2px var(--clr-3, #efefef);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: burlywood;
+  padding-bottom: 0.5rem;
 }
 
-.UserArticleCardContent {
+/* .UserArticleCardContent {
 }
-
+ */
 .UserArticleCard .article_image_url {
-  background-color: var(--clr-3, #456);
+  background-color: var(--clr-3, rgb(41, 40, 40));
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100%;
   height: 12rem;
   overflow: hidden;
 }
@@ -30,14 +30,17 @@
 }
 
 .UserArticleCard .article_body {
-  padding: 1rem;
+  padding: 0.5rem;
+  color: var(--clr-3);
 }
-.UserArticleCard .article_id {
-  padding: 1rem;
-}
+
 .UserArticleCard .article_creation_date {
-  padding: 1rem;
+  color: var(--clr-3);
+  text-align: right;
+  padding: 0.2rem 0.5rem 0 0;
 }
 .UserArticleCard .article_is_public {
-  padding: 1rem;
+  color: var(--clr-3);
+  text-align: right;
+  padding: 0.2rem 0.5rem 0 0;
 }

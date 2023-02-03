@@ -30,10 +30,6 @@ export default function UserArticleCard({ item }) {
         <p className='article_is_public'>
           {article_is_public ? 'published' : 'private'}
         </p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, eaque
-        sint fugit quidem non delectus expedita id reprehenderit natus possimus!
-        Porro, praesentium maxime. Corporis iste adipisci neque totam in
-        deleniti.
       </div>
     </article>
   );

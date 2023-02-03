@@ -2,9 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  width: 100vw;
+  background-color: cadetblue;
 }
-.GetUserArticlescontainer {
-  padding: 2rem;
+.GetUserArticlesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 17rem);
+
+  gap: 1rem;
+  border: 5px solid #fff;
   background-color: purple;
 }
