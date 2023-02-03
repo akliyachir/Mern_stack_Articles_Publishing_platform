@@ -1,9 +1,10 @@
 .GetUserArticles {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 .GetUserArticlescontainer {
-	padding: 2rem;
-	background-color: purple;
+  padding: 2rem;
+  background-color: purple;
 }

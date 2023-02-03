@@ -6,6 +6,8 @@ import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/Te
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
+  // -- range cursor
+
   // -- form data useState
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
@@ -94,6 +96,7 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
+
           <TextAreaFormTemplate
             label='body'
             type='textarea'
