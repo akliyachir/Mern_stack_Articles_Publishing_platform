@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  background-color: cadetblue;
+  min-width: 100%;
 }
 .GetUserArticlesContainer {
+  padding-top: 1.7rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 17rem);
-
+  grid-template-columns: repeat(auto-fit, 16rem);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   gap: 1rem;
-  border: 5px solid #fff;
-  background-color: purple;
 }

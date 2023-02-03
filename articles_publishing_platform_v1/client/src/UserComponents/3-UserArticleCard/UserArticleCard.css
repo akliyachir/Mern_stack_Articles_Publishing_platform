@@ -1,21 +1,25 @@
 .UserArticleCard {
+  cursor: pointer;
   box-shadow: 0 0 2px var(--clr-3, #efefef);
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: burlywood;
+  align-items: flex-start;
   padding-bottom: 0.5rem;
+  height: 26.2rem;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
-
+.UserArticleCard:hover {
+  scale: 1.02;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+/* 
 .UserArticleCardContent {
-  background-color: rgb(71, 169, 255);
-  min-height: 100vh;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, 17rem);
 }
-
+ */
 .UserArticleCard .article_image_url {
+  background-color: var(--clr-3, #456);
   background-size: cover;
   background-repeat: no-repeat;
   height: 12rem;
@@ -26,24 +30,31 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 4.5rem;
+  height: 3.5rem;
   padding: 0.7rem;
   font-size: 1.2rem;
-  background-color: cornsilk;
 }
 
 .UserArticleCard .article_body {
   padding: 0.5rem;
   color: var(--clr-3);
+  height: 9rem;
+}
+
+.dateAndPublished {
+  display: flex;
+  justify-content: right;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+  background-color: var(--clr-3);
+  color: var(--clr-2);
+  font-size: 0.9rem;
 }
 
 .UserArticleCard .article_creation_date {
-  color: var(--clr-3);
   text-align: right;
-  padding: 0.2rem 0.5rem 0 0;
 }
 .UserArticleCard .article_is_public {
-  color: var(--clr-3);
   text-align: right;
-  padding: 0.2rem 0.5rem 0 0;
 }

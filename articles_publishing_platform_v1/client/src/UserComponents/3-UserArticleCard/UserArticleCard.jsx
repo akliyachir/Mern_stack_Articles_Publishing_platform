@@ -24,12 +24,14 @@ export default function UserArticleCard({ item }) {
           {article_body.slice(0, 190)}
           {article_body.length >= 190 && '...'}
         </p>
-        <p className='article_creation_date'>
-          {article_creation_date.toLocaleString().slice(0, 10)}
-        </p>
-        <p className='article_is_public'>
-          {article_is_public ? 'published' : 'private'}
-        </p>
+        <div className='dateAndPublished'>
+          <p className='article_is_public'>
+            {article_is_public ? 'Published' : 'private'}
+          </p>
+          <p className='article_creation_date'>
+            {article_creation_date.toLocaleString().slice(0, 10)}
+          </p>
+        </div>
       </div>
     </article>
   );
