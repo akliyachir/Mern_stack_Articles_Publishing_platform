@@ -50,7 +50,11 @@ export default function GetUserArticles() {
                 alt={article_image_url}
                 className='article_image_url'
               />
-              <div className='article_title'></div>
+              <div className='article_title'>{article_title}</div>
+              <p className='article_body'>{article_body}</p>
+              <p className='article_creation_date'>
+                {article_creation_date.toLocaleString().slice(0, 10)}
+              </p>
             </article>
           );
         })}
