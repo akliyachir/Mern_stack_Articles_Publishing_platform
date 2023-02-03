@@ -28,7 +28,6 @@ const getUserArticles = async (req, res) => {
 
     res.status(200).json({
       message: articles,
-      user: user.email,
     });
   } catch (error) {
     console.error(error.message);

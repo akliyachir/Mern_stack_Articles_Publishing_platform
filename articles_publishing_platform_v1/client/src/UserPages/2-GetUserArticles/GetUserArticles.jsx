@@ -1,10 +1,10 @@
 import './GetUserArticles.css';
 import { useState, useEffect } from 'react';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import UserArticleCard from '../../UserComponents/3-UserArticleCard/UserArticleCard';
 
 export default function GetUserArticles() {
   const [article, setArticle] = useState([]);
-  const [articleAuthor, setArticleAuthor] = useState('');
 
   useEffect(() => {
     const getArticles = async () => {
@@ -18,16 +18,16 @@ export default function GetUserArticles() {
       });
 
       const result = await response.json();
-
+      // -- is not ok
       if (!response.ok) {
         console.log('not ok');
         console.error(result.message);
       }
 
+      // -- ok
       if (response.ok) {
         console.log('ok');
         setArticle(result.message);
-        setArticleAuthor(result.user);
       }
     };
 
@@ -38,39 +38,9 @@ export default function GetUserArticles() {
     <div className='GetUserArticles'>
       <div className='GetUserArticlesContainer'>
         {article.map((item) => {
-          const {
-            article_title,
-            article_image_url,
-            article_body,
-            article_id,
-            article_creation_date,
-          } = item;
-          return (
-            <article key={article_id} className='userArticleCard'>
-              <img
-                src={article_image_url}
-                alt={article_image_url}
-                className='article_image_url'
-              />
-              <div className='article_title'>{article_title}</div>
-              <p className='article_body'>{article_body}</p>
-              <p className='article_creation_date'>
-                {article_creation_date.toLocaleString().slice(0, 10)}
-              </p>
-              <p className='setArticleAuthor'>{articleAuthor}</p>
-            </article>
-          );
+          return <UserArticleCard item={item} />;
         })}
       </div>
     </div>
   );
 }
-
-/* 
-
-article_title
-article_image_url
-article_body
-article_id
-article_creation_date
-*/

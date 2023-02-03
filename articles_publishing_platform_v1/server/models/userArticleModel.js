@@ -12,6 +12,10 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
+  article_is_public: {
+    type: Boolean,
+    default: true,
+  },
   article_creation_date: {
     type: Date,
     default: Date.now,

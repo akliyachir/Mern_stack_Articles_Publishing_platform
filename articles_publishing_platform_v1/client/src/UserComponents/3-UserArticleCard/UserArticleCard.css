@@ -1,0 +1,33 @@
+.UserArticleCard {
+  max-width: 16.5rem;
+  box-shadow: 0 0 4px var(--clr-3, #333);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserArticleCardContent {
+}
+
+.UserArticleCard .article_image_url {
+  width: 100%;
+  height: 5rem;
+  overflow: hidden;
+}
+
+.UserArticleCard .article_title {
+  padding: 1rem;
+}
+
+.UserArticleCard .article_body {
+  padding: 1rem;
+}
+.UserArticleCard .article_id {
+  padding: 1rem;
+}
+.UserArticleCard .article_creation_date {
+  padding: 1rem;
+}
+.UserArticleCard .article_is_public {
+  padding: 1rem;
+}
