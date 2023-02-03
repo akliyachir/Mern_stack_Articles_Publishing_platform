@@ -7,14 +7,17 @@
   padding-bottom: 0.5rem;
 }
 
-/* .UserArticleCardContent {
+.UserArticleCardContent {
+  background-color: rgb(71, 169, 255);
+  min-height: 100vh;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, 17rem);
 }
- */
+
 .UserArticleCard .article_image_url {
-  background-color: var(--clr-3, rgb(41, 40, 40));
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   height: 12rem;
   overflow: hidden;
 }
