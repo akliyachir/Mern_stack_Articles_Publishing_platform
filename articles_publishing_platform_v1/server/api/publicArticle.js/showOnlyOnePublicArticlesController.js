@@ -4,7 +4,7 @@ export default async function showOnlyOnePublicArticles(req, res) {
 	const { public_article_id } = req.params;
 
 	try {
-		const articles = await Article.findOne({
+		const article = await Article.findOne({
 			article_is_public: true,
 			article_id: public_article_id,
 		})
@@ -19,7 +19,7 @@ export default async function showOnlyOnePublicArticles(req, res) {
 				_id: 0,
 				__v: 0,
 			});
-		res.status(200).json({ message: articles });
+		res.status(200).json({ message: article });
 		return;
 	} catch (error) {
 		res.status(400).json({ message: error.message });
