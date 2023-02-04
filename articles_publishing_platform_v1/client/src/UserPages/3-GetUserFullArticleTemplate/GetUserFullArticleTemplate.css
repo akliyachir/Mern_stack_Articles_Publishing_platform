@@ -1,14 +1,54 @@
 .GetUserFullArticleTemplate {
-  background-color: cadetblue;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .GetUserFullArticleTemplateContent {
-  background-color: burlywood;
-  padding: 1rem;
+  box-shadow: 0 0 1px #333333;
+  max-width: 780px;
 }
 
 .GetUserFullArticleTemplateContent .article_image_url {
   width: 100%;
-  height: 10rem;
+  height: 20rem;
   background-color: var(--clr-3, #333);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.GetUserFullArticleTemplateContent .article_title {
+  padding-inline: 0.5rem;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+.GetUserFullArticleTemplateContent .article_body {
+  padding-inline: 0.5rem;
+  line-height: 1.6;
+}
+.GetUserFullArticleTemplateContent .article_creation_date {
+  text-align: right;
+  padding-inline: 0.5rem;
+  padding-top: 1.5rem;
+}
+
+.GetUserFullArticleTemplateContent .article_is_public {
+  padding-inline: 0.5rem;
+  text-align: right;
+  padding-bottom: 1rem;
+}
+
+.GetUserFullArticleTemplateContent .deleteIcon {
+  text-align: left;
+  font-size: 1.2rem;
+  padding-inline: 0.5rem;
+  padding-block: 0.8rem;
+}
+
+.GetUserFullArticleTemplateContent .pivetDeletionAndModifyContainer {
+  display: flex;
 }

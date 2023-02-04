@@ -2,6 +2,13 @@ import './GetUserFullArticleTemplate.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import {
+  FaRegTrashAlt,
+  FaTrash,
+  FaTrashAlt,
+  FaTrashRestore,
+  FaTruckLoading,
+} from 'react-icons/fa';
 
 export default function GetUserFullArticleTemplate() {
   const { user_article_id } = useParams();
@@ -55,20 +62,31 @@ export default function GetUserFullArticleTemplate() {
       <div className='GetUserFullArticleTemplateContent'>
         <div
           className='article_image_url'
-          style={{ backgroundImage: article_image_url }}
+          style={{ backgroundImage: `url(${article_image_url})` }}
         ></div>
-        <div>{article_title}</div>
-        <p>{article_body}</p>
+        <div className='article_title'>{article_title}</div>
+        <p className='article_body'>{article_body}</p>
+        <p className='article_creation_date'>
+          {article_creation_date.slice(0, 10)}
+        </p>
+        <div className='pivetDeletionAndModifyContainer'>
+          <div className='deleteIcon'>
+            <FaRegTrashAlt />
+          </div>
+          <p className='article_is_public'>
+            {article_is_public ? 'Privet' : 'Public'}
+          </p>
+        </div>
       </div>
     </article>
   );
 }
 
 /* 
+article_image_url
+article_title
 article_body
 article_creation_date
 article_id
-article_image_url
 article_is_public
-article_title
 */
