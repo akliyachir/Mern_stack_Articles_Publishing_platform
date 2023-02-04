@@ -1,8 +1,4 @@
 .PublicArticleHomeCard {
-	background-color: red;
-}
-
-.PublicArticleHomeCard {
 	cursor: pointer;
 	box-shadow: 0 0 2px var(--clr-3, #efefef);
 	display: flex;
@@ -14,7 +10,7 @@
 	transition-timing-function: ease-in-out;
 }
 .PublicArticleHomeCard:hover {
-	scale: 1.02;
+	scale: 1.01;
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
 }
@@ -28,7 +24,28 @@
 	width: 100%;
 }
 
-.PublicArticleHomeCard .article_image_url {
+.PublicArticleHomeCardContent {
+	cursor: pointer;
+
+	display: flex;
+	justify-content: center;
+	align-items: flex- start;
+	padding-bottom: 0.5rem;
+	height: 26.7rem;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+
+.PublicArticleHomeCardContent a {
+	color: var(--clr-3);
+	text-decoration: none;
+}
+
+.PublicArticleHomeCard {
+	width: 100%;
+}
+
+.PublicArticleHomeCardContent .article_image_url {
 	width: 100%;
 	background-color: var(--clr-3, #456);
 	background-size: cover;
@@ -37,7 +54,7 @@
 	overflow: hidden;
 }
 
-article_title_landing_page {
+.PublicArticleHomeCardContent .article_title {
 	color: var(--clr-5);
 	display: flex;
 	justify-content: flex-start;
@@ -47,14 +64,18 @@ article_title_landing_page {
 	font-size: 1.2rem;
 }
 
-article_bodyHome_landing_page {
+.PublicArticleHomeCardContent .article_body {
 	width: 100%;
 	padding: 0.5rem;
 	color: var(--clr-3);
 	height: 9rem;
 }
 
-.PublicArticleHomeCard .article_creation_date_landing_page {
+.article_creation_date {
 	text-align: right;
-	background-color: red;
+	padding: 0.1rem 0.5rem;
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	font-size: 0.9rem;
+	margin-top: 0.2rem;
 }
