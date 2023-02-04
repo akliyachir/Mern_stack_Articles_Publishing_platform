@@ -1,16 +1,33 @@
 import './ShowAllPublicArticles.css';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ShowAllPublicArticles() {
-	useEffect(() => {
-		const fetchPublicArticles = async () => {
-			const response = await fetch(`${backendUrl}articles`);
-			const result = await response.json();
-			console.log(result.message);
-		};
+	const [allPublicArticles, setAllPublicArticles] = useState([]);
+	const [isLoading, setisLoading] = useState(true);
 
-		console.log(backendUrl);
+	useEffect(() => {
+		setisLoading(true);
+		const fetchPublicArticles = async () => {
+			try {
+				const response = await fetch(`${backendUrl}articles`);
+				const result = await response.json();
+
+				// -- ok
+				if (response.ok) {
+					console.log('ok');
+					setAllPublicArticles(result.message);
+					setisLoading(false);
+				}
+
+				// -- not ok
+				if (!response.ok) {
+					console.log('not ok');
+				}
+			} catch (error) {
+				console.error(error.message);
+			}
+		};
 
 		fetchPublicArticles();
 	}, []);
