@@ -9,6 +9,8 @@ mongoose.set('strictQuery', true);
 //-- routes import
 import userRoutes from './api/user/userRoutes.js';
 import userArticleRoutes from './api/userArticle/userArticleRoutes.js';
+import publicArticleRoutes from './api/publicArticle.js/publicArticleRoutes.js';
+
 // -- middlewares
 app.use(express.json());
 app.use(cors());
@@ -22,6 +24,7 @@ app.get('/', (req, res) => {
 //-- routes
 app.use('/user', userRoutes);
 app.use('/user_article', userArticleRoutes);
+app.use('/articles', publicArticleRoutes);
 
 // -- database connect and run server
 mongoose
