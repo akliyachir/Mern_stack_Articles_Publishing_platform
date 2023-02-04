@@ -16,6 +16,7 @@ import GetUserArticles from './UserPages/2-GetUserArticles/GetUserArticles';
 import TestComponent from './TestComponent/TestComponent';
 import GetUserFullArticleTemplate from './UserPages/3-GetUserFullArticleTemplate/GetUserFullArticleTemplate';
 import ShowAllPublicArticles from './Pages/5-ShowAllPublicArticles/ShowAllPublicArticles';
+import FullPublicArticle from './TemplatePages/2-FullPublicArticle/FullPublicArticle';
 
 // -- user routes import
 //-- create router
@@ -25,6 +26,11 @@ const router = createBrowserRouter(
 			<Route
 				path='/'
 				element={<ShowAllPublicArticles />}
+				errorElement={<ErrorPage />}
+			/>
+			<Route
+				path='/article/:public_article_id'
+				element={<FullPublicArticle />}
 				errorElement={<ErrorPage />}
 			/>
 			<Route
