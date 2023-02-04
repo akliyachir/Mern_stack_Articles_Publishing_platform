@@ -5,7 +5,7 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function GetUserFullArticleTemplate() {
   const { user_article_id } = useParams();
-  const [userArticleContent, setUserArticleContent] = useState(null);
+  const [userArticleContent, setUserArticleContent] = useState({});
 
   useEffect(() => {
     const userLocalStorage = window.localStorage.getItem('user');
@@ -42,12 +42,12 @@ export default function GetUserFullArticleTemplate() {
   }, []);
 
   const {
+    article_image_url,
+    article_title,
     article_body,
     article_creation_date,
     article_id,
-    article_image_url,
     article_is_public,
-    article_title,
   } = userArticleContent;
 
   return (
@@ -57,6 +57,8 @@ export default function GetUserFullArticleTemplate() {
           className='article_image_url'
           style={{ backgroundImage: article_image_url }}
         ></div>
+        <div>{article_title}</div>
+        <p>{article_body}</p>
       </div>
     </article>
   );

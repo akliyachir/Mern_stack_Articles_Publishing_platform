@@ -10,4 +10,5 @@
 .GetUserFullArticleTemplateContent .article_image_url {
   width: 100%;
   height: 10rem;
+  background-color: var(--clr-3, #333);
 }
