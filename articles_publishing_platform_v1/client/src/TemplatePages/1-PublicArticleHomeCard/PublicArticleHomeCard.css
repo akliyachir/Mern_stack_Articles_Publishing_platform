@@ -1,3 +1,60 @@
 .PublicArticleHomeCard {
-	background-color: tomato;
+	background-color: red;
+}
+
+.PublicArticleHomeCard {
+	cursor: pointer;
+	box-shadow: 0 0 2px var(--clr-3, #efefef);
+	display: flex;
+	justify-content: center;
+	align-items: flex- start;
+	padding-bottom: 0.5rem;
+	height: 26.7rem;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+.PublicArticleHomeCard:hover {
+	scale: 1.02;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+
+.PublicArticleHomeCard a {
+	color: var(--clr-3);
+	text-decoration: none;
+}
+
+.PublicArticleHomeCardContent {
+	width: 100%;
+}
+
+.PublicArticleHomeCard .article_image_url {
+	width: 100%;
+	background-color: var(--clr-3, #456);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 12rem;
+	overflow: hidden;
+}
+
+article_title_landing_page {
+	color: var(--clr-5);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 3.5rem;
+	padding: 0.7rem;
+	font-size: 1.2rem;
+}
+
+article_bodyHome_landing_page {
+	width: 100%;
+	padding: 0.5rem;
+	color: var(--clr-3);
+	height: 9rem;
+}
+
+.PublicArticleHomeCard .article_creation_date_landing_page {
+	text-align: right;
+	background-color: red;
 }

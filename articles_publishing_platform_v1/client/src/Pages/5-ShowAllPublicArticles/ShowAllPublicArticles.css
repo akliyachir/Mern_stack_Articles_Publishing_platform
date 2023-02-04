@@ -9,7 +9,7 @@
 .ShowAllPublicArticlesContent {
 	display: grid;
 	width: 100%;
-	grid-template-columns: repeat(auto-fill, 16rem);
+	grid-template-columns: repeat(auto-fill, 17rem);
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;

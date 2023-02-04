@@ -1,7 +1,7 @@
 import './ShowAllPublicArticles.css';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import { useEffect, useState } from 'react';
-import { PublicArticleHomeCard } from '../../TemplatePages/1-PublicArticleHomeCard/PublicArticleHomeCard';
+import PublicArticleHomeCard from '../../TemplatePages/1-PublicArticleHomeCard/PublicArticleHomeCard';
 
 export default function ShowAllPublicArticles() {
 	const [allPublicArticles, setAllPublicArticles] = useState([]);

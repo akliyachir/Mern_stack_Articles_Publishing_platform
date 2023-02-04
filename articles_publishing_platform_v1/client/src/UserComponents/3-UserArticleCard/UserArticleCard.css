@@ -3,7 +3,7 @@
 	box-shadow: 0 0 2px var(--clr-3, #efefef);
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: flex- start;
 	padding-bottom: 0.5rem;
 	height: 26.7rem;
 	transition-duration: 200ms;
