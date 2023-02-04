@@ -14,6 +14,7 @@ import UserContextProvider from './Contexts/UserContext';
 import CreateArticle from './UserPages/1-CreateArticle/CreateArticle';
 import GetUserArticles from './UserPages/2-GetUserArticles/GetUserArticles';
 import TestComponent from './TestComponent/TestComponent';
+import GetUserFullArticleTemplate from './UserPages/3-GetUserFullArticleTemplate/GetUserFullArticleTemplate';
 
 // -- user routes import
 //-- create router
@@ -41,10 +42,11 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       />
       <Route
-        path='user_articles/:id'
-        element={<TestComponent />}
+        path='/user_article/:user_article_id'
+        element={<GetUserFullArticleTemplate />}
         errorElement={<ErrorPage />}
       />
+
       <Route
         path='/tomato'
         element={<TestComponent />}

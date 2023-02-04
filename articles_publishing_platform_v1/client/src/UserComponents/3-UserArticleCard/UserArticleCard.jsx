@@ -16,7 +16,7 @@ export default function UserArticleCard({ item }) {
 
   return (
     <article key={article_id} className='UserArticleCard'>
-      <NavLink to={'/user_articles/' + article_id}>
+      <NavLink to={'/user_article/' + article_id}>
         <div className='UserArticleCardContent'>
           <div
             style={{ backgroundImage: `url(${article_image_url})` }}
