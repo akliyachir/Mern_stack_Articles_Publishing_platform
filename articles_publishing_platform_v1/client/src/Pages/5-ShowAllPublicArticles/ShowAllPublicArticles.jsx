@@ -10,16 +10,10 @@ export default function ShowAllPublicArticles() {
 	);
 }
 
-import React from 'react';
-
 export function PublicArticleHomeCard() {
 	return (
-		<div
-			className='PublicArticleHomeCard
-
-'
-		>
-			PublicArticleHomeCard
+		<div className='PublicArticleHomeCard'>
+			<div className='PublicArticleHomeCardContent'> ici vont les articles</div>
 		</div>
 	);
 }
