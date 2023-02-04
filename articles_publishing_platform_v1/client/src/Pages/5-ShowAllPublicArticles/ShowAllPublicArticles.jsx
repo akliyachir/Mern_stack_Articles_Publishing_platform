@@ -1,7 +1,5 @@
 import './ShowAllPublicArticles.css';
 
-import React from 'react';
-
 export default function ShowAllPublicArticles() {
 	return (
 		<div className='ShowAllPublicArticles'>
