@@ -33,7 +33,9 @@ export default function ShowAllPublicArticles() {
 	}, []);
 
 	//-- return jsx
-	return (
+	return true ? (
+		<div className='publicArticlesAreLoading'>loading...</div>
+	) : (
 		<div className='ShowAllPublicArticles'>
 			<div className='ShowAllPublicArticlesContent'>
 				<PublicArticleHomeCard />
