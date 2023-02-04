@@ -1,6 +1,18 @@
 .ShowAllPublicArticles {
-	background-color: cadetblue;
-	padding: 2rem;
+	width: 100%;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ShowAllPublicArticlesContent {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, 16rem);
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
 .publicArticlesAreLoading {

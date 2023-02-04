@@ -1,7 +1,7 @@
 import './ShowAllPublicArticles.css';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { PublicArticleHomeCard } from '../../TemplatePages/1-PublicArticleHomeCard/PublicArticleHomeCard';
 
 export default function ShowAllPublicArticles() {
 	const [allPublicArticles, setAllPublicArticles] = useState([]);
@@ -43,23 +43,6 @@ export default function ShowAllPublicArticles() {
 					return <PublicArticleHomeCard item={item} />;
 				})}
 			</div>
-		</div>
-	);
-}
-
-export function PublicArticleHomeCard({ item }) {
-	console.log(item);
-	const {
-		article_title,
-		article_image_url,
-		article_body,
-		article_creation_date,
-		article_id,
-	} = item;
-
-	return (
-		<div key={article_id} className='article_tile'>
-			{article_title}
 		</div>
 	);
 }
