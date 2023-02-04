@@ -22,6 +22,7 @@ export default function GetUserFullArticleTemplate() {
     const userLocalStorage = window.localStorage.getItem('user');
     const { token } = JSON.parse(userLocalStorage);
     const fetchTheArticle = async () => {
+      setisLoading(true);
       try {
         const response = await fetch(
           `${backendUrl}user_article/${user_article_id}`,
@@ -53,6 +54,42 @@ export default function GetUserFullArticleTemplate() {
     fetchTheArticle();
   }, []);
 
+  // -- handle handleOnClickDeleteArticle
+
+  async function handleOnClickDeleteArticle() {
+    setisLoading(true);
+    const userLocalStorage = window.localStorage.getItem('user');
+    const { token } = JSON.parse(userLocalStorage);
+
+    try {
+      const response = await fetch(
+        `${backendUrl}user_article/${user_article_id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            authorization: JSON.stringify(`Bearer ${token}`),
+          },
+        }
+      );
+      const result = await response.json();
+
+      //-- ok
+      if (response.ok) {
+        console.log('ok');
+        console.log(result.message);
+        setisLoading(false);
+      }
+
+      //-- not ok
+      if (!response.ok) {
+        console.log('not ok');
+        console.log(result.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   const {
     article_image_url,
     article_title,
@@ -81,7 +118,12 @@ export default function GetUserFullArticleTemplate() {
           {article_creation_date.slice(0, 10)}
         </p>
         <div className='pivetDeletionAndModifyContainer'>
-          <div className='deleteIcon'>
+          <div
+            className='deleteIcon'
+            onClick={() => {
+              handleOnClickDeleteArticle();
+            }}
+          >
             <FaRegTrashAlt />
           </div>
           <div className='deleteIcon'>

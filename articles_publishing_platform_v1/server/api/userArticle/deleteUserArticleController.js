@@ -4,6 +4,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 export default async function deleteUserArticle() {
   const { authorization } = req.headers;
+
   const { user_article_id } = req.params;
 
   try {
@@ -19,7 +20,6 @@ export default async function deleteUserArticle() {
       return;
     }
     const articles = await Article.deleteOne({
-      user_id: id,
       article_id: user_article_id,
     })
       .sort({
