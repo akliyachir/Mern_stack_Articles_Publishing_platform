@@ -5,7 +5,7 @@ import jsonwebtoken from 'jsonwebtoken';
 const getOneUserArticleController = async (req, res) => {
   const { authorization } = req.headers;
   const { user_article_id } = req.params;
-  console.log(req.params);
+
   try {
     if (!authorization) {
       res.status(400).json({ message: 'make sure you are connected' });
