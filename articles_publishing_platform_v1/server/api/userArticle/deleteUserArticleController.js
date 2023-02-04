@@ -2,7 +2,7 @@ import Article from '../../models/userArticleModel.js';
 import User from '../../models/userModel.js';
 import jsonwebtoken from 'jsonwebtoken';
 
-export default async function deleteUserArticle() {
+export default async function deleteUserArticle(req, res) {
   const { authorization } = req.headers;
 
   const { user_article_id } = req.params;

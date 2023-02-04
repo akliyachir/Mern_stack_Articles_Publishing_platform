@@ -1,5 +1,5 @@
 import './GetUserFullArticleTemplate.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import {
@@ -14,15 +14,19 @@ import {
 } from 'react-icons/fa';
 
 export default function GetUserFullArticleTemplate() {
+  const navigate = useNavigate();
+
   const { user_article_id } = useParams();
   const [userArticleContent, setUserArticleContent] = useState({});
   const [isLoading, setisLoading] = useState(true);
+  const [articleDeleted, setarticleDeleted] = useState(false);
 
   useEffect(() => {
     const userLocalStorage = window.localStorage.getItem('user');
     const { token } = JSON.parse(userLocalStorage);
     const fetchTheArticle = async () => {
       setisLoading(true);
+      console.log(`${backendUrl}user_article/${user_article_id}`);
       try {
         const response = await fetch(
           `${backendUrl}user_article/${user_article_id}`,
@@ -57,7 +61,6 @@ export default function GetUserFullArticleTemplate() {
   // -- handle handleOnClickDeleteArticle
 
   async function handleOnClickDeleteArticle() {
-    setisLoading(true);
     const userLocalStorage = window.localStorage.getItem('user');
     const { token } = JSON.parse(userLocalStorage);
 
@@ -77,7 +80,10 @@ export default function GetUserFullArticleTemplate() {
       if (response.ok) {
         console.log('ok');
         console.log(result.message);
-        setisLoading(false);
+        setarticleDeleted(true);
+        setTimeout(() => {
+          navigate('/user_articles');
+        }, 3000);
       }
 
       //-- not ok
@@ -103,6 +109,16 @@ export default function GetUserFullArticleTemplate() {
     <article className='GetUserFullArticleTemplate'>
       <div className='GetUserFullArticleTemplateContent'>
         <div className='isLoading'>Loading...</div>
+      </div>
+    </article>
+  ) : articleDeleted ? (
+    <article className='GetUserFullArticleTemplate'>
+      <div className='GetUserFullArticleTemplateContent'>
+        <div className='isLoading'>
+          <h1>The article</h1>
+          <p> {article_title}</p>
+          <h1>has been deleted</h1>
+        </div>
       </div>
     </article>
   ) : (
