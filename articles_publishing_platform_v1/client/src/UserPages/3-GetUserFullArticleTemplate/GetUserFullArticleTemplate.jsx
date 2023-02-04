@@ -83,7 +83,7 @@ export default function GetUserFullArticleTemplate() {
         setarticleDeleted(true);
         setTimeout(() => {
           navigate('/user_articles');
-        }, 3000);
+        }, 4000);
       }
 
       //-- not ok
@@ -115,9 +115,10 @@ export default function GetUserFullArticleTemplate() {
     <article className='GetUserFullArticleTemplate'>
       <div className='GetUserFullArticleTemplateContent'>
         <div className='isLoading'>
-          <h1>The article</h1>
-          <p> {article_title}</p>
-          <h1>has been deleted</h1>
+          <p>The article</p>
+          <h4>{article_title}</h4>
+          <p>has been</p>
+          <h3>deleted</h3>
         </div>
       </div>
     </article>
