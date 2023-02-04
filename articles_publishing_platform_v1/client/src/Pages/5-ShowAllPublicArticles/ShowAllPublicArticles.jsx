@@ -33,12 +33,14 @@ export default function ShowAllPublicArticles() {
 	}, []);
 
 	//-- return jsx
-	return true ? (
+	return isLoading ? (
 		<div className='publicArticlesAreLoading'>loading...</div>
 	) : (
 		<div className='ShowAllPublicArticles'>
 			<div className='ShowAllPublicArticlesContent'>
-				<PublicArticleHomeCard />
+				{allPublicArticles.map((item) => {
+					return <PublicArticleHomeCard key={item.article_id} item={item} />;
+				})}
 			</div>
 		</div>
 	);
@@ -51,3 +53,14 @@ export function PublicArticleHomeCard() {
 		</div>
 	);
 }
+
+/* 
+
+article_title: {
+article_image_url: {
+article_body: {
+article_creation_date: {
+article_id: {
+
+
+ */
