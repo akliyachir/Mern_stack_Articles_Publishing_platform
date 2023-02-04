@@ -3,16 +3,20 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import {
+  FaEdit,
+  FaRegEdit,
   FaRegTrashAlt,
   FaTrash,
   FaTrashAlt,
   FaTrashRestore,
   FaTruckLoading,
+  FaUserEdit,
 } from 'react-icons/fa';
 
 export default function GetUserFullArticleTemplate() {
   const { user_article_id } = useParams();
   const [userArticleContent, setUserArticleContent] = useState({});
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const userLocalStorage = window.localStorage.getItem('user');
@@ -33,6 +37,7 @@ export default function GetUserFullArticleTemplate() {
         if (response.ok) {
           console.log('ok');
           setUserArticleContent(result.message);
+          setisLoading(false);
         }
 
         //-- not ok
@@ -57,7 +62,13 @@ export default function GetUserFullArticleTemplate() {
     article_is_public,
   } = userArticleContent;
 
-  return (
+  return isLoading ? (
+    <article className='GetUserFullArticleTemplate'>
+      <div className='GetUserFullArticleTemplateContent'>
+        <div className='isLoading'>Loading...</div>
+      </div>
+    </article>
+  ) : (
     <article className='GetUserFullArticleTemplate'>
       <div className='GetUserFullArticleTemplateContent'>
         <div
@@ -72,6 +83,9 @@ export default function GetUserFullArticleTemplate() {
         <div className='pivetDeletionAndModifyContainer'>
           <div className='deleteIcon'>
             <FaRegTrashAlt />
+          </div>
+          <div className='deleteIcon'>
+            <FaEdit />
           </div>
           <p className='article_is_public'>
             {article_is_public ? 'Privet' : 'Public'}
