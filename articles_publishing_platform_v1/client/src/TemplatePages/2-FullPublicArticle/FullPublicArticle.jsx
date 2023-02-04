@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function FullPublicArticle() {
+	// -- useParams
+	const { public_article_id } = useParams();
+
 	//-- useState
 	const [isArticleLoading, setisArticleLoading] = useState(true);
 	const [articleContent, setarticleContent] = useState();
@@ -15,6 +18,7 @@ export default function FullPublicArticle() {
 				const response = await fetch(backendUrl + 'articles/' + public_article_id);
 				const result = await response.json();
 
+				console.log(result.message);
 				//-- ok
 				if (response.ok) {
 					console.log('ok');
@@ -24,7 +28,7 @@ export default function FullPublicArticle() {
 
 				//-- not ok
 				if (!response.ok) {
-					console.log('ok');
+					console.log('not ok');
 				}
 			} catch (error) {
 				console.error(error.message);
@@ -32,8 +36,6 @@ export default function FullPublicArticle() {
 		};
 		fetchTheFullArticle();
 	}, []);
-
-	const { public_article_id } = useParams();
 
 	const {
 		article_body,
@@ -43,7 +45,9 @@ export default function FullPublicArticle() {
 		article_title,
 	} = articleContent;
 
-	return isArticleLoading ? (
+	console.log(isArticleLoading);
+
+	return true ? (
 		<div className='isLoading'>loading...</div>
 	) : (
 		<article className='FullPublicArticle'>
