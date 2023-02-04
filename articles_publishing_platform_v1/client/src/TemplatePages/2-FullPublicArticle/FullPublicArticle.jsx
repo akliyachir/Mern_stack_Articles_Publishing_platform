@@ -9,7 +9,7 @@ export default function FullPublicArticle() {
 
 	//-- useState
 	const [isArticleLoading, setisArticleLoading] = useState(true);
-	const [articleContent, setarticleContent] = useState();
+	const [articleContent, setarticleContent] = useState({});
 
 	useEffect(() => {
 		setisArticleLoading(true);
@@ -18,7 +18,6 @@ export default function FullPublicArticle() {
 				const response = await fetch(backendUrl + 'articles/' + public_article_id);
 				const result = await response.json();
 
-				console.log(result.message);
 				//-- ok
 				if (response.ok) {
 					console.log('ok');
@@ -45,9 +44,7 @@ export default function FullPublicArticle() {
 		article_title,
 	} = articleContent;
 
-	console.log(isArticleLoading);
-
-	return true ? (
+	return isArticleLoading ? (
 		<div className='isLoading'>loading...</div>
 	) : (
 		<article className='FullPublicArticle'>
