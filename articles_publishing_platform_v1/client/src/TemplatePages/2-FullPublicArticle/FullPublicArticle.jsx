@@ -19,6 +19,7 @@ export default function FullPublicArticle() {
 				if (response.ok) {
 					console.log('ok');
 					setarticleContent(result.message);
+					setisArticleLoading(false);
 				}
 
 				//-- not ok
@@ -42,7 +43,9 @@ export default function FullPublicArticle() {
 		article_title,
 	} = articleContent;
 
-	return (
+	return isArticleLoading ? (
+		<div className='isLoading'>loading...</div>
+	) : (
 		<article className='FullPublicArticle'>
 			<div className='FullPublicArticleContent'>
 				<div
