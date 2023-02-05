@@ -151,9 +151,7 @@ export default function CreateArticle() {
                 name='checkBoxState'
                 id='checkBoxState'
                 checked={ispubliprivetChecked}
-                onChange={(e) => {
-                  handleCheckBoxOnCheck(e);
-                }}
+                onChange={handleCheckBoxOnCheck}
               />
             </div>
             <div
