@@ -46,7 +46,6 @@
 .isPublicCheckboxContainer {
   user-select: none;
   cursor: pointer;
-  margin-top: 0.5rem;
   padding: 0.2rem;
   display: flex;
   justify-content: center;
@@ -71,4 +70,32 @@
 
 .isPublicCreateArticleCheckBoxInput {
   cursor: pointer;
+}
+
+.checkboxAndDispay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+.checkboxAndDispay > * {
+  width: 100%;
+}
+#checkBoxState {
+  cursor: pointer;
+  appearance: none;
+  box-shadow: 0 0 4px #33333333;
+  border: 1px solid #333;
+  padding: 0.7rem;
+  border-radius: 0.3rem;
+}
+
+#checkBoxState:checked {
+  background-color: #333;
+}
+
+.checkBoxBoxContainer {
+  text-align: center;
+  padding: 0.5rem;
 }

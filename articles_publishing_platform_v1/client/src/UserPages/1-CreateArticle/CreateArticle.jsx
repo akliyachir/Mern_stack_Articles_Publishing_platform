@@ -1,12 +1,13 @@
 import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
   // -- checkbox
+  const checkBoxState = useRef();
   const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
 
   // -- range cursor
@@ -19,7 +20,7 @@ export default function CreateArticle() {
     article_image_url: '',
     article_body: '',
     article_id: crypto.randomUUID(),
-    article_is_public: null,
+    article_is_public: ispubliprivetChecked,
   });
   const { article_title, article_image_url, article_body, article_is_public } =
     createArticleFormData;
@@ -119,33 +120,28 @@ export default function CreateArticle() {
             value={article_body}
             handleInputOnChange={handleInputOnChange}
           />
-          <div
-            onClick={() => {
-              if (ispubliprivetChecked === true) {
-                setispubliprivetChecked(false);
-                console.log(ispubliprivetChecked);
-                return;
-              }
-              if (ispubliprivetChecked === false) {
-                setispubliprivetChecked(true);
-                console.log(ispubliprivetChecked);
-                return;
-              }
-            }}
-            className={`isPublicCheckboxContainer ${
-              ispubliprivetChecked ? 'isPublicBgColor' : 'isPrivetBgColor'
-            }`}
-          >
-            <label htmlFor='article_is_public'>
+
+          <div className='checkboxAndDispay'>
+            <div className='checkBoxBoxContainer'>
+              <input
+                type='checkbox'
+                name='checkBoxState'
+                id='checkBoxState'
+                ref={checkBoxState}
+                checked={ispubliprivetChecked}
+                onChange={(e) => {
+                  setispubliprivetChecked(e.currentTarget.checked);
+                  console.log('from target->', e.currentTarget.checked);
+                }}
+              />
+            </div>
+            <div
+              className={`isPublicCheckboxContainer ${
+                ispubliprivetChecked ? 'isPublicBgColor' : 'isPrivetBgColor'
+              }`}
+            >
               {ispubliprivetChecked ? 'Public' : 'Privet'}
-            </label>
-            <input
-              type='checkbox'
-              name='article_is_public'
-              id='article_is_public'
-              className='isPublicCreateArticleCheckBoxInput'
-              checked={ispubliprivetChecked}
-            />
+            </div>
           </div>
           <div className='buttonOnSubmitCreateNewArticleContainer'>
             <button
