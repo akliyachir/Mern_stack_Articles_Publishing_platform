@@ -1,20 +1,44 @@
 import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
-import { useState, useRef } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
+  // -- useReducer
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'checked':
+        return {
+          isItChecked: true,
+        };
+      case 'NotChecked':
+        return {
+          isItChecked: false,
+        };
+      default:
+        return state;
+    }
+  };
+  const defaultState = { isItChecked: true };
+  const [state, dispatch] = useReducer(reducer, defaultState);
+
   // -- checkbox
-  const checkBoxState = useRef();
+
+  const handleCheckBoxOnCheck = (e) => {
+    setispubliprivetChecked(e.currentTarget.checked);
+  };
+  useEffect(() => {
+    setispubliprivetChecked();
+  }, [handleCheckBoxOnCheck]);
+
   const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
 
   // -- range cursor
 
   // -- form data useState
 
-  const [isPublicLabelDisplay, setisPublicLabelDisplay] = useState(true);
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
@@ -45,9 +69,7 @@ export default function CreateArticle() {
       ...createArticleFormData,
       article_is_public: ispubliprivetChecked,
     });
-
-    ispubliprivetChecked;
-
+    console.log(createArticleFormData);
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
@@ -124,14 +146,13 @@ export default function CreateArticle() {
           <div className='checkboxAndDispay'>
             <div className='checkBoxBoxContainer'>
               <input
+                key={crypto.randomUUID()}
                 type='checkbox'
                 name='checkBoxState'
                 id='checkBoxState'
-                ref={checkBoxState}
                 checked={ispubliprivetChecked}
                 onChange={(e) => {
-                  setispubliprivetChecked(e.currentTarget.checked);
-                  console.log('from target->', e.currentTarget.checked);
+                  handleCheckBoxOnCheck(e);
                 }}
               />
             </div>
