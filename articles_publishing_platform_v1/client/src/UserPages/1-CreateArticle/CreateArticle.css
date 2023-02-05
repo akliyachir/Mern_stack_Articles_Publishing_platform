@@ -73,6 +73,7 @@
 }
 
 .checkboxAndDispay {
+  box-shadow: 0 0 1px var(--clr-3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,7 +88,7 @@
   appearance: none;
   box-shadow: 0 0 4px #33333333;
   border: 1px solid #333;
-  padding: 0.7rem;
+  padding: 0.6rem;
   border-radius: 0.3rem;
 }
 
