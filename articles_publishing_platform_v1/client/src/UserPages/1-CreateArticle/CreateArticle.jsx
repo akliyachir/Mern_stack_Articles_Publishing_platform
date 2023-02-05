@@ -6,34 +6,31 @@ import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/Te
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
-  // -- useReducer
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'checked':
-        return {
-          isItChecked: true,
-        };
-      case 'NotChecked':
-        return {
-          isItChecked: false,
-        };
-      default:
-        return state;
-    }
-  };
-  const defaultState = { isItChecked: true };
-  const [state, dispatch] = useReducer(reducer, defaultState);
-
   // -- checkbox
 
-  const handleCheckBoxOnCheck = (e) => {
-    setispubliprivetChecked(e.currentTarget.checked);
+  const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
+
+  let CheckedYawesmek = true;
+  const handleOnClickCheck = () => {
+    if (ispubliprivetChecked === true) {
+      setispubliprivetChecked(false);
+      return;
+    }
+    if (ispubliprivetChecked === false) {
+      setispubliprivetChecked(true);
+      return;
+    }
   };
   useEffect(() => {
-    setispubliprivetChecked();
-  }, [handleCheckBoxOnCheck]);
-
-  const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
+    console.log(CheckedYawesmek);
+    if (ispubliprivetChecked === true) {
+      let CheckedYawesmek = true;
+    }
+    if (ispubliprivetChecked === false) {
+      CheckedYawesmek = false;
+      console.log(CheckedYawesmek);
+    }
+  }, [handleOnClickCheck]);
 
   // -- range cursor
 
@@ -48,13 +45,12 @@ export default function CreateArticle() {
   });
   const { article_title, article_image_url, article_body, article_is_public } =
     createArticleFormData;
-  //-- auto handle Input On Change
+
   const handleInputOnChange = (e) => {
     setCreateArticleFormData({
       ...createArticleFormData,
       [e.target.name]: e.target.value,
     });
-    console.log(createArticleFormData);
   };
 
   //-- create response area
@@ -67,7 +63,7 @@ export default function CreateArticle() {
     e.preventDefault();
     setCreateArticleFormData({
       ...createArticleFormData,
-      article_is_public: ispubliprivetChecked,
+      article_is_public: CheckedYawesmek,
     });
     console.log(createArticleFormData);
     // -- get token from localStorage
@@ -144,17 +140,9 @@ export default function CreateArticle() {
           />
 
           <div className='checkboxAndDispay'>
-            <div className='checkBoxBoxContainer'>
-              <input
-                key={crypto.randomUUID()}
-                type='checkbox'
-                name='checkBoxState'
-                id='checkBoxState'
-                checked={ispubliprivetChecked}
-                onChange={handleCheckBoxOnCheck}
-              />
-            </div>
+            <div className='checkBoxBoxContainer'></div>
             <div
+              onClick={handleOnClickCheck}
               className={`isPublicCheckboxContainer ${
                 ispubliprivetChecked ? 'isPublicBgColor' : 'isPrivetBgColor'
               }`}
