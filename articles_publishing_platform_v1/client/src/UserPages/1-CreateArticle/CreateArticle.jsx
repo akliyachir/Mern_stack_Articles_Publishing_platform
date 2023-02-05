@@ -6,16 +6,22 @@ import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/Te
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
+  // -- checkbox
+  const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
+
   // -- range cursor
 
   // -- form data useState
+
+  const [isPublicLabelDisplay, setisPublicLabelDisplay] = useState(true);
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
     article_body: '',
     article_id: crypto.randomUUID(),
+    article_is_public: null,
   });
-  const { article_title, article_image_url, article_body } =
+  const { article_title, article_image_url, article_body, article_is_public } =
     createArticleFormData;
   //-- auto handle Input On Change
   const handleInputOnChange = (e) => {
@@ -23,6 +29,7 @@ export default function CreateArticle() {
       ...createArticleFormData,
       [e.target.name]: e.target.value,
     });
+    console.log(createArticleFormData);
   };
 
   //-- create response area
@@ -33,6 +40,13 @@ export default function CreateArticle() {
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
+    setCreateArticleFormData({
+      ...createArticleFormData,
+      article_is_public: ispubliprivetChecked,
+    });
+
+    ispubliprivetChecked;
+
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
@@ -105,13 +119,32 @@ export default function CreateArticle() {
             value={article_body}
             handleInputOnChange={handleInputOnChange}
           />
-          <div className='isPublicCheckboxContainer'>
+          <div
+            onClick={() => {
+              if (ispubliprivetChecked === true) {
+                setispubliprivetChecked(false);
+                console.log(ispubliprivetChecked);
+                return;
+              }
+              if (ispubliprivetChecked === false) {
+                setispubliprivetChecked(true);
+                console.log(ispubliprivetChecked);
+                return;
+              }
+            }}
+            className={`isPublicCheckboxContainer ${
+              ispubliprivetChecked ? 'isPublicBgColor' : 'isPrivetBgColor'
+            }`}
+          >
+            <label htmlFor='article_is_public'>
+              {ispubliprivetChecked ? 'Public' : 'Privet'}
+            </label>
             <input
               type='checkbox'
-              name='isPublic'
-              id='isPublic'
+              name='article_is_public'
+              id='article_is_public'
               className='isPublicCreateArticleCheckBoxInput'
-              checked={true}
+              checked={ispubliprivetChecked}
             />
           </div>
           <div className='buttonOnSubmitCreateNewArticleContainer'>

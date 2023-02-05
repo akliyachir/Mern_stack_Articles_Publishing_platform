@@ -34,7 +34,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 1rem;
 }
 .buttonOnSubmitCreateNewArticle {
   padding: 0.3rem 1rem;
@@ -45,15 +44,31 @@
 }
 
 .isPublicCheckboxContainer {
-  padding: 1rem;
+  user-select: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: darkgray;
+  gap: 1rem;
+}
+
+.isPublicCheckboxContainer label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.isPublicBgColor {
+  color: var(--clr-2);
+  background-color: var(--clr-3);
+}
+.isPrivetBgColor {
+  background-color: var(--clr-4);
+  color: var(--clr-2);
 }
 
 .isPublicCreateArticleCheckBoxInput {
-  display: block;
-  background-color: red;
-  padding: 3rem;
+  cursor: pointer;
 }
