@@ -63,6 +63,7 @@ export default function CreateArticle() {
           article_title: '',
           article_image_url: '',
           article_body: '',
+
           article_id: crypto.randomUUID(),
         });
         navigate('/user_articles');
@@ -104,6 +105,15 @@ export default function CreateArticle() {
             value={article_body}
             handleInputOnChange={handleInputOnChange}
           />
+          <div className='isPublicCheckboxContainer'>
+            <input
+              type='checkbox'
+              name='isPublic'
+              id='isPublic'
+              className='isPublicCreateArticleCheckBoxInput'
+              checked={true}
+            />
+          </div>
           <div className='buttonOnSubmitCreateNewArticleContainer'>
             <button
               type='submit'

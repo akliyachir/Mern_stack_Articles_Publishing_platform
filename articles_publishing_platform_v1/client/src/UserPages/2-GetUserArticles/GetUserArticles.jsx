@@ -38,7 +38,7 @@ export default function GetUserArticles() {
     <div className='GetUserArticles'>
       <div className='GetUserArticlesContainer'>
         {article.map((item) => {
-          return <UserArticleCard item={item} />;
+          return <UserArticleCard key={item.article_id} item={item} />;
         })}
       </div>
     </div>
