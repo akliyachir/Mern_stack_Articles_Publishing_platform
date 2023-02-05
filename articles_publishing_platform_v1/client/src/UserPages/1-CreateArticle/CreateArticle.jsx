@@ -6,34 +6,6 @@ import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/Te
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 
 export default function CreateArticle() {
-  // -- checkbox
-
-  const [ispubliprivetChecked, setispubliprivetChecked] = useState(true);
-
-  let CheckedYawesmek = true;
-  const handleOnClickCheck = () => {
-    if (ispubliprivetChecked === true) {
-      setispubliprivetChecked(false);
-      return;
-    }
-    if (ispubliprivetChecked === false) {
-      setispubliprivetChecked(true);
-      return;
-    }
-  };
-  useEffect(() => {
-    console.log(CheckedYawesmek);
-    if (ispubliprivetChecked === true) {
-      let CheckedYawesmek = true;
-    }
-    if (ispubliprivetChecked === false) {
-      CheckedYawesmek = false;
-      console.log(CheckedYawesmek);
-    }
-  }, [handleOnClickCheck]);
-
-  // -- range cursor
-
   // -- form data useState
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
@@ -41,7 +13,7 @@ export default function CreateArticle() {
     article_image_url: '',
     article_body: '',
     article_id: crypto.randomUUID(),
-    article_is_public: ispubliprivetChecked,
+    article_is_public: true,
   });
   const { article_title, article_image_url, article_body, article_is_public } =
     createArticleFormData;
@@ -61,10 +33,7 @@ export default function CreateArticle() {
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
-    setCreateArticleFormData({
-      ...createArticleFormData,
-      article_is_public: CheckedYawesmek,
-    });
+
     console.log(createArticleFormData);
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
@@ -139,26 +108,13 @@ export default function CreateArticle() {
             handleInputOnChange={handleInputOnChange}
           />
 
-          <div className='checkboxAndDispay'>
-            <div className='checkBoxBoxContainer'></div>
-            <div
-              onClick={handleOnClickCheck}
-              className={`isPublicCheckboxContainer ${
-                ispubliprivetChecked ? 'isPublicBgColor' : 'isPrivetBgColor'
-              }`}
-            >
-              {ispubliprivetChecked ? 'Public' : 'Privet'}
-            </div>
-          </div>
-          <div className='buttonOnSubmitCreateNewArticleContainer'>
-            <button
-              type='submit'
-              className='buttonOnSubmitCreateNewArticle'
-              onClick={handleOnSubmitCreateNewArticle}
-            >
-              Submit
-            </button>
-          </div>
+          <button
+            type='submit'
+            className='buttonOnSubmitCreateNewArticle'
+            onClick={handleOnSubmitCreateNewArticle}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
