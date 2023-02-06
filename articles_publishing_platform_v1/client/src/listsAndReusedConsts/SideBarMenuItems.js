@@ -24,4 +24,9 @@ export const menuItemsList = [
     title: 'contact',
     url: '/contact',
   },
+  {
+    menu_item_id: 6,
+    title: 'Test Component',
+    url: '/tomato',
+  },
 ];

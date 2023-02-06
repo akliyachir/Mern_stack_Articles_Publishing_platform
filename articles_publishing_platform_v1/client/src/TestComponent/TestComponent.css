@@ -1,12 +1,10 @@
 .TestComponent {
-  background-color: tomato;
-  min-height: 100vh;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 .TestComponent > * {
-  padding: 2rem;
-  background-color: #fff;
+  border: 1px solid #333;
 }
