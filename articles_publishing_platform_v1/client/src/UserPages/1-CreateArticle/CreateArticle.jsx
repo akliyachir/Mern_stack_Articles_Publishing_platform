@@ -4,6 +4,7 @@ import { useState, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import TextEditorLexical from '../../TextEditorLexical/TextEditorLexical';
 
 export default function CreateArticle() {
   // -- form data useState
@@ -115,6 +116,7 @@ export default function CreateArticle() {
           >
             Submit
           </button>
+          <TextEditorLexical />
         </form>
       </div>
     </div>
