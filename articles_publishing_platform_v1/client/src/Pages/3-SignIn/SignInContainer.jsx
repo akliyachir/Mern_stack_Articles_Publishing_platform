@@ -9,19 +9,21 @@ import {
   loginErrorReducer,
 } from '../../reducers/loginErrorReducer';
 
-export default function SignUpContainer() {
-  const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
-  const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);
-
-  const { email, password } = formDataSign;
-  const handleInputOnChange = (e) => {
-    setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
-  };
+export default function SignInContainer() {
   //-- display login error messages
   const [loginErrorState, loginErrorDispatch] = useReducer(
     loginErrorReducer,
     loginErrorDefaultState
   );
+
+  const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
+  const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);
+
+  const { email, password } = formDataSign;
+
+  const handleInputOnChange = (e) => {
+    setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
+  };
   const displayLogginErrorMessages = () => {
     setIsErrorToDisplay(true);
     setTimeout(() => {
@@ -76,8 +78,8 @@ export default function SignUpContainer() {
   };
   // -- return
   return (
-    <div className='SignUpContainer'>
-      <div className='SignUpContainerContent'>
+    <div className='SignInContainer'>
+      <div className='SignInContainerContent'>
         <div
           className={
             isErrorToDisplay ? 'isErrorFormStitleStyling' : 'formStitleStyling'
