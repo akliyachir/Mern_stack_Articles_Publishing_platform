@@ -4,45 +4,45 @@ import { useEffect, useState } from 'react';
 import PublicArticleHomeCard from '../../TemplatePages/1-PublicArticleHomeCard/PublicArticleHomeCard';
 
 export default function ShowAllPublicArticles() {
-	const [allPublicArticles, setAllPublicArticles] = useState([]);
-	const [isLoading, setisLoading] = useState(true);
+  const [allPublicArticles, setAllPublicArticles] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
-	useEffect(() => {
-		setisLoading(true);
-		const fetchPublicArticles = async () => {
-			try {
-				const response = await fetch(`${backendUrl}articles`);
-				const result = await response.json();
+  useEffect(() => {
+    setisLoading(true);
+    const fetchPublicArticles = async () => {
+      try {
+        const response = await fetch(`${backendUrl}article`);
+        const result = await response.json();
 
-				// -- ok
-				if (response.ok) {
-					console.log('ok');
-					setAllPublicArticles(result.message);
-					setisLoading(false);
-				}
+        // -- ok
+        if (response.ok) {
+          console.log('ok');
+          setAllPublicArticles(result.message);
+          setisLoading(false);
+        }
 
-				// -- not ok
-				if (!response.ok) {
-					console.log('not ok');
-				}
-			} catch (error) {
-				console.error(error.message);
-			}
-		};
+        // -- not ok
+        if (!response.ok) {
+          console.log('not ok');
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
 
-		fetchPublicArticles();
-	}, []);
+    fetchPublicArticles();
+  }, []);
 
-	//-- return jsx
-	return isLoading ? (
-		<div className='publicArticlesAreLoading'>loading...</div>
-	) : (
-		<div className='ShowAllPublicArticles'>
-			<div className='ShowAllPublicArticlesContent'>
-				{allPublicArticles.map((item) => {
-					return <PublicArticleHomeCard item={item} />;
-				})}
-			</div>
-		</div>
-	);
+  //-- return jsx
+  return isLoading ? (
+    <div className='publicArticlesAreLoading'>loading...</div>
+  ) : (
+    <div className='ShowAllPublicArticles'>
+      <div className='ShowAllPublicArticlesContent'>
+        {allPublicArticles.map((item) => {
+          return <PublicArticleHomeCard key={item.article_id} item={item} />;
+        })}
+      </div>
+    </div>
+  );
 }

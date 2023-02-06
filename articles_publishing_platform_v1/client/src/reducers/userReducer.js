@@ -6,14 +6,18 @@ export const userDefaultState = {
 
 // -- reducer
 export const userReducer = (userState, action) => {
-  const { type, payload } = action;
-  const { email, token } = payload;
-  switch (type) {
+  switch (action.type) {
     case 'SIGN_IN':
       return {
         ...userState,
-        email: email,
-        token: token,
+        email: action.payload.email,
+        token: action.payload.token,
+      };
+    case 'DISCONNECT':
+      return {
+        ...userState,
+        email: '',
+        token: '',
       };
     default:
       return userState;
