@@ -2,7 +2,7 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl.js';
 import { useNavigate } from 'react-router-dom';
 import './SignInContainer.css';
 import '../SignInUpCommunStyling.css';
-import { useState, useContext, useReducer } from 'react';
+import { useState, useContext, useReducer, useEffect } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
 import {
   loginErrorDefaultState,
@@ -15,6 +15,9 @@ export default function SignInContainer() {
     loginErrorReducer,
     loginErrorDefaultState
   );
+  useEffect(() => {
+    loginErrorDispatch({ type: 'NO_ERROR_SIGNIN' });
+  }, []);
 
   const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
   const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);

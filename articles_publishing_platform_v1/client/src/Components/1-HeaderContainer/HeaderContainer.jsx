@@ -1,4 +1,8 @@
 import './HeaderContainer.css';
+import { MdLibraryBooks } from 'react-icons/md';
+import { FaUserAstronaut } from 'react-icons/fa';
+import { BsJournalBookmark } from 'react-icons/bs';
+
 import { FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import SideBarMenu from '../2-SideBarMenu/SideBarMenu';
@@ -52,17 +56,19 @@ export default function HeaderContainer() {
           <NavLink to='/'>
             <FaHome />
           </NavLink>
-          {!!userState.email && (
-            <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
-              {userState.email}
-            </div>
-          )}
         </span>
+
+        {!!userState.email && (
+          <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
+            <FaUserAstronaut />
+          </div>
+        )}
         <div className='hamburgerIcon' onClick={handleToggleSideBar}>
           <span></span>
           <span></span>
           <span></span>
         </div>
+
         <SideBarMenu isMenuOpen={isMenuOpen} closeSideMenu={closeSideMenu} />
         {!!userState.email && (
           <UserSideBarMenu
