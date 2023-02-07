@@ -26,7 +26,7 @@ export const userMenuItemsList = [
   },
   {
     menu_item_id: 6,
-    title: 'diconnect',
+    title: 'disconnect',
     url: '/disconnect',
   },
 ];
