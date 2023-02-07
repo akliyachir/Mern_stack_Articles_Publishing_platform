@@ -1,8 +1,7 @@
 import { $getRoot, $getSelection } from 'lexical';
 import { useEffect, useState } from 'react';
 import { $generateHtmlFromNodes } from '@lexical/html';
-import {} from '@lexical/react';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import ExampleTheme from './themes/ExampleTheme';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
@@ -51,6 +50,13 @@ const editorConfig = {
     TableRowNode,
     AutoLinkNode,
     LinkNode,
+    CustomParagraphNode,
+    {
+      replace: ParagraphNode,
+      with: (node) => {
+        return new CustomParagraphNode();
+      },
+    },
   ],
 };
 
@@ -67,9 +73,11 @@ export default function Editor() {
       const root = $getRoot();
       const selection = $getSelection();
 
-      /* console.log(root, selection); */
-      seteditortypedConent(root, selection);
-      console.log(Object.values(editortypedConent));
+      console.log(root, selection);
+
+      /*       console.log(editortypedConent); */
+
+      // -- convert to html
     });
   }
 
@@ -84,7 +92,7 @@ export default function Editor() {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          {/*  <TreeViewPlugin /> */}
+          <TreeViewPlugin />
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />
