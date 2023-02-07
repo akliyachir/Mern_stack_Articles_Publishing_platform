@@ -1,8 +1,3 @@
-import { $getRoot, $getSelection } from 'lexical';
-import { useEffect, useState } from 'react';
-import { $generateHtmlFromNodes } from '@lexical/html';
-
-import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import ExampleTheme from './themes/ExampleTheme';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -50,37 +45,10 @@ const editorConfig = {
     TableRowNode,
     AutoLinkNode,
     LinkNode,
-    CustomParagraphNode,
-    {
-      replace: ParagraphNode,
-      with: (node) => {
-        return new CustomParagraphNode();
-      },
-    },
   ],
 };
 
 export default function Editor() {
-  const [editortypedConent, seteditortypedConent] = useState();
-
-  const initialConfig = {
-    namespace: 'MyEditor',
-  };
-
-  function onChange(editorState) {
-    editorState.read(() => {
-      // Read the contents of the EditorState here.
-      const root = $getRoot();
-      const selection = $getSelection();
-
-      console.log(root, selection);
-
-      /*       console.log(editortypedConent); */
-
-      // -- convert to html
-    });
-  }
-
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className='editor-container'>
@@ -100,9 +68,7 @@ export default function Editor() {
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-          <OnChangePlugin onChange={onChange} />
         </div>
-        <div>{}</div>
       </div>
     </LexicalComposer>
   );
