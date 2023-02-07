@@ -1,3 +1,9 @@
+import { $getRoot, $getSelection } from 'lexical';
+import { useEffect, useState } from 'react';
+import { $generateHtmlFromNodes } from '@lexical/html';
+import {} from '@lexical/react';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import ExampleTheme from './themes/ExampleTheme';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -49,6 +55,24 @@ const editorConfig = {
 };
 
 export default function Editor() {
+  const [editortypedConent, seteditortypedConent] = useState();
+
+  const initialConfig = {
+    namespace: 'MyEditor',
+  };
+
+  function onChange(editorState) {
+    editorState.read(() => {
+      // Read the contents of the EditorState here.
+      const root = $getRoot();
+      const selection = $getSelection();
+
+      /* console.log(root, selection); */
+      seteditortypedConent(root, selection);
+      console.log(Object.values(editortypedConent));
+    });
+  }
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className='editor-container'>
@@ -60,7 +84,7 @@ export default function Editor() {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          <TreeViewPlugin />
+          {/*  <TreeViewPlugin /> */}
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />
@@ -68,7 +92,9 @@ export default function Editor() {
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+          <OnChangePlugin onChange={onChange} />
         </div>
+        <div>{}</div>
       </div>
     </LexicalComposer>
   );
