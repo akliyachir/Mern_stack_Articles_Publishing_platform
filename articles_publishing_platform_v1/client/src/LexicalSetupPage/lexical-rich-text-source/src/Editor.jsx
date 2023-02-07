@@ -1,5 +1,5 @@
-import './styles.css';
-
+import { $generateHtmlFromNodes } from '@lexical/html';
+import { $getRoot, $getSelection } from 'lexical';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import ExampleTheme from './themes/ExampleTheme';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
@@ -23,9 +23,10 @@ import { TRANSFORMERS } from '@lexical/markdown';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
+import React, { useState } from 'react';
 
 function Placeholder() {
-  return <div className='editor-placeholder'>Enter some rich text hola...</div>;
+  return <div className='editor-placeholder'>Enter some rich text...</div>;
 }
 
 const editorConfig = {
@@ -52,15 +53,18 @@ const editorConfig = {
 };
 
 export default function Editor() {
+  const htmlString = $generateHtmlFromNodes(editor, selection | null);
+  const [ContentTestDisplay, setContentTestDisplay] = useState('');
   function onChange(editorState) {
     editorState.read(() => {
       // Read the contents of the EditorState here.
       const root = $getRoot();
       const selection = $getSelection();
-
-      console.log(root, selection);
+      setContentTestDisplay(root, selection);
+      console.log(edotor.getEditor);
     });
   }
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className='editor-container'>
@@ -72,9 +76,9 @@ export default function Editor() {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          <TreeViewPlugin />
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
+          <OnChangePlugin onChange={onChange} />
           <ListPlugin />
           <LinkPlugin />
           <AutoLinkPlugin />
@@ -82,6 +86,7 @@ export default function Editor() {
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </div>
       </div>
+      <div>{ContentTestDisplay.__cachedText}</div>
     </LexicalComposer>
   );
 }
