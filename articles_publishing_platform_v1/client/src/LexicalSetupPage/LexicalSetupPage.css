@@ -1,0 +1,13 @@
+.LexicalSetupPage {
+  background-color: #f1f1f1;
+  min-height: 85vh;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.LexicalSetupPageContent {
+  background-color: #fff;
+  padding: 2rem;
+}

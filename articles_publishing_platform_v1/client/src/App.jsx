@@ -18,6 +18,7 @@ import GetUserFullArticleTemplate from './UserPages/3-GetUserFullArticleTemplate
 import ShowAllPublicArticles from './Pages/5-ShowAllPublicArticles/ShowAllPublicArticles';
 import FullPublicArticle from './TemplatePages/2-FullPublicArticle/FullPublicArticle';
 import UserDisconnect from './UserPages/0-UserDisconnect/UserDisconnect';
+import LexicalSetupPage from './LexicalSetupPage/LexicalSetupPage';
 
 // -- user routes import
 //-- create router
@@ -68,6 +69,11 @@ const router = createBrowserRouter(
       <Route
         path='/tomato'
         element={<TestComponent />}
+        errorElement={<ErrorPage />}
+      />
+      <Route
+        path='/LexicalSetupPage'
+        element={<LexicalSetupPage />}
         errorElement={<ErrorPage />}
       />
     </Route>
