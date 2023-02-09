@@ -6,6 +6,9 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
+  // -- handle onChange useState text editor
+  const [richTextEditorContent, setrichTextEditorContent] = useState('');
+
   // -- form data useState
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
