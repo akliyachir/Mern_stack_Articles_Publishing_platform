@@ -18,7 +18,6 @@ export default function GetUserFullArticleTemplate() {
     const { token } = JSON.parse(userLocalStorage);
     const fetchTheArticle = async () => {
       setisLoading(true);
-      console.log(`${backendUrl}user_article/${user_article_id}`);
       try {
         const response = await fetch(
           `${backendUrl}user_article/${user_article_id}`,
@@ -32,14 +31,12 @@ export default function GetUserFullArticleTemplate() {
 
         //-- ok
         if (response.ok) {
-          console.log('ok');
           setUserArticleContent(result.message);
           setisLoading(false);
         }
 
         //-- not ok
         if (!response.ok) {
-          console.log('not ok');
           console.log(result.message);
         }
       } catch (error) {
@@ -70,7 +67,6 @@ export default function GetUserFullArticleTemplate() {
 
       //-- ok
       if (response.ok) {
-        console.log('ok');
         console.log(result.message);
         setarticleDeleted(true);
         setTimeout(() => {
@@ -80,7 +76,6 @@ export default function GetUserFullArticleTemplate() {
 
       //-- not ok
       if (!response.ok) {
-        console.log('not ok');
         console.log(result.message);
       }
     } catch (error) {

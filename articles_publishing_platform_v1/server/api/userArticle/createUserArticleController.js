@@ -4,7 +4,6 @@ import jsonwebtoken from 'jsonwebtoken';
 
 const createUserArticle = async (req, res) => {
   const { article_title, article_body } = req.body;
-  console.log(req.body);
 
   if (!article_title) {
     res

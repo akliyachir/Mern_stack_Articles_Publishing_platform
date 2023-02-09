@@ -127,7 +127,6 @@ const TipTapEditor = ({ setCreateArticleFormData, createArticleFormData }) => {
         ...createArticleFormData,
         article_body: html,
       });
-      console.log(createArticleFormData);
     },
   });
 

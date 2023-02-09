@@ -58,10 +58,8 @@ export default function SignInContainer() {
       }
       if (response.ok) {
         await userDispatch({ type: 'SIGN_IN', payload: result });
-        console.log(result);
         window.localStorage.setItem('user', JSON.stringify(result));
 
-        console.log(window.localStorage.getItem('user'));
         // -- reset the form after login
 
         setFormDataSign({ email: '', password: '' });

@@ -16,14 +16,12 @@ export default function ShowAllPublicArticles() {
 
         // -- ok
         if (response.ok) {
-          console.log('ok');
           setAllPublicArticles(result.message);
           setisLoading(false);
         }
 
         // -- not ok
         if (!response.ok) {
-          console.log('not ok');
         }
       } catch (error) {
         console.error(error.message);

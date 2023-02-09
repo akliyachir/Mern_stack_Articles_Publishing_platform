@@ -23,14 +23,12 @@ export default function FullPublicArticle() {
 
         //-- ok
         if (response.ok) {
-          console.log('ok');
           setarticleContent(result.message);
           setisArticleLoading(false);
         }
 
         //-- not ok
         if (!response.ok) {
-          console.log('not ok');
         }
       } catch (error) {
         console.error(error.message);

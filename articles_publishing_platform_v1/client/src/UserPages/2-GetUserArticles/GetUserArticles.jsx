@@ -20,13 +20,11 @@ export default function GetUserArticles() {
       const result = await response.json();
       // -- is not ok
       if (!response.ok) {
-        console.log('not ok');
         console.error(result.message);
       }
 
       // -- ok
       if (response.ok) {
-        console.log('ok');
         setArticle(result.message);
       }
     };

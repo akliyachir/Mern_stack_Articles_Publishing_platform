@@ -40,7 +40,6 @@ export default function CreateArticle() {
       article_body: '',
     });
 
-    console.log(createArticleFormData);
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
@@ -56,7 +55,6 @@ export default function CreateArticle() {
     const result = await response.json();
 
     if (!response.ok) {
-      console.log('not ok');
       setServerResponse(result.message);
       setTimeout(() => {
         setServerResponse('');
@@ -64,7 +62,6 @@ export default function CreateArticle() {
     }
 
     if (response.ok) {
-      console.log('ok');
       setServerResponse(result.message);
       setTimeout(() => {
         setCreateArticleFormData({
@@ -104,6 +101,7 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
+          <div className='imagePreviewFromLinkCreateArticle'></div>
           <TiptapRichTextEditor
             setCreateArticleFormData={setCreateArticleFormData}
             createArticleFormData={createArticleFormData}
