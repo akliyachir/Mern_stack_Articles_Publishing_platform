@@ -1,11 +1,12 @@
 import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useReducer, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
+  const setTheImageHeight = useRef();
   // -- handle onChange useState text editor
 
   // -- form data useState
@@ -46,6 +47,8 @@ export default function CreateArticle() {
       article_body: '',
     });
 
+    console.log(createArticleFormData);
+
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
@@ -73,8 +76,8 @@ export default function CreateArticle() {
         setCreateArticleFormData({
           article_title: '',
           article_image_url: '',
+          article_image_height: setTheImageHeight.current.value,
           article_body: '',
-
           article_id: crypto.randomUUID(),
         });
         navigate('/user_articles');
@@ -110,12 +113,17 @@ export default function CreateArticle() {
           <div className='imagePreviewFromLinkCreateArticle'>
             <div
               className='previewImage'
-              style={{
-                backgroundImage: `url(${article_image_url})`,
-                backgroundPosition: `center ${article_image_height}%`,
-              }}
+              style={{ backgroundColor: 'red' }}
             ></div>
-            <input className='image_height_range' type='range' name='' id='' />
+            <input
+              className='article_image_height'
+              min='0'
+              max='100'
+              type='range'
+              name='article_image_height'
+              id='article_image_height'
+              ref={setTheImageHeight}
+            />
           </div>
           <TiptapRichTextEditor
             setCreateArticleFormData={setCreateArticleFormData}

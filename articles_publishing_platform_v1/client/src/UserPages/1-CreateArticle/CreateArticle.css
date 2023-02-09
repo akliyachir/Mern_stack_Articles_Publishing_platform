@@ -117,9 +117,29 @@
   width: 100%;
   aspect-ratio: calc(16 / 9);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-color: url('https://images.pexels.com/photos/159499/books-read-bouquet-relax-159499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
 }
 
-.imagePreviewFromLinkCreateArticle .image_height_range {
+.imagePreviewFromLinkCreateArticle .article_image_height {
   appearance: none;
+  box-shadow: var(--sh-b-1);
+  border-radius: 0.2rem;
+}
+
+.imagePreviewFromLinkCreateArticle .article_image_height::-webkit-slider-thumb {
+  border-radius: 0.2rem;
+  cursor: pointer;
+  appearance: none;
+  height: 0.75rem;
+  width: 0.75rem;
+  background-color: var(--clr-4);
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+.imagePreviewFromLinkCreateArticle
+  .article_image_height::-webkit-slider-thumb:hover {
+  background-color: var(--clr-3);
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
