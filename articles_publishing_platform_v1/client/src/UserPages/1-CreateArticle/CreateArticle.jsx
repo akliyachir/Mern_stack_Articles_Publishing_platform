@@ -7,14 +7,13 @@ import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEdito
 
 export default function CreateArticle() {
   // -- handle onChange useState text editor
-  const [richTextEditorContent, setrichTextEditorContent] = useState('');
 
   // -- form data useState
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
-    article_body: richTextEditorContent,
+    article_body: '',
     article_id: crypto.randomUUID(),
     article_is_public: true,
   });
@@ -38,7 +37,7 @@ export default function CreateArticle() {
     e.preventDefault();
     setCreateArticleFormData({
       ...createArticleFormData,
-      article_body: richTextEditorContent,
+      article_body: '',
     });
 
     console.log(createArticleFormData);
@@ -106,7 +105,8 @@ export default function CreateArticle() {
             handleInputOnChange={handleInputOnChange}
           />
           <TiptapRichTextEditor
-            setrichTextEditorContent={setrichTextEditorContent}
+            setCreateArticleFormData={setCreateArticleFormData}
+            createArticleFormData={createArticleFormData}
           />
           <button
             type='submit'

@@ -117,13 +117,17 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-export default ({ setrichTextEditorContent }) => {
+const TipTapEditor = ({ setCreateArticleFormData, createArticleFormData }) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: '',
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      setrichTextEditorContent(html);
+      setCreateArticleFormData({
+        ...createArticleFormData,
+        article_body: html,
+      });
+      console.log(createArticleFormData);
     },
   });
 
@@ -134,3 +138,5 @@ export default ({ setrichTextEditorContent }) => {
     </div>
   );
 };
+
+export default TipTapEditor;
