@@ -1,19 +1,20 @@
-import "./TiptapRichTextEditor.css";
-import TipTapEditor from "./TipTapRichFromSource";
-import { useState } from "react";
-import parser from "html-react-parser";
+import './TiptapRichTextEditor.css';
+import TipTapEditor from './TipTapRichFromSource';
+import { useState } from 'react';
+import parser from 'html-react-parser';
 
 export default function TiptapRichTextEditor() {
-  const [richTextEditorContent, setrichTextEditorContent] = useState("");
+  const [richTextEditorContent, setrichTextEditorContent] = useState('');
 
   return (
-    <div className="TiptapRichTextEditor">
-      <div className="TiptapRichTextEditorContent">
+    <div className='TiptapRichTextEditor'>
+      <div className='TiptapRichTextEditorContent'>
         <TipTapEditor setrichTextEditorContent={setrichTextEditorContent} />
       </div>
-      <div className="demoDisplayRichTextEditorContent">
+      {/* display the content in react */
+      /*       <div className="demoDisplayRichTextEditorContent">
         {parser(richTextEditorContent)}
-      </div>
+      </div> */}
     </div>
   );
 }

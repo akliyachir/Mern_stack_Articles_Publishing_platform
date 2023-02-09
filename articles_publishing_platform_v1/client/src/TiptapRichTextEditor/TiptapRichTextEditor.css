@@ -1,5 +1,6 @@
 .TiptapRichTextEditor {
   background-color: #eee;
+  margin-top: 1rem;
 }
 .TiptapRichTextEditorContent {
   background-color: #f1f1f1;
@@ -84,7 +85,7 @@
   justify-content: center;
   align-items: center;
   background-color: #f1f1f1;
-  background-color: #333333;
+  background-color: #444;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
