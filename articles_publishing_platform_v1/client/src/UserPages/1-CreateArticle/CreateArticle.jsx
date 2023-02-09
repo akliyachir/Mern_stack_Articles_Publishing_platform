@@ -6,7 +6,6 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
-  const [getTheFuckingHeightValue, setgetTheFuckingHeightValue] = useState(50);
   // -- handle onChange useState text editor
 
   // -- form data useState
@@ -14,7 +13,7 @@ export default function CreateArticle() {
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
-    article_image_height: '50',
+    article_image_height: 50,
     article_body: '',
     article_id: crypto.randomUUID(),
     article_is_public: true,
@@ -42,10 +41,6 @@ export default function CreateArticle() {
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
-    setCreateArticleFormData({
-      ...createArticleFormData,
-      article_body: '',
-    });
 
     console.log(createArticleFormData);
 
@@ -76,7 +71,7 @@ export default function CreateArticle() {
         setCreateArticleFormData({
           article_title: '',
           article_image_url: '',
-          article_image_height: '50',
+          article_image_height: 50,
           article_body: '',
           article_id: crypto.randomUUID(),
         });
@@ -110,30 +105,32 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-          <div className='imagePreviewFromLinkCreateArticle'>
-            <div
-              className='previewImage'
-              style={{
-                backgroundPositionY: `${article_image_height}%`,
-                backgroundImage: `url (${article_image_url})`,
-              }}
-            ></div>
-            <input
-              className='article_image_height'
-              min='0'
-              max='100'
-              type='range'
-              name='article_image_height'
-              id='article_image_height'
-              value={article_image_height}
-              onChange={(e) => {
-                setCreateArticleFormData({
-                  ...createArticleFormData,
-                  article_image_height: e.target.value,
-                });
-              }}
-            />
-          </div>
+          {!!article_image_url && (
+            <div className='imagePreviewFromLinkCreateArticle'>
+              <div
+                className='previewImage'
+                style={{
+                  backgroundImage: `url(${article_image_url})`,
+                  backgroundPositionY: `${article_image_height}%`,
+                }}
+              ></div>
+              <input
+                className='article_image_height'
+                min='0'
+                max='100'
+                type='range'
+                name='article_image_height'
+                id='article_image_height'
+                value={article_image_url}
+                onChange={(e) => {
+                  setCreateArticleFormData({
+                    ...createArticleFormData,
+                    article_image_height: e.target.vlue,
+                  });
+                }}
+              />
+            </div>
+          )}
           <TiptapRichTextEditor
             setCreateArticleFormData={setCreateArticleFormData}
             createArticleFormData={createArticleFormData}
