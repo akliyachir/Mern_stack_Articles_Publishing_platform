@@ -1,5 +1,6 @@
 import './PublicArticleHomeCard.css';
 import { NavLink } from 'react-router-dom';
+import parser from 'html-react-parser';
 
 export default function PublicArticleHomeCard({ item }) {
   const {
@@ -23,7 +24,7 @@ export default function PublicArticleHomeCard({ item }) {
             {article_title.length >= 46 && '...'}
           </div>
           <p className='article_body'>
-            {article_body.slice(0, 173)}
+            {parser(article_body).slice(0, 173)}
             {article_body.length >= 173 && '...'}
           </p>
           <p className='article_creation_date'>

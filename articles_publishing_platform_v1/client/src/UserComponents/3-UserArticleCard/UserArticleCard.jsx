@@ -1,5 +1,6 @@
 import './UserArticleCard.css';
 import { useParams, NavLink } from 'react-router-dom';
+import parser from 'html-react-parser';
 
 export default function UserArticleCard({ item }) {
   const {
@@ -27,8 +28,8 @@ export default function UserArticleCard({ item }) {
             {article_title.length >= 46 && '...'}
           </div>
           <p className='article_body'>
-            {article_body.slice(0, 173)}
-            {article_body.length >= 173 && '...'}
+            {parser(article_body).slice(0, 173)}
+            {parser(article_body).length >= 173 && '...'}
           </p>
           <div className='dateAndPublished'>
             <p className='article_user_publisher'>{article_user_publisher}</p>

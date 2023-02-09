@@ -28,7 +28,6 @@ export default function GetUserArticles() {
       if (response.ok) {
         console.log('ok');
         setArticle(result.message);
-        console.log(result.message);
       }
     };
 

@@ -2,6 +2,7 @@ import './FullPublicArticle.css';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import parser from 'html-react-parser';
 
 export default function FullPublicArticle() {
   // -- useParams
@@ -56,7 +57,7 @@ export default function FullPublicArticle() {
           className='article_image_url'
         ></div>
         <div className='article_title'>{article_title}</div>
-        <div className='article_body'>{article_body}</div>
+        <div className='article_body'>{parser(article_body)}</div>
         <div className='article_creation_date'>
           {article_creation_date.toLocaleString().slice(0, 10)}
         </div>
