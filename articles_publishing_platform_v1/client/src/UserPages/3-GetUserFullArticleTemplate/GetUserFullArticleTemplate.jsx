@@ -85,6 +85,7 @@ export default function GetUserFullArticleTemplate() {
 
   const {
     article_image_url,
+    article_image_height,
     article_title,
     article_body,
     article_creation_date,
@@ -114,7 +115,10 @@ export default function GetUserFullArticleTemplate() {
       <div className='GetUserFullArticleTemplateContent'>
         <div
           className='article_image_url'
-          style={{ backgroundImage: `url(${article_image_url})` }}
+          style={{
+            backgroundImage: `url(${article_image_url})`,
+            backgroundPositionY: `${article_image_height}%`,
+          }}
         ></div>
         <div className='article_title'>{article_title}</div>
         <p className='article_body'>{parser(article_body)}</p>
