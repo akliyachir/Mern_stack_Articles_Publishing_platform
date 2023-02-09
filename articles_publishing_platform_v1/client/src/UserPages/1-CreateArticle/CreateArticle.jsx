@@ -7,7 +7,7 @@ import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEdito
 
 export default function CreateArticle() {
   // -- handle onChange useState text editor
-
+  const [getTheImageHeignt, setgetTheImageHeignt] = useState(50);
   // -- form data useState
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
@@ -111,7 +111,7 @@ export default function CreateArticle() {
                 className='previewImage'
                 style={{
                   backgroundImage: `url(${article_image_url})`,
-                  backgroundPositionY: `${article_image_height}%`,
+                  backgroundPositionY: `${getTheImageHeignt}%`,
                 }}
               ></div>
               <input
@@ -121,11 +121,11 @@ export default function CreateArticle() {
                 type='range'
                 name='article_image_height'
                 id='article_image_height'
-                value={article_image_url}
                 onChange={(e) => {
+                  setgetTheImageHeignt(e.target.value);
                   setCreateArticleFormData({
                     ...createArticleFormData,
-                    article_image_height: e.target.vlue,
+                    article_image_height: getTheImageHeignt,
                   });
                 }}
               />

@@ -11,6 +11,7 @@ export default function UserArticleCard({ item }) {
     article_creation_date,
     article_is_public,
     article_user_publisher,
+    article_image_height,
   } = item;
 
   let { id } = useParams();
@@ -20,7 +21,10 @@ export default function UserArticleCard({ item }) {
       <NavLink to={'/user_article/' + article_id}>
         <div className='UserArticleCardContent'>
           <div
-            style={{ backgroundImage: `url(${article_image_url})` }}
+            style={{
+              backgroundImage: `url(${article_image_url})`,
+              backgroundPositionY: `${article_image_height}%`,
+            }}
             className='article_image_url'
           ></div>
           <div className='article_title'>
@@ -28,7 +32,7 @@ export default function UserArticleCard({ item }) {
             {article_title.length >= 46 && '...'}
           </div>
           <p className='article_body'>
-            {parser(article_body).slice(0, 173)}
+            {parser(article_body)}
             {parser(article_body).length >= 173 && '...'}
           </p>
           <div className='dateAndPublished'>

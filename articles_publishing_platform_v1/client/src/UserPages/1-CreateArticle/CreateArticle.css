@@ -115,7 +115,7 @@
 
 .imagePreviewFromLinkCreateArticle .previewImage {
   width: 100%;
-  aspect-ratio: calc(16 / 9);
+  aspect-ratio: calc(21 / 9);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
