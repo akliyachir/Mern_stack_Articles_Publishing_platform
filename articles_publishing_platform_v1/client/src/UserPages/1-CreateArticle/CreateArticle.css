@@ -102,8 +102,24 @@
 }
 
 .imagePreviewFromLinkCreateArticle {
-  padding: 2rem;
   background-color: yellow;
   margin-top: 2rem;
   box-shadow: var(--sh-b-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.imagePreviewFromLinkCreateArticle .previewImage {
+  width: 100%;
+  aspect-ratio: calc(16 / 9);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.imagePreviewFromLinkCreateArticle .image_height_range {
+  appearance: none;
 }

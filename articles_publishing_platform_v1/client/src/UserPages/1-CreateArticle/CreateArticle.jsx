@@ -13,12 +13,18 @@ export default function CreateArticle() {
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
+    article_image_height: 50,
     article_body: '',
     article_id: crypto.randomUUID(),
     article_is_public: true,
   });
-  const { article_title, article_image_url, article_body, article_is_public } =
-    createArticleFormData;
+  const {
+    article_title,
+    article_image_url,
+    article_body,
+    article_is_public,
+    article_image_height,
+  } = createArticleFormData;
 
   const handleInputOnChange = (e) => {
     setCreateArticleFormData({
@@ -101,7 +107,16 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-          <div className='imagePreviewFromLinkCreateArticle'></div>
+          <div className='imagePreviewFromLinkCreateArticle'>
+            <div
+              className='previewImage'
+              style={{
+                backgroundImage: `url(${article_image_url})`,
+                backgroundPosition: `center ${article_image_height}%`,
+              }}
+            ></div>
+            <input className='image_height_range' type='range' name='' id='' />
+          </div>
           <TiptapRichTextEditor
             setCreateArticleFormData={setCreateArticleFormData}
             createArticleFormData={createArticleFormData}
