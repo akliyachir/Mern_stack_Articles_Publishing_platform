@@ -2,8 +2,8 @@ import './CreateArticle.css';
 import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import { useState, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TextAreaFormTemplate from '../../UserComponents/2-TextAreaFormTemplate/TextAreaFormTemplate';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
   // -- form data useState
@@ -84,7 +84,6 @@ export default function CreateArticle() {
           <div className='createArticlePageName'>
             {serverResponse ? serverResponse : <h1>Create an article</h1>}
           </div>
-
           <InputFormTemplate
             label='Title'
             type='text'
@@ -99,15 +98,7 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-
-          <TextAreaFormTemplate
-            label='body'
-            type='textarea'
-            name='article_body'
-            value={article_body}
-            handleInputOnChange={handleInputOnChange}
-          />
-
+          <TiptapRichTextEditor />
           <button
             type='submit'
             className='buttonOnSubmitCreateNewArticle'

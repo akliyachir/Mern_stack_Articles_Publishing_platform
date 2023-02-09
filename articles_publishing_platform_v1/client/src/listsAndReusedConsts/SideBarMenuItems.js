@@ -29,9 +29,4 @@ export const menuItemsList = [
     title: 'Test Component',
     url: '/tomato',
   },
-  {
-    menu_item_id: 7,
-    title: 'LexicalSetupPage',
-    url: '/LexicalSetupPage',
-  },
 ];
