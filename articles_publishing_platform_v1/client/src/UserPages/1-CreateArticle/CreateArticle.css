@@ -102,7 +102,7 @@
 }
 
 .imagePreviewFromLinkCreateArticle {
-  background-color: yellow;
+  background-color: var(--clr-3);
   margin-top: 2rem;
   box-shadow: var(--sh-b-1);
   display: flex;

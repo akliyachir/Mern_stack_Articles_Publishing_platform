@@ -42,6 +42,7 @@ export default function FullPublicArticle() {
     article_creation_date,
     article_id,
     article_image_url,
+    article_image_height,
     article_title,
   } = articleContent;
 
@@ -51,7 +52,10 @@ export default function FullPublicArticle() {
     <article className='FullPublicArticle'>
       <div className='FullPublicArticleContent'>
         <div
-          style={{ backgroundImage: `url(${article_image_url})` }}
+          style={{
+            backgroundImage: `url(${article_image_url})`,
+            backgroundPositionY: `${article_image_height}%`,
+          }}
           className='article_image_url'
         ></div>
         <div className='article_title'>{article_title}</div>
