@@ -76,7 +76,7 @@ export default function CreateArticle() {
         setCreateArticleFormData({
           article_title: '',
           article_image_url: '',
-          article_image_height: 50,
+          article_image_height: '50',
           article_body: '',
           article_id: crypto.randomUUID(),
         });
@@ -113,7 +113,10 @@ export default function CreateArticle() {
           <div className='imagePreviewFromLinkCreateArticle'>
             <div
               className='previewImage'
-              style={{ backgroundPositionY: getTheFuckingHeightValue }}
+              style={{
+                backgroundPositionY: `${article_image_height}%`,
+                backgroundImage: `url (${article_image_url})`,
+              }}
             ></div>
             <input
               className='article_image_height'
@@ -122,10 +125,12 @@ export default function CreateArticle() {
               type='range'
               name='article_image_height'
               id='article_image_height'
-              value='50'
+              value={article_image_height}
               onChange={(e) => {
-                setgetTheFuckingHeightValue(e.target.value);
-                console.log(getTheFuckingHeightValue);
+                setCreateArticleFormData({
+                  ...createArticleFormData,
+                  article_image_height: e.target.value,
+                });
               }}
             />
           </div>

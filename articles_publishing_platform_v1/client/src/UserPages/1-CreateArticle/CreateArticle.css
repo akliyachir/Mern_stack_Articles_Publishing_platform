@@ -117,8 +117,8 @@
   width: 100%;
   aspect-ratio: calc(16 / 9);
   background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('https://images.pexels.com/photos/159499/books-read-bouquet-relax-159499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position-x: center;
 }
 
 .imagePreviewFromLinkCreateArticle .article_image_height {
