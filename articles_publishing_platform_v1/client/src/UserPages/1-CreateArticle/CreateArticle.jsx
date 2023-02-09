@@ -14,7 +14,7 @@ export default function CreateArticle() {
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
-    article_body: '',
+    article_body: richTextEditorContent,
     article_id: crypto.randomUUID(),
     article_is_public: true,
   });
@@ -36,6 +36,10 @@ export default function CreateArticle() {
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
+    setCreateArticleFormData({
+      ...createArticleFormData,
+      article_body: richTextEditorContent,
+    });
 
     console.log(createArticleFormData);
     // -- get token from localStorage
@@ -101,7 +105,9 @@ export default function CreateArticle() {
             value={article_image_url}
             handleInputOnChange={handleInputOnChange}
           />
-          <TiptapRichTextEditor />
+          <TiptapRichTextEditor
+            setrichTextEditorContent={setrichTextEditorContent}
+          />
           <button
             type='submit'
             className='buttonOnSubmitCreateNewArticle'
