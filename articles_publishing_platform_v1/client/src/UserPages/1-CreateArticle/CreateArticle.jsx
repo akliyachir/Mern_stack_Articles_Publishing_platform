@@ -6,7 +6,7 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
-  const setTheImageHeight = useRef();
+  const [getTheFuckingHeightValue, setgetTheFuckingHeightValue] = useState(50);
   // -- handle onChange useState text editor
 
   // -- form data useState
@@ -14,7 +14,7 @@ export default function CreateArticle() {
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
-    article_image_height: 50,
+    article_image_height: '50',
     article_body: '',
     article_id: crypto.randomUUID(),
     article_is_public: true,
@@ -76,7 +76,7 @@ export default function CreateArticle() {
         setCreateArticleFormData({
           article_title: '',
           article_image_url: '',
-          article_image_height: setTheImageHeight.current.value,
+          article_image_height: 50,
           article_body: '',
           article_id: crypto.randomUUID(),
         });
@@ -113,7 +113,7 @@ export default function CreateArticle() {
           <div className='imagePreviewFromLinkCreateArticle'>
             <div
               className='previewImage'
-              style={{ backgroundColor: 'red' }}
+              style={{ backgroundPositionY: getTheFuckingHeightValue }}
             ></div>
             <input
               className='article_image_height'
@@ -122,7 +122,11 @@ export default function CreateArticle() {
               type='range'
               name='article_image_height'
               id='article_image_height'
-              ref={setTheImageHeight}
+              value='50'
+              onChange={(e) => {
+                setgetTheFuckingHeightValue(e.target.value);
+                console.log(getTheFuckingHeightValue);
+              }}
             />
           </div>
           <TiptapRichTextEditor
