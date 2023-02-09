@@ -1,63 +1,64 @@
 .UserArticleCard {
-	cursor: pointer;
-	box-shadow: 0 0 2px var(--clr-3, #efefef);
-	display: flex;
-	justify-content: center;
-	align-items: flex- start;
-	padding-bottom: 0.5rem;
-	height: 26.7rem;
-	transition-duration: 200ms;
-	transition-timing-function: ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 0 2px var(--clr-3, #efefef);
+  display: flex;
+  justify-content: center;
+  align-items: flex- start;
+  padding-bottom: 0.5rem;
+  height: 21rem;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
 .UserArticleCard:hover {
-	scale: 1.02;
-	transition-duration: 200ms;
-	transition-timing-function: ease-in-out;
+  scale: 1.02;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
 
 .UserArticleCard a {
-	color: var(--clr-3);
-	text-decoration: none;
+  color: var(--clr-3);
+  text-decoration: none;
 }
 
 .UserArticleCardContent {
-	width: 100%;
+  width: 100%;
 }
 
 .UserArticleCard .article_image_url {
-	width: 100%;
-	background-color: var(--clr-3, #456);
-	background-size: cover;
-	background-repeat: no-repeat;
-	height: 12rem;
-	overflow: hidden;
+  width: 100%;
+  aspect-ratio: calc(21 / 9);
+  background-color: var(--clr-3, #456);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .UserArticleCard .article_title {
-	color: var(--clr-5);
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	height: 3.5rem;
-	padding: 0.7rem;
-	font-size: 1.2rem;
+  color: var(--clr-5);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 3.5rem;
+  padding: 0.7rem;
+  font-size: 1.2rem;
 }
 
 .UserArticleCard .article_body {
-	width: 100%;
-	padding: 0.5rem;
-	color: var(--clr-3);
-	height: 9rem;
+  width: 100%;
+  padding: 0.5rem;
+  color: var(--clr-3);
+  height: 9rem;
+  overflow-y: hidden;
 }
 
 .dateAndPublished {
-	display: flex;
-	justify-content: space-between;
-	text-transform: capitalize;
-	align-items: center;
-	padding: 0.1rem 0.5rem;
-	background-color: var(--clr-3);
-	color: var(--clr-2);
-	font-size: 0.9rem;
-	margin-top: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+  background-color: var(--clr-3);
+  color: var(--clr-2);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
