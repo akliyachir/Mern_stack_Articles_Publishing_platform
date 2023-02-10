@@ -16,6 +16,10 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
+  article_body_shorten_for_card: {
+    type: String,
+    required: true,
+  },
   article_is_public: {
     type: Boolean,
     default: true,

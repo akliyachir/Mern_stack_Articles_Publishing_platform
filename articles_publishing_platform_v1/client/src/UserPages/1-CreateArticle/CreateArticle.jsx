@@ -9,7 +9,6 @@ export default function CreateArticle() {
 
   const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
     useState({ plainText: '', html: '' });
-  const BodyLength = RowArticleBodyContentTextEditor.plainText.length > 8000;
 
   // -- form data useState
 
@@ -25,6 +24,7 @@ export default function CreateArticle() {
     article_title,
     article_image_url,
     article_body,
+    article_body_shorten_for_card,
     article_is_public,
     article_image_height,
   } = createArticleFormData;
@@ -48,13 +48,19 @@ export default function CreateArticle() {
     console.log(RowArticleBodyContentTextEditor.plainText.length);
 
     if (RowArticleBodyContentTextEditor.plainText.length > 8000) {
+      setServerResponse('You exceeded 8000 characters!');
+      setTimeout(() => {
+        setServerResponse('');
+      }, 3000);
     }
-
-    return;
 
     setCreateArticleFormData({
       ...createArticleFormData,
-      article_body: RowArticleBodyContentTextEditor,
+      article_body: RowArticleBodyContentTextEditor.html,
+      article_body_shorten_for_card: RowArticleBodyContentTextEditor.html.slice(
+        0,
+        180
+      ),
     });
 
     // -- get token from localStorage

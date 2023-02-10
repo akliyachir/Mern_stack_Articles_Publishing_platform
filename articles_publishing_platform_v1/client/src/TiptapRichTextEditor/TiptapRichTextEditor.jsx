@@ -20,7 +20,6 @@ export default function TiptapRichTextEditor({
           </div>
         )}
       </div>
-      <div>{RowArticleBodyContentTextEditor.plainText}</div>
       {/* display the content in react */
       /*       <div className="demoDisplayRichTextEditorContent">
         {parser(richTextEditorContent)}
