@@ -164,3 +164,10 @@
   text-align: left;
   padding-block: 0.5rem;
 }
+
+.NoErrorTextEditor {
+  box-shadow: none;
+}
+.errorTextEditor {
+  box-shadow: 0 0 0 2px #b5144f;
+}

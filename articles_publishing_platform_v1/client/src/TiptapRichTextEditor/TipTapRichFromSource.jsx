@@ -125,7 +125,6 @@ const TipTapEditor = ({ setRowArticleBodyContentTextEditor }) => {
       const html = editor.getHTML();
       const plainText = editor.getText();
       setRowArticleBodyContentTextEditor({ plainText, html });
-      console.log([plainText, html]);
     },
   });
 

@@ -1,5 +1,4 @@
 import './CreateArticle.css';
-import InputFormTemplate from '../../UserComponents/1-InputFormTemplate/InputFormTemplate';
 import { useState, useReducer, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
@@ -9,7 +8,9 @@ export default function CreateArticle() {
   // -- rich text editor body content
 
   const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
-    useState('');
+    useState({ plainText: '', html: '' });
+  const BodyLength =
+    0 || RowArticleBodyContentTextEditor.plainText.length > 8000;
 
   // -- form data useState
 
@@ -46,6 +47,9 @@ export default function CreateArticle() {
     e.preventDefault();
 
     console.log(RowArticleBodyContentTextEditor.plainText.length);
+
+    if (RowArticleBodyContentTextEditor.plainText.length > 8000) {
+    }
 
     return;
 
@@ -146,11 +150,13 @@ export default function CreateArticle() {
               />
             </div>
           )}
-          <TiptapRichTextEditor
-            setRowArticleBodyContentTextEditor={
-              setRowArticleBodyContentTextEditor
-            }
-          />
+          <div className={BodyLength ? 'errorTextEditor' : 'NoErrorTextEditor'}>
+            <TiptapRichTextEditor
+              setRowArticleBodyContentTextEditor={
+                setRowArticleBodyContentTextEditor
+              }
+            />
+          </div>
           <button
             type='submit'
             className='buttonOnSubmitCreateNewArticle'
