@@ -14,6 +14,7 @@ export default function RootLayout() {
       const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
       const { name, email, token } = userFromLocalStorage;
       userDispatch({ type: 'SIGN_IN', payload: { name, email, token } });
+      console.log(userState);
     }
   }, []);
   return (

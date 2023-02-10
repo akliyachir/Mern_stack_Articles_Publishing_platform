@@ -59,11 +59,18 @@ export default function HeaderContainer() {
         </span>
 
         {!!userState.email && (
-          <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
-            <FaUserAstronaut />
+          <div
+            onClick={handleUserToggleSideBar}
+            className='userToggleMenuLogoAndName'
+          >
+            {' '}
+            <div className='toggleUserMenu'>
+              <FaUserAstronaut />
+            </div>
+            <div>{userState.name}</div>
           </div>
         )}
-        <div>{userState.name}</div>
+
         <div className='hamburgerIcon' onClick={handleToggleSideBar}>
           <span></span>
           <span></span>

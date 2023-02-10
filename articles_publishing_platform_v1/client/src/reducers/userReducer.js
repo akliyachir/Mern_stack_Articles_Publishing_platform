@@ -1,5 +1,6 @@
 // -- defaultState
 export const userDefaultState = {
+  name: '',
   email: '',
   token: '',
 };
@@ -10,7 +11,7 @@ export const userReducer = (userState, action) => {
     case 'SIGN_IN':
       return {
         ...userState,
-        email: action.payload.name,
+        name: action.payload.name,
         email: action.payload.email,
         token: action.payload.token,
       };
