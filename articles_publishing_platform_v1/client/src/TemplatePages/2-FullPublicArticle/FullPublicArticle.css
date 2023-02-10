@@ -15,7 +15,7 @@
 
 .FullPublicArticle .article_image_url {
   width: 100%;
-  aspect-ratio: calc(21 / 9);
+  aspect-ratio: calc(16 / 9);
   background-color: var(--clr-3, #333);
   background-repeat: no-repeat;
   background-size: cover;

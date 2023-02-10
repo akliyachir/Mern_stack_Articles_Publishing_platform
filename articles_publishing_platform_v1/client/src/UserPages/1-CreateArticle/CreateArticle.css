@@ -115,7 +115,7 @@
 
 .imagePreviewFromLinkCreateArticle .previewImage {
   width: 100%;
-  aspect-ratio: calc(21 / 9);
+  aspect-ratio: calc(16 / 9);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
@@ -142,4 +142,25 @@
   background-color: var(--clr-3);
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
+}
+
+.InputFormTemplateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding-inline: 0.8rem;
+}
+
+.InputFormTemplateContainer input {
+  width: 100%;
+  font-family: inherit;
+  padding: 0.2rem 0.3rem;
+}
+
+.InputFormTemplateContainer label {
+  width: 100%;
+  text-align: left;
+  padding-block: 0.5rem;
 }

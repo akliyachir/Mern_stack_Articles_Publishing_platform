@@ -91,20 +91,26 @@ export default function CreateArticle() {
           <div className='createArticlePageName'>
             {serverResponse ? serverResponse : <h1>Create an article</h1>}
           </div>
-          <InputFormTemplate
-            label='Title'
-            type='text'
-            name='article_title'
-            value={article_title}
-            handleInputOnChange={handleInputOnChange}
-          />
-          <InputFormTemplate
-            label='Image link'
-            type='text'
-            name='article_image_url'
-            value={article_image_url}
-            handleInputOnChange={handleInputOnChange}
-          />
+          <div className='InputFormTemplateContainer'>
+            <label htmlFor='article_title'>Title</label>
+            <input
+              type='text'
+              name='article_title'
+              id='article_title'
+              value={article_title}
+              onChange={handleInputOnChange}
+            />
+          </div>
+          <div className='InputFormTemplateContainer'>
+            <label htmlFor='article_image_url'>Image link</label>
+            <input
+              type='text'
+              name='article_image_url'
+              id='article_image_url'
+              value={article_image_url}
+              onChange={handleInputOnChange}
+            />
+          </div>
           {!!article_image_url && (
             <div className='imagePreviewFromLinkCreateArticle'>
               <div
