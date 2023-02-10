@@ -37,6 +37,9 @@ export default function CreateArticle() {
 
   //-- create response area
   const [serverResponse, setServerResponse] = useState('');
+  //-- at least 300 character response area
+  const [atLeast300CharactersMessage, setatLeast300CharactersMessage] =
+    useState('At least a 300 character!');
   // -- and redirect in case of success
   const navigate = useNavigate();
 
@@ -51,11 +54,20 @@ export default function CreateArticle() {
         RowArticleBodyContentTextEditor.plainText.slice(0, 180),
     });
 
+    if (RowArticleBodyContentTextEditor.plainText.length < 300) {
+      setServerResponse('At least a 300 character for the content!');
+      setTimeout(() => {
+        setServerResponse('');
+      }, 3000);
+      return;
+    }
+
     if (RowArticleBodyContentTextEditor.plainText.length > 8000) {
       setServerResponse('You exceeded 8000 characters!');
       setTimeout(() => {
         setServerResponse('');
       }, 3000);
+      return;
     }
 
     // -- get token from localStorage
@@ -163,6 +175,11 @@ export default function CreateArticle() {
               }
               RowArticleBodyContentTextEditor={RowArticleBodyContentTextEditor}
             />
+            {!!atLeast300CharactersMessage && (
+              <div className='300charactersMEssageArea'>
+                {atLeast300CharactersMessage}
+              </div>
+            )}
           </div>
           <button
             type='submit'

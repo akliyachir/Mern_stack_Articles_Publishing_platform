@@ -10,7 +10,7 @@ import {
   GrUndo,
 } from 'react-icons/gr';
 
-import { RiCarWashingLine, RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
+import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
 const MenuBar = ({ editor }) => {
   if (!editor) {

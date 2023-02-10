@@ -41,9 +41,6 @@ export default function UserArticleCard({ item }) {
 
           <div className='dateAndPublished'>
             <p className='article_user_publisher'>{article_user_publisher}</p>
-            {/*     <p className='article_is_public'>
-            {article_is_public ? 'Published' : 'private'}
-          </p> */}
             <p className='article_creation_date'>
               {article_creation_date.toLocaleString().slice(0, 10)}
             </p>
