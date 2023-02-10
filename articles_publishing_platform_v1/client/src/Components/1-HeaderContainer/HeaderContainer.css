@@ -79,7 +79,6 @@
 
 .toggleUserMenu {
   margin-top: 0.2rem;
-
   text-align: center;
   color: var(--clr-2);
   font-size: 1.4rem;
@@ -88,4 +87,11 @@
 
 .userToggleMenuLogoAndName {
   background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userToggleMenuLogoAndName:nth-child(2) {
+  color: var(--clr-2);
 }
