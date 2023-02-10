@@ -19,7 +19,11 @@ export default function SignInContainer() {
     loginErrorDispatch({ type: 'NO_ERROR_SIGNIN' });
   }, []);
 
-  const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
+  const [formDataSign, setFormDataSign] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);
 
   const { email, password } = formDataSign;
@@ -62,7 +66,7 @@ export default function SignInContainer() {
 
         // -- reset the form after login
 
-        setFormDataSign({ email: '', password: '' });
+        setFormDataSign({ name: '', email: '', password: '' });
 
         // -- say welcome te the new user before redirect to home page
         loginErrorDispatch({ type: 'LOGIN_SUCCESS' });

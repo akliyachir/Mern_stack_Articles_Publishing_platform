@@ -29,9 +29,11 @@ const signIn = async (req, res) => {
       res.status(400).json({ message: 'incorrect password' });
       return;
     }
+    const { name } = user;
+
     if (match === true) {
       const token = createToken(user._id);
-      res.status(200).json({ email, token });
+      res.status(200).json({ name, email, token });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });

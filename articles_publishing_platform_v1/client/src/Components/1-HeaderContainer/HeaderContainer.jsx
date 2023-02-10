@@ -58,11 +58,12 @@ export default function HeaderContainer() {
           </NavLink>
         </span>
 
-        {!!userState.name && (
+        {!!userState.email && (
           <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
             <FaUserAstronaut />
           </div>
         )}
+        <div>{userState.name}</div>
         <div className='hamburgerIcon' onClick={handleToggleSideBar}>
           <span></span>
           <span></span>

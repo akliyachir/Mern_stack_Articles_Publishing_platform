@@ -12,8 +12,8 @@ export default function RootLayout() {
     const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
     if (userFromLocalStorageAsJson) {
       const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
-      const { email, token } = userFromLocalStorage;
-      userDispatch({ type: 'SIGN_IN', payload: { email, token } });
+      const { name, email, token } = userFromLocalStorage;
+      userDispatch({ type: 'SIGN_IN', payload: { name, email, token } });
     }
   }, []);
   return (
