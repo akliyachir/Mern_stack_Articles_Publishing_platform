@@ -10,9 +10,9 @@ const createToken = (id) => {
 };
 
 const signUp = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
   try {
-    if (!email || !password) {
+    if (!email || !password || !name) {
       res.status(400).json({ message: 'all fields must be filled' });
       return;
     }

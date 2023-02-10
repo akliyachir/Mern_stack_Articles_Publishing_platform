@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const userSchema = new Schema({
   name: {
     type: String,
-    default: 'noname anonyme',
+    required: true,
   },
   email: {
     type: String,
