@@ -170,3 +170,8 @@
   box-shadow: none;
   margin-top: 1rem;
 }
+
+.ThreeHundredCharactersMEssageArea {
+  text-align: center;
+  padding-block: 1rem;
+}

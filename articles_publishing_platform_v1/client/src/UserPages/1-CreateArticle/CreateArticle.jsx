@@ -39,7 +39,7 @@ export default function CreateArticle() {
   const [serverResponse, setServerResponse] = useState('');
   //-- at least 300 character response area
   const [atLeast300CharactersMessage, setatLeast300CharactersMessage] =
-    useState('At least a 300 character!');
+    useState('');
   // -- and redirect in case of success
   const navigate = useNavigate();
 
@@ -55,10 +55,17 @@ export default function CreateArticle() {
     });
 
     if (RowArticleBodyContentTextEditor.plainText.length < 300) {
-      setServerResponse('At least a 300 character for the content!');
+      setServerResponse('Must be at least a 300 characters');
+      setatLeast300CharactersMessage('Must be at least a 300 characters!');
       setTimeout(() => {
         setServerResponse('');
+        setatLeast300CharactersMessage('');
       }, 3000);
+
+      setTimeout(() => {
+        setatLeast300CharactersMessage('');
+      }, 5000);
+
       return;
     }
 
@@ -86,13 +93,16 @@ export default function CreateArticle() {
 
     if (!response.ok) {
       setServerResponse(result.message);
+      setatLeast300CharactersMessage(result.message);
       setTimeout(() => {
+        setatLeast300CharactersMessage('');
         setServerResponse('');
       }, 3000);
     }
 
     if (response.ok) {
       setServerResponse(result.message);
+      setatLeast300CharactersMessage(result.message);
       setTimeout(() => {
         setCreateArticleFormData({
           article_title: '',
@@ -176,7 +186,7 @@ export default function CreateArticle() {
               RowArticleBodyContentTextEditor={RowArticleBodyContentTextEditor}
             />
             {!!atLeast300CharactersMessage && (
-              <div className='300charactersMEssageArea'>
+              <div className='ThreeHundredCharactersMEssageArea'>
                 {atLeast300CharactersMessage}
               </div>
             )}
