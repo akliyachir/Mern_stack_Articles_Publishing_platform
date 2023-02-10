@@ -57,10 +57,8 @@ export default function CreateArticle() {
     setCreateArticleFormData({
       ...createArticleFormData,
       article_body: RowArticleBodyContentTextEditor.html,
-      article_body_shorten_for_card: RowArticleBodyContentTextEditor.html.slice(
-        0,
-        180
-      ),
+      article_body_shorten_for_card:
+        RowArticleBodyContentTextEditor.plainText.slice(0, 180),
     });
 
     // -- get token from localStorage

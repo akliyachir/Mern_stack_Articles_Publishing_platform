@@ -32,7 +32,14 @@ export default function UserArticleCard({ item }) {
             {article_title.slice(0, 46)}
             {article_title.length >= 46 && '...'}
           </div>
-          <p className='article_body'>{article_body_shorten_for_card}</p>
+          <p className='article_body'>
+            {article_body_shorten_for_card || 'hola'.slice(0, 180)}
+            {!!article_body_shorten_for_card &&
+            article_body_shorten_for_card.length > 1
+              ? '...'
+              : ''}
+          </p>
+
           <div className='dateAndPublished'>
             <p className='article_user_publisher'>{article_user_publisher}</p>
             {/*     <p className='article_is_public'>
