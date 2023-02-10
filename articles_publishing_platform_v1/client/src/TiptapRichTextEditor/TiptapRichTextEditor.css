@@ -116,3 +116,15 @@
   box-shadow: 0 0 0 2px #fff inset;
   margin-top: 1rem;
 }
+
+.errorTextEditor {
+  box-shadow: 0 0 0 3px #de3271;
+  margin-top: 1rem;
+}
+
+.bodyTextEditorErrorMessage {
+  background-color: #dc90ac;
+  padding: 1rem;
+  text-align: center;
+  color: #4b3434;
+}

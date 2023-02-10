@@ -1,7 +1,10 @@
 import './TiptapRichTextEditor.css';
 import TipTapEditor from './TipTapRichFromSource';
 
-export default function TiptapRichTextEditor({ setRowArticleBodyContentTextEditor }) {
+export default function TiptapRichTextEditor({
+  setRowArticleBodyContentTextEditor,
+  RowArticleBodyContentTextEditor,
+}) {
   return (
     <div className='TiptapRichTextEditor'>
       <div className='TiptapRichTextEditorContent'>
@@ -10,7 +13,14 @@ export default function TiptapRichTextEditor({ setRowArticleBodyContentTextEdito
             setRowArticleBodyContentTextEditor
           }
         />
+        {RowArticleBodyContentTextEditor.plainText.length > 8000 && (
+          <div className='bodyTextEditorErrorMessage'>
+            <p>Too much content</p>
+            <p>Exceeding 8000 characters!</p>
+          </div>
+        )}
       </div>
+      <div>{RowArticleBodyContentTextEditor.plainText}</div>
       {/* display the content in react */
       /*       <div className="demoDisplayRichTextEditorContent">
         {parser(richTextEditorContent)}

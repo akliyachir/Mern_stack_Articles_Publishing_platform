@@ -1,5 +1,5 @@
 import './CreateArticle.css';
-import { useState, useReducer, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
@@ -9,8 +9,7 @@ export default function CreateArticle() {
 
   const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
     useState({ plainText: '', html: '' });
-  const BodyLength =
-    0 || RowArticleBodyContentTextEditor.plainText.length > 8000;
+  const BodyLength = RowArticleBodyContentTextEditor.plainText.length > 8000;
 
   // -- form data useState
 
@@ -150,11 +149,18 @@ export default function CreateArticle() {
               />
             </div>
           )}
-          <div className={BodyLength ? 'errorTextEditor' : 'NoErrorTextEditor'}>
+          <div
+            className={
+              RowArticleBodyContentTextEditor.plainText.length > 8000
+                ? 'errorTextEditor'
+                : 'NoErrorTextEditor'
+            }
+          >
             <TiptapRichTextEditor
               setRowArticleBodyContentTextEditor={
                 setRowArticleBodyContentTextEditor
               }
+              RowArticleBodyContentTextEditor={RowArticleBodyContentTextEditor}
             />
           </div>
           <button

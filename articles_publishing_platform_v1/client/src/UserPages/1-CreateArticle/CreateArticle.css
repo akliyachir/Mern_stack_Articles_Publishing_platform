@@ -37,6 +37,7 @@
 }
 .buttonOnSubmitCreateNewArticle {
   padding: 0.3rem 1rem;
+  margin-top: 0.2rem;
   cursor: pointer;
   border: none;
   width: 100%;
@@ -167,7 +168,5 @@
 
 .NoErrorTextEditor {
   box-shadow: none;
-}
-.errorTextEditor {
-  box-shadow: 0 0 0 2px #b5144f;
+  margin-top: 1rem;
 }

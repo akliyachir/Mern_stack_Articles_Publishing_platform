@@ -123,7 +123,7 @@ const TipTapEditor = ({ setRowArticleBodyContentTextEditor }) => {
     content: '',
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      const plainText = editor.getText();
+      const plainText = editor.getText().replace(/['\n']/gi, '');
       setRowArticleBodyContentTextEditor({ plainText, html });
     },
   });
