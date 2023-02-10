@@ -36,12 +36,8 @@
   text-align: right;
 }
 
-.publicFullArticlesUserNameAndPublishingDate {
-  width: 100%;
-  text-align: right;
-  margin-right: 0.5rem;
+.dateAndAuthorDisplayOfFullPublicArticle {
+  padding: 1rem;
   display: flex;
-  justify-content: right;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
 }

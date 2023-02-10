@@ -58,7 +58,7 @@ export default function HeaderContainer() {
           </NavLink>
         </span>
 
-        {!!userState.email && (
+        {!!userState.name && (
           <div className='toggleUserMenu' onClick={handleUserToggleSideBar}>
             <FaUserAstronaut />
           </div>

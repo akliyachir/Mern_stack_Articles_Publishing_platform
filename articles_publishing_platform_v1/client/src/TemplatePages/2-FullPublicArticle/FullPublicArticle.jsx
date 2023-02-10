@@ -61,11 +61,12 @@ export default function FullPublicArticle() {
         ></div>
         <div className='article_title'>{article_title}</div>
         <div className='article_body'>{parser(article_body)}</div>
-        <p lassName='article_creation_date'>{}article_user_publisher</p>
-
-        <p className='article_creation_date'>
-          {article_creation_date.toLocaleString().slice(0, 10)}
-        </p>
+        <div className='dateAndAuthorDisplayOfFullPublicArticle'>
+          <p className=''>{article_user_publisher}</p>
+          <p className=''>
+            {article_creation_date.toLocaleString().slice(0, 10)}
+          </p>
+        </div>
       </div>
     </article>
   );
