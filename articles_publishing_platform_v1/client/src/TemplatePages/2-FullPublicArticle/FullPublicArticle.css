@@ -45,10 +45,3 @@
   align-items: center;
   flex-direction: column;
 }
-
-.publicFullArticlesUserNameAndPublishingDate > * {
-  width: 100%;
-  padding: 1rem;
-
-  margin: none;
-}
