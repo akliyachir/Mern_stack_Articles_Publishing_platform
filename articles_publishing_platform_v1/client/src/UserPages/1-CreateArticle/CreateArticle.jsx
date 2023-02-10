@@ -6,8 +6,11 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
-  // -- handle onChange useState text editor
-  const [getTheImageHeignt, setgetTheImageHeignt] = useState(50);
+  // -- rich text editor body content
+
+  const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
+    useState('');
+
   // -- form data useState
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
@@ -42,7 +45,14 @@ export default function CreateArticle() {
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
 
-    console.log(createArticleFormData);
+    console.log(RowArticleBodyContentTextEditor.plainText.length);
+
+    return;
+
+    setCreateArticleFormData({
+      ...createArticleFormData,
+      article_body: RowArticleBodyContentTextEditor,
+    });
 
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
@@ -117,7 +127,7 @@ export default function CreateArticle() {
                 className='previewImage'
                 style={{
                   backgroundImage: `url(${article_image_url})`,
-                  backgroundPositionY: `${getTheImageHeignt}%`,
+                  backgroundPositionY: `${article_image_height}%`,
                 }}
               ></div>
               <input
@@ -128,18 +138,18 @@ export default function CreateArticle() {
                 name='article_image_height'
                 id='article_image_height'
                 onChange={(e) => {
-                  setgetTheImageHeignt(e.target.value);
                   setCreateArticleFormData({
                     ...createArticleFormData,
-                    article_image_height: getTheImageHeignt,
+                    article_image_height: e.target.value,
                   });
                 }}
               />
             </div>
           )}
           <TiptapRichTextEditor
-            setCreateArticleFormData={setCreateArticleFormData}
-            createArticleFormData={createArticleFormData}
+            setRowArticleBodyContentTextEditor={
+              setRowArticleBodyContentTextEditor
+            }
           />
           <button
             type='submit'

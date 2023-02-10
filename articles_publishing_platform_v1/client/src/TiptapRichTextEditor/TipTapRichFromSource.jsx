@@ -10,7 +10,7 @@ import {
   GrUndo,
 } from 'react-icons/gr';
 
-import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
+import { RiCarWashingLine, RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
 const MenuBar = ({ editor }) => {
   if (!editor) {
@@ -117,16 +117,15 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TipTapEditor = ({ setCreateArticleFormData, createArticleFormData }) => {
+const TipTapEditor = ({ setRowArticleBodyContentTextEditor }) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: '',
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      setCreateArticleFormData({
-        ...createArticleFormData,
-        article_body: html,
-      });
+      const plainText = editor.getText();
+      setRowArticleBodyContentTextEditor({ plainText, html });
+      console.log([plainText, html]);
     },
   });
 

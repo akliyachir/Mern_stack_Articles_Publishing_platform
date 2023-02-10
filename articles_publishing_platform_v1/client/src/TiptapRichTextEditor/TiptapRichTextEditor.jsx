@@ -1,18 +1,14 @@
 import './TiptapRichTextEditor.css';
 import TipTapEditor from './TipTapRichFromSource';
-import { useState } from 'react';
-import parser from 'html-react-parser';
 
-export default function TiptapRichTextEditor({
-  setCreateArticleFormData,
-  createArticleFormData,
-}) {
+export default function TiptapRichTextEditor({ setRowArticleBodyContentTextEditor }) {
   return (
     <div className='TiptapRichTextEditor'>
       <div className='TiptapRichTextEditorContent'>
         <TipTapEditor
-          setCreateArticleFormData={setCreateArticleFormData}
-          createArticleFormData={createArticleFormData}
+          setRowArticleBodyContentTextEditor={
+            setRowArticleBodyContentTextEditor
+          }
         />
       </div>
       {/* display the content in react */
