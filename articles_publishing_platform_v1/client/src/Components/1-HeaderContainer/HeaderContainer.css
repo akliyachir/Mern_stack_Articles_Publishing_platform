@@ -78,20 +78,40 @@
 }
 
 .toggleUserMenu {
-  margin-top: 0.2rem;
   text-align: center;
+  padding-top: 0.25rem;
+
   color: var(--clr-2);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
+  background-color: var(--clr-3);
+  color: var(--clr-1);
+  padding-inline: 0.4rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  scale: 0.8;
 }
 
 .userToggleMenuLogoAndName {
-  background-color: red;
+  cursor: pointer;
+  background-color: var(--clr-2);
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.2rem;
+  padding-right: 0.5rem;
+  border-radius: 0.9rem;
+  height: 1.9rem;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
 
-.userToggleMenuLogoAndName:nth-child(2) {
-  color: var(--clr-2);
+.userToggleMenuLogoAndName div:nth-of-type(2) {
+  color: var(--clr-3);
+  font-size: 0.9rem;
+}
+
+.userToggleMenuLogoAndName:hover {
+  scale: 1.1;
 }
