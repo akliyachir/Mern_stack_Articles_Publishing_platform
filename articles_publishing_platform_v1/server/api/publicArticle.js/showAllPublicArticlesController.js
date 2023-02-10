@@ -8,7 +8,6 @@ export default async function showAllPublicArticles(req, res) {
       })
       .select({
         article_is_public: 0,
-        article_user_publisher: 0,
         article_last_update: 0,
         user_id: 0,
         _id: 0,

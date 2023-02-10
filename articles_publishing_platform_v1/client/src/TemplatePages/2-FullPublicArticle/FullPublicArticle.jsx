@@ -41,6 +41,7 @@ export default function FullPublicArticle() {
     article_body,
     article_creation_date,
     article_id,
+    article_user_publisher,
     article_image_url,
     article_image_height,
     article_title,
@@ -60,9 +61,15 @@ export default function FullPublicArticle() {
         ></div>
         <div className='article_title'>{article_title}</div>
         <div className='article_body'>{parser(article_body)}</div>
-        <div className='article_creation_date'>
-          {article_creation_date.toLocaleString().slice(0, 10)}
-        </div>
+        {
+          <div className='publicFullArticlesUserNameAndPublishingDate'>
+            <p lassName='article_creation_date'>{article_user_publisher}</p>
+
+            <p className='article_creation_date'>
+              {article_creation_date.toLocaleString().slice(0, 10)}
+            </p>
+          </div>
+        }
       </div>
     </article>
   );

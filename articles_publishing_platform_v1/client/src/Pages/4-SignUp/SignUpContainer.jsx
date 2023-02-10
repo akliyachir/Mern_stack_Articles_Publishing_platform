@@ -10,10 +10,14 @@ import {
 } from '../../reducers/loginErrorReducer';
 
 export default function SignUpContainer() {
-  const [formDataSign, setFormDataSign] = useState({ email: '', password: '' });
+  const [formDataSign, setFormDataSign] = useState({
+    email: '',
+    password: '',
+    name: '',
+  });
   const [isErrorToDisplay, setIsErrorToDisplay] = useState(false);
 
-  const { email, password } = formDataSign;
+  const { email, password, name } = formDataSign;
   const handleInputOnChange = (e) => {
     setFormDataSign({ ...formDataSign, [e.target.name]: e.target.value });
   };
@@ -35,6 +39,7 @@ export default function SignUpContainer() {
   const { userState, userDispatch } = useContext(UserContext);
 
   const handleOnSubmitForm = async (e) => {
+    console.log(formDataSign);
     e.preventDefault();
     try {
       const response = await fetch(backendUrl + 'user/signup', {
@@ -57,7 +62,7 @@ export default function SignUpContainer() {
 
         // -- reset the form after login
 
-        setFormDataSign({ email: '', password: '' });
+        setFormDataSign({ email: '', password: '', name: '' });
 
         // -- say welcome te the new user before redirect to home page
         loginErrorDispatch({ type: 'LOGIN_SUCCESS' });
@@ -84,6 +89,20 @@ export default function SignUpContainer() {
           {loginErrorState.errorMessage}
         </div>
         <form className='formSignStyling'>
+          <div className='inputSignStyling'>
+            <label htmlFor='name' className='labelSignStyling'>
+              Full name
+            </label>
+            <input
+              type='text'
+              name='name'
+              id='name'
+              placeholder='full name...'
+              className='InputTextStyling'
+              value={name}
+              onChange={handleInputOnChange}
+            />
+          </div>
           <div className='inputSignStyling'>
             <label htmlFor='email' className='labelSignStyling'>
               Email

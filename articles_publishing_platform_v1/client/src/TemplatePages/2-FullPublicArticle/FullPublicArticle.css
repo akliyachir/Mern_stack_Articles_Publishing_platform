@@ -35,3 +35,20 @@
   color: var(--clr-3);
   text-align: right;
 }
+
+.publicFullArticlesUserNameAndPublishingDate {
+  width: 100%;
+  text-align: right;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-direction: column;
+}
+
+.publicFullArticlesUserNameAndPublishingDate > * {
+  width: 100%;
+  padding: 1rem;
+
+  margin: none;
+}
