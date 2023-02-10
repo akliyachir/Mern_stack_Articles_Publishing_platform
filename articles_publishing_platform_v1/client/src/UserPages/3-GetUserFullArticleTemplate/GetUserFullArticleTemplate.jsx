@@ -138,7 +138,7 @@ export default function GetUserFullArticleTemplate() {
             <FaEdit />
           </div>
           <p className='article_is_public'>
-            {article_is_public ? 'Privet' : 'Public'}
+            {article_is_public ? 'Public' : 'Privet'}
           </p>
         </div>
       </div>

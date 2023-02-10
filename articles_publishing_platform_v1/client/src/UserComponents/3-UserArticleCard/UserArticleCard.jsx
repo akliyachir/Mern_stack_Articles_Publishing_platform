@@ -10,7 +10,6 @@ export default function UserArticleCard({ item }) {
     article_body_shorten_for_card,
     article_id,
     article_creation_date,
-    article_is_public,
     article_user_publisher,
     article_image_height,
   } = item;
