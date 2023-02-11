@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 // -- create a context, my last resort :'(
+const PreviewsValues = createContext({
+  createArticleFormData,
+  setCreateArticleFormData,
+});
 
 export default function CreateArticle() {
   const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] =
@@ -185,11 +189,8 @@ export default function CreateArticle() {
                 : 'NoErrorTextEditor'
             }
           >
-            <CreateArticleDataContent.Provider
-              value={{
-                getContentFromTheTextEditor,
-                setgetContentFromTheTextEditor,
-              }}
+            <PreviewsValues.Provider
+              value={{ setCreateArticleFormData, createArticleFormData }}
             >
               <TiptapRichTextEditor
                 createArticleFormData={createArticleFormData}
@@ -197,7 +198,8 @@ export default function CreateArticle() {
                 setarticleLengthCheck={setarticleLengthCheck}
                 articleLengthCheck={articleLengthCheck}
               />
-            </CreateArticleDataContent.Provider>
+            </PreviewsValues.Provider>
+
             {!!atLeast300CharactersMessage && (
               <div className='ThreeHundredCharactersMEssageArea'>
                 {atLeast300CharactersMessage}
