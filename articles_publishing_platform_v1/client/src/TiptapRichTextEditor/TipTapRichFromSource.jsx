@@ -117,11 +117,7 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TipTapEditor = ({
-  setRowArticleBodyContentTextEditor,
-  createArticleFormData,
-  setCreateArticleFormData,
-}) => {
+const TipTapEditor = ({ createArticleFormData, setCreateArticleFormData }) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: '',

@@ -48,14 +48,7 @@ export default function CreateArticle() {
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
 
-    setCreateArticleFormData({
-      ...createArticleFormData,
-      article_body: RowArticleBodyContentTextEditor.html,
-      article_body_shorten_for_card:
-        RowArticleBodyContentTextEditor.plainText.slice(0, 180),
-    });
-
-    if (RowArticleBodyContentTextEditor.plainText.length < 300) {
+    if (article_body_shorten_for_card.length < 300) {
       setServerResponse('Must be at least a 300 characters');
       setatLeast300CharactersMessage('Must be at least a 300 characters!');
       setTimeout(() => {
@@ -70,13 +63,21 @@ export default function CreateArticle() {
       return;
     }
 
-    if (RowArticleBodyContentTextEditor.plainText.length > 8000) {
+    if (article_body_shorten_for_card.plainText.length > 8000) {
       setServerResponse('You exceeded 8000 characters!');
       setTimeout(() => {
         setServerResponse('');
       }, 3000);
       return;
     }
+
+    setCreateArticleFormData({
+      ...createArticleFormData,
+      article_body_shorten_for_card: article_body_shorten_for_card.slice(
+        0,
+        180
+      ),
+    });
 
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
