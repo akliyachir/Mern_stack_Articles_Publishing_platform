@@ -16,7 +16,8 @@ export default function CreateArticle() {
     article_title: '',
     article_image_url: '',
     article_image_height: 50,
-    article_body: { plainText: '', html: '' },
+    article_body: '',
+    article_body_shorten_for_card: '',
     article_id: crypto.randomUUID(),
     article_is_public: true,
   });
@@ -181,6 +182,8 @@ export default function CreateArticle() {
             }
           >
             <TiptapRichTextEditor
+              createArticleFormData={createArticleFormData}
+              setCreateArticleFormData={setCreateArticleFormData}
               setRowArticleBodyContentTextEditor={
                 setRowArticleBodyContentTextEditor
               }

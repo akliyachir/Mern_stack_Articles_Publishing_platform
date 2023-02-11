@@ -4,6 +4,8 @@ import TipTapEditor from './TipTapRichFromSource';
 export default function TiptapRichTextEditor({
   setRowArticleBodyContentTextEditor,
   RowArticleBodyContentTextEditor,
+  createArticleFormData,
+  setCreateArticleFormData,
 }) {
   return (
     <div className='TiptapRichTextEditor'>
