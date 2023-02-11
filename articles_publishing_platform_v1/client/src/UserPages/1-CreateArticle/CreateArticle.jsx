@@ -5,6 +5,8 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
+  const [articleLengthCheck, setarticleLengthCheck] = useState('');
+
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
@@ -41,7 +43,9 @@ export default function CreateArticle() {
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
 
-    if (article_body_shorten_for_card.length < 300) {
+    setarticleLengthCheck(article_body_shorten_for_card);
+
+    if (articleLengthCheck.length < 300) {
       setServerResponse('Must be at least a 300 characters');
       setatLeast300CharactersMessage('Must be at least a 300 characters!');
       setTimeout(() => {
@@ -56,7 +60,7 @@ export default function CreateArticle() {
       return;
     }
 
-    if (article_body_shorten_for_card.plainText.length > 8000) {
+    if (articleLengthCheck.length > 8000) {
       setServerResponse('You exceeded 8000 characters!');
       setTimeout(() => {
         setServerResponse('');
@@ -71,6 +75,11 @@ export default function CreateArticle() {
         180
       ),
     });
+
+    if (article_body_shorten_for_card.length > 180) {
+      console.log('ghir el kheir ?!');
+      return;
+    }
 
     // -- get token from localStorage
     const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
@@ -171,7 +180,7 @@ export default function CreateArticle() {
           <div
             className={
               article_body_shorten_for_card &&
-              article_body_shorten_for_card.plainText.length > 8000
+              article_body_shorten_for_card.length > 8000
                 ? 'errorTextEditor'
                 : 'NoErrorTextEditor'
             }
