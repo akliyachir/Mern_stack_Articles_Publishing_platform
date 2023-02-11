@@ -119,9 +119,15 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TipTapEditor = ({ setarticleLengthCheck }) => {
-  const { setCreateArticleFormData, createArticleFormData } =
-    useContext(PreviewsValues);
+const TipTapEditor = ({ setarticleLengthCheck, setCreateArticleFormData }) => {
+  const {
+    article_title,
+    article_image_url,
+    article_body,
+    article_body_shorten_for_card,
+    article_image_height,
+    createArticleFormData,
+  } = useContext(PreviewsValues);
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -131,10 +137,16 @@ const TipTapEditor = ({ setarticleLengthCheck }) => {
       const plainText = editor.getText().replace(/['\n']/gi, ' ');
       const plainTextShorten = plainText.slice(0, 180);
 
-      setgetContentFromTheTextEditor({
-        html,
-        plainTextShorten,
+      setCreateArticleFormData({
+        article_title,
+        article_image_url,
+        article_image_height,
+        createArticleFormData,
+        article_body: html,
+        article_body_shorten_for_card: plainTextShorten,
+        ...createArticleFormData,
       });
+      console.log(createArticleFormData);
       setarticleLengthCheck(plainText);
     },
   });

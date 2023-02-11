@@ -1,13 +1,17 @@
 import './CreateArticle.css';
-import { useState, useRef, useEffect, createContext, useContext } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  createContext,
+  useContext,
+  useReducer,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 // -- create a context, my last resort :'(
-const PreviewsValues = createContext({
-  createArticleFormData,
-  setCreateArticleFormData,
-});
+export const PreviewsValues = createContext({});
 
 export default function CreateArticle() {
   const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] =
@@ -190,10 +194,16 @@ export default function CreateArticle() {
             }
           >
             <PreviewsValues.Provider
-              value={{ setCreateArticleFormData, createArticleFormData }}
+              value={{
+                article_title,
+                article_image_url,
+                article_body,
+                article_body_shorten_for_card,
+                article_image_height,
+                createArticleFormData,
+              }}
             >
               <TiptapRichTextEditor
-                createArticleFormData={createArticleFormData}
                 setCreateArticleFormData={setCreateArticleFormData}
                 setarticleLengthCheck={setarticleLengthCheck}
                 articleLengthCheck={articleLengthCheck}
