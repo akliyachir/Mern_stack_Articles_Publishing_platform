@@ -5,13 +5,6 @@ import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
-  // -- rich text editor body content
-  /* 
-  const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
-    useState({ plainText: '', html: '' }); */
-
-  // -- form data useState
-
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
     article_image_url: '',
@@ -177,7 +170,8 @@ export default function CreateArticle() {
           )}
           <div
             className={
-              RowArticleBodyContentTextEditor.plainText.length > 8000
+              article_body_shorten_for_card &&
+              article_body_shorten_for_card.plainText.length > 8000
                 ? 'errorTextEditor'
                 : 'NoErrorTextEditor'
             }

@@ -141,6 +141,3 @@ const TipTapEditor = ({ createArticleFormData, setCreateArticleFormData }) => {
 };
 
 export default TipTapEditor;
-
-createArticleFormData;
-setCreateArticleFormData;
