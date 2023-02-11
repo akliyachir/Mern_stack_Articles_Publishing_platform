@@ -44,84 +44,79 @@ export default function CreateArticle() {
 
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
-    e.preventDefault();
+    async (e) => {
+      e.preventDefault();
 
-    setCreateArticleFormData({
-      ...createArticleFormData,
-      article_body: html,
-      article_body_shorten_for_card: plainTextShorten,
-    });
+      setCreateArticleFormData({
+        ...createArticleFormData,
+        article_body: html,
+        article_body_shorten_for_card: plainTextShorten,
+      });
 
-    if (articleLengthCheck.length < 300) {
-      setServerResponse('Must be at least a 300 characters');
-      setatLeast300CharactersMessage('Must be at least a 300 characters!');
-      setTimeout(() => {
-        setServerResponse('');
-        setatLeast300CharactersMessage('');
-      }, 3000);
+      if (articleLengthCheck.length < 300) {
+        setServerResponse('Must be at least a 300 characters');
+        setatLeast300CharactersMessage('Must be at least a 300 characters!');
+        setTimeout(() => {
+          setServerResponse('');
+          setatLeast300CharactersMessage('');
+        }, 3000);
 
-      setTimeout(() => {
-        setatLeast300CharactersMessage('');
-      }, 5000);
+        setTimeout(() => {
+          setatLeast300CharactersMessage('');
+        }, 5000);
 
-      return;
-    }
+        return;
+      }
 
-    if (articleLengthCheck.length > 8000) {
-      setServerResponse('You exceeded 8000 characters!');
-      setTimeout(() => {
-        setServerResponse('');
-      }, 3000);
-      return;
-    }
+      if (articleLengthCheck.length > 8000) {
+        setServerResponse('You exceeded 8000 characters!');
+        setTimeout(() => {
+          setServerResponse('');
+        }, 3000);
+        return;
+      }
 
-    // -- get token from localStorage
-    const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
+      // -- get token from localStorage
+      const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 
-    const response = await fetch(backendUrl + 'user_article', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: JSON.stringify(`Bearer ${token}`),
-      },
-      body: JSON.stringify(createArticleFormData),
-    });
+      const response = await fetch(backendUrl + 'user_article', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          authorization: JSON.stringify(`Bearer ${token}`),
+        },
+        body: JSON.stringify(createArticleFormData),
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      setServerResponse(result.message);
-      setatLeast300CharactersMessage(result.message);
-      setTimeout(() => {
-        setatLeast300CharactersMessage('');
-        setServerResponse('');
-      }, 10000);
-      return;
-    }
+      if (!response.ok) {
+        setServerResponse(result.message);
+        setatLeast300CharactersMessage(result.message);
+        setTimeout(() => {
+          setatLeast300CharactersMessage('');
+          setServerResponse('');
+        }, 10000);
+        return;
+      }
 
-    if (response.ok) {
-      setServerResponse(result.message);
-      setatLeast300CharactersMessage(result.message);
-      setTimeout(() => {
-        setCreateArticleFormData({
-          article_title: '',
-          article_image_url: '',
-          article_image_height: 50,
-          article_body: '',
-          article_id: crypto.randomUUID(),
-        });
-        navigate('/user_articles');
-      }, 3000);
-    }
+      if (response.ok) {
+        setServerResponse(result.message);
+        setatLeast300CharactersMessage(result.message);
+        setTimeout(() => {
+          setCreateArticleFormData({
+            article_title: '',
+            article_image_url: '',
+            article_image_height: 50,
+            article_body: '',
+            article_id: crypto.randomUUID(),
+          });
+          navigate('/user_articles');
+        }, 3000);
+      }
+    };
   };
 
-  useEffect(() => {
-    setCreateArticleFormData({
-      article_body: html,
-      article_body_shorten_for_card: plainTextShorten,
-      ...createArticleFormData,
-    });
-  }, [handleOnSubmitCreateNewArticle]);
   //-- return jsx
   return (
     <div className='CreateArticle'>
