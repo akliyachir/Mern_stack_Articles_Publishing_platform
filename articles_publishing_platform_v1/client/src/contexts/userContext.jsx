@@ -17,22 +17,6 @@ export default function UserContextProvider({ children }) {
 /* 
 
 
-  const [createArticleFormData, setCreateArticleFormData] = useState({
-    article_title: '',
-    article_image_url: '',
-    article_image_height: 50,
-    article_body: '',
-    article_body_shorten_for_card: '',
-    article_id: crypto.randomUUID(),
-    article_is_public: true,
-  });
-  const {
-    article_title,
-    article_image_url,
-    article_body,
-    article_body_shorten_for_card,
-    article_image_height,
-  } = createArticleFormData;
 
 
 */

@@ -1,23 +1,23 @@
-import './RootLayout.css';
-import { useContext, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import HeaderContainer from '../../Components/1-HeaderContainer/HeaderContainer';
-import FooterHomePage from '../../Components/5-FooterHomePage/FooterHomePage';
-import { UserContext } from '../../Contexts/UserContext';
-import CreateArticleContextProvider from '../../contexts/CreateArticleContext';
+import './RootLayout.css'
+import { useContext, useEffect } from 'react'
+import { Outlet } from 'react-router-dom'
+import HeaderContainer from '../../Components/1-HeaderContainer/HeaderContainer'
+import FooterHomePage from '../../Components/5-FooterHomePage/FooterHomePage'
+import { UserContext } from '../../Contexts/UserContext'
+import CreateArticleContextProvider from '../../contexts/CreateArticleContext'
 
 export default function RootLayout() {
-  const { userState, userDispatch } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext)
 
   useEffect(() => {
-    const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
+    const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user')
     if (userFromLocalStorageAsJson) {
-      const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
-      const { name, email, token } = userFromLocalStorage;
-      userDispatch({ type: 'SIGN_IN', payload: { name, email, token } });
-      console.log(userState);
+      const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson)
+      const { name, email, token } = userFromLocalStorage
+      userDispatch({ type: 'SIGN_IN', payload: { name, email, token } })
+      console.log(userState)
     }
-  }, []);
+  }, [])
   return (
     <div className='RootLayout'>
       <div className='RootLayoutContent'>
@@ -30,5 +30,5 @@ export default function RootLayout() {
         <FooterHomePage />
       </div>
     </div>
-  );
+  )
 }
