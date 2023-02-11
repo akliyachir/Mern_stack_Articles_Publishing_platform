@@ -44,7 +44,8 @@ export default function CreateArticle() {
 
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
-    async (e) => {
+    e.preventDefault();
+    const hola = async (e) => {
       e.preventDefault();
 
       setCreateArticleFormData({
@@ -115,6 +116,8 @@ export default function CreateArticle() {
         }, 3000);
       }
     };
+
+    hola();
   };
 
   //-- return jsx
