@@ -1,11 +1,14 @@
 import './CreateArticle.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
   const [articleLengthCheck, setarticleLengthCheck] = useState('');
+  const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] =
+    useState({ html: '', plainTextShorten: '' });
+  const { html, plainTextShorten } = getContentFromTheTextEditor;
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
@@ -42,6 +45,12 @@ export default function CreateArticle() {
   //-- handle submitNewArticleData
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
+
+    setCreateArticleFormData({
+      ...createArticleFormData,
+      article_body: html,
+      article_body_shorten_for_card: plainTextShorten,
+    });
 
     if (articleLengthCheck.length < 300) {
       setServerResponse('Must be at least a 300 characters');
@@ -106,6 +115,13 @@ export default function CreateArticle() {
     }
   };
 
+  useEffect(() => {
+    setCreateArticleFormData({
+      article_body: html,
+      article_body_shorten_for_card: plainTextShorten,
+      ...createArticleFormData,
+    });
+  }, [handleOnSubmitCreateNewArticle]);
   //-- return jsx
   return (
     <div className='CreateArticle'>
@@ -170,6 +186,8 @@ export default function CreateArticle() {
             }
           >
             <TiptapRichTextEditor
+              getContentFromTheTextEditor={getContentFromTheTextEditor}
+              setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
               createArticleFormData={createArticleFormData}
               setCreateArticleFormData={setCreateArticleFormData}
               setarticleLengthCheck={setarticleLengthCheck}

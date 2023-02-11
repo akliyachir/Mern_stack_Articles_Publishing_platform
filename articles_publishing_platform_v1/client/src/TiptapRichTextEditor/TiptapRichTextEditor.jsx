@@ -6,6 +6,8 @@ export default function TiptapRichTextEditor({
   setCreateArticleFormData,
   setarticleLengthCheck,
   articleLengthCheck,
+  getContentFromTheTextEditor,
+  setgetContentFromTheTextEditor,
 }) {
   return (
     <div className='TiptapRichTextEditor'>
@@ -14,6 +16,8 @@ export default function TiptapRichTextEditor({
           createArticleFormData={createArticleFormData}
           setCreateArticleFormData={setCreateArticleFormData}
           setarticleLengthCheck={setarticleLengthCheck}
+          getContentFromTheTextEditor={getContentFromTheTextEditor}
+          setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
         />
         {articleLengthCheck.length > 8000 && (
           <div className='bodyTextEditorErrorMessage'>

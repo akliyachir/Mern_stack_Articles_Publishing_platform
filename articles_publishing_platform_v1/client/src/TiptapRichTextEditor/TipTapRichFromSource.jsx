@@ -118,6 +118,8 @@ const MenuBar = ({ editor }) => {
 };
 
 const TipTapEditor = ({
+  getContentFromTheTextEditor,
+  setgetContentFromTheTextEditor,
   createArticleFormData,
   setCreateArticleFormData,
   setarticleLengthCheck,
@@ -129,10 +131,10 @@ const TipTapEditor = ({
       const html = editor.getHTML();
       const plainText = editor.getText().replace(/['\n']/gi, ' ');
       const plainTextShorten = plainText.slice(0, 180);
-      setCreateArticleFormData({
-        ...createArticleFormData,
-        article_body: html,
-        article_body_shorten_for_card: plainTextShorten,
+
+      setgetContentFromTheTextEditor({
+        html,
+        plainTextShorten,
       });
       setarticleLengthCheck(plainText);
     },
