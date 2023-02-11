@@ -21,7 +21,7 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
-import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
+
 // -- create a context, my last resort :'(
 export const PreviewsValues = createContext({});
 
@@ -356,7 +356,7 @@ const TipTapEditor = ({ setarticleLengthCheck, setCreateArticleFormData }) => {
     createArticleFormData,
   } = useContext(PreviewsValues);
 
-  editor = useEditor({
+  const editor = useEditor({
     extensions: [StarterKit],
     content: '',
     onUpdate: ({ editor }) => {
