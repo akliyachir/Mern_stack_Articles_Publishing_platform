@@ -1,5 +1,7 @@
 import { EditorContent, useEditor } from '@tiptap/react';
+import { CreateArticleDataContent } from '../UserPages/1-CreateArticle/CreateArticle';
 import StarterKit from '@tiptap/starter-kit';
+import { useContext } from 'react';
 import {
   GrBold,
   GrItalic,
@@ -117,13 +119,11 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TipTapEditor = ({
-  getContentFromTheTextEditor,
-  setgetContentFromTheTextEditor,
-  createArticleFormData,
-  setCreateArticleFormData,
-  setarticleLengthCheck,
-}) => {
+const TipTapEditor = ({ setarticleLengthCheck }) => {
+  const { setgetContentFromTheTextEditor } = useContext(
+    CreateArticleDataContent
+  );
+
   const editor = useEditor({
     extensions: [StarterKit],
     content: '',

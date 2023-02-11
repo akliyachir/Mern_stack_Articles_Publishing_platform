@@ -1,14 +1,16 @@
 import './CreateArticle.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
+// -- create a context, my last resort :'(
 
 export default function CreateArticle() {
-  const [articleLengthCheck, setarticleLengthCheck] = useState('');
   const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] =
     useState({ html: '', plainTextShorten: '' });
   const { html, plainTextShorten } = getContentFromTheTextEditor;
+
+  const [articleLengthCheck, setarticleLengthCheck] = useState('');
 
   const [createArticleFormData, setCreateArticleFormData] = useState({
     article_title: '',
@@ -183,14 +185,19 @@ export default function CreateArticle() {
                 : 'NoErrorTextEditor'
             }
           >
-            <TiptapRichTextEditor
-              getContentFromTheTextEditor={getContentFromTheTextEditor}
-              setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
-              createArticleFormData={createArticleFormData}
-              setCreateArticleFormData={setCreateArticleFormData}
-              setarticleLengthCheck={setarticleLengthCheck}
-              articleLengthCheck={articleLengthCheck}
-            />
+            <CreateArticleDataContent.Provider
+              value={{
+                getContentFromTheTextEditor,
+                setgetContentFromTheTextEditor,
+              }}
+            >
+              <TiptapRichTextEditor
+                createArticleFormData={createArticleFormData}
+                setCreateArticleFormData={setCreateArticleFormData}
+                setarticleLengthCheck={setarticleLengthCheck}
+                articleLengthCheck={articleLengthCheck}
+              />
+            </CreateArticleDataContent.Provider>
             {!!atLeast300CharactersMessage && (
               <div className='ThreeHundredCharactersMEssageArea'>
                 {atLeast300CharactersMessage}
