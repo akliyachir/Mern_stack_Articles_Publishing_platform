@@ -128,15 +128,10 @@ const TipTapEditor = ({
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       const plainText = editor.getText().replace(/['\n']/gi, ' ');
-      const plainTextShorten = editor
-        .getText()
-        .replace(/['\n']/gi, ' ')
-        .slice(0, 180);
-      setRowArticleBodyContentTextEditor({ plainText, html });
       setCreateArticleFormData({
         ...createArticleFormData,
         article_body: html,
-        article_body_shorten_for_card: plainTextShorten,
+        article_body_shorten_for_card: plainText,
       });
     },
   });

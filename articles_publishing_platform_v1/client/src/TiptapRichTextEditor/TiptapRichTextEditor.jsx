@@ -2,8 +2,6 @@ import './TiptapRichTextEditor.css';
 import TipTapEditor from './TipTapRichFromSource';
 
 export default function TiptapRichTextEditor({
-  setRowArticleBodyContentTextEditor,
-  RowArticleBodyContentTextEditor,
   createArticleFormData,
   setCreateArticleFormData,
 }) {
@@ -11,11 +9,10 @@ export default function TiptapRichTextEditor({
     <div className='TiptapRichTextEditor'>
       <div className='TiptapRichTextEditorContent'>
         <TipTapEditor
-          setRowArticleBodyContentTextEditor={
-            setRowArticleBodyContentTextEditor
-          }
+          createArticleFormData={createArticleFormData}
+          setCreateArticleFormData={setCreateArticleFormData}
         />
-        {RowArticleBodyContentTextEditor.plainText.length > 8000 && (
+        {createArticleFormData.article_body_shorten_for_card.length > 8000 && (
           <div className='bodyTextEditorErrorMessage'>
             <p>Too much content</p>
             <p>Exceeding 8000 characters!</p>

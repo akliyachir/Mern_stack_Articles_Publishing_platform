@@ -6,9 +6,9 @@ import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEdito
 
 export default function CreateArticle() {
   // -- rich text editor body content
-
+  /* 
   const [RowArticleBodyContentTextEditor, setRowArticleBodyContentTextEditor] =
-    useState({ plainText: '', html: '' });
+    useState({ plainText: '', html: '' }); */
 
   // -- form data useState
 
@@ -184,10 +184,6 @@ export default function CreateArticle() {
             <TiptapRichTextEditor
               createArticleFormData={createArticleFormData}
               setCreateArticleFormData={setCreateArticleFormData}
-              setRowArticleBodyContentTextEditor={
-                setRowArticleBodyContentTextEditor
-              }
-              RowArticleBodyContentTextEditor={RowArticleBodyContentTextEditor}
             />
             {!!atLeast300CharactersMessage && (
               <div className='ThreeHundredCharactersMEssageArea'>
