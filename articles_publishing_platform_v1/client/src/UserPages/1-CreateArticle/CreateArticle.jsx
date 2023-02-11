@@ -16,7 +16,7 @@ export default function CreateArticle() {
     article_title: '',
     article_image_url: '',
     article_image_height: 50,
-    article_body: RowArticleBodyContentTextEditor.html,
+    article_body: { plainText: '', html: '' },
     article_id: crypto.randomUUID(),
     article_is_public: true,
   });
@@ -97,7 +97,8 @@ export default function CreateArticle() {
       setTimeout(() => {
         setatLeast300CharactersMessage('');
         setServerResponse('');
-      }, 3000);
+      }, 10000);
+      return;
     }
 
     if (response.ok) {
