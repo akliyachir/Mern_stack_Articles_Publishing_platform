@@ -117,18 +117,24 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TipTapEditor = ({ createArticleFormData, setCreateArticleFormData }) => {
+const TipTapEditor = ({
+  createArticleFormData,
+  setCreateArticleFormData,
+  setarticleLengthCheck,
+}) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: '',
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       const plainText = editor.getText().replace(/['\n']/gi, ' ');
+      const plainTextShorten = plainText.slice(0, 180);
       setCreateArticleFormData({
         ...createArticleFormData,
         article_body: html,
-        article_body_shorten_for_card: plainText,
+        article_body_shorten_for_card: plainTextShorten,
       });
+      setarticleLengthCheck(plainText);
     },
   });
 

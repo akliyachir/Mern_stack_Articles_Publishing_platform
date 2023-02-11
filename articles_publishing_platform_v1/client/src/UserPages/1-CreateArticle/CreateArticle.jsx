@@ -43,8 +43,6 @@ export default function CreateArticle() {
   const handleOnSubmitCreateNewArticle = async (e) => {
     e.preventDefault();
 
-    setarticleLengthCheck(article_body_shorten_for_card);
-
     if (articleLengthCheck.length < 300) {
       setServerResponse('Must be at least a 300 characters');
       setatLeast300CharactersMessage('Must be at least a 300 characters!');
@@ -65,19 +63,6 @@ export default function CreateArticle() {
       setTimeout(() => {
         setServerResponse('');
       }, 3000);
-      return;
-    }
-
-    setCreateArticleFormData({
-      ...createArticleFormData,
-      article_body_shorten_for_card: article_body_shorten_for_card.slice(
-        0,
-        180
-      ),
-    });
-
-    if (article_body_shorten_for_card.length > 180) {
-      console.log('ghir el kheir ?!');
       return;
     }
 
@@ -179,8 +164,7 @@ export default function CreateArticle() {
           )}
           <div
             className={
-              article_body_shorten_for_card &&
-              article_body_shorten_for_card.length > 8000
+              articleLengthCheck && articleLengthCheck.length > 8000
                 ? 'errorTextEditor'
                 : 'NoErrorTextEditor'
             }
@@ -188,6 +172,8 @@ export default function CreateArticle() {
             <TiptapRichTextEditor
               createArticleFormData={createArticleFormData}
               setCreateArticleFormData={setCreateArticleFormData}
+              setarticleLengthCheck={setarticleLengthCheck}
+              articleLengthCheck={articleLengthCheck}
             />
             {!!atLeast300CharactersMessage && (
               <div className='ThreeHundredCharactersMEssageArea'>
