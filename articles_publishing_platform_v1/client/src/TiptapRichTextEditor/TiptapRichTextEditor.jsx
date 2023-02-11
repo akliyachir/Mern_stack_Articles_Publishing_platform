@@ -1,7 +1,7 @@
 import './TiptapRichTextEditor.css';
 import TipTapEditor from './TipTapRichFromSource';
 
-export default function TiptapRichTextEditor({
+export function TiptapRichTextEditor({
   setCreateArticleFormData,
   setarticleLengthCheck,
   articleLengthCheck,
@@ -20,10 +20,6 @@ export default function TiptapRichTextEditor({
           </div>
         )}
       </div>
-      {/* display the content in react */
-      /*       <div className="demoDisplayRichTextEditorContent">
-        {parser(richTextEditorContent)}
-      </div> */}
     </div>
   );
 }

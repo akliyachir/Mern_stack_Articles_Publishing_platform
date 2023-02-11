@@ -119,6 +119,8 @@ const MenuBar = ({ editor }) => {
   );
 };
 
+let editor;
+
 const TipTapEditor = ({ setarticleLengthCheck, setCreateArticleFormData }) => {
   const {
     article_title,
@@ -129,7 +131,7 @@ const TipTapEditor = ({ setarticleLengthCheck, setCreateArticleFormData }) => {
     createArticleFormData,
   } = useContext(PreviewsValues);
 
-  const editor = useEditor({
+  editor = useEditor({
     extensions: [StarterKit],
     content: '',
     onUpdate: ({ editor }) => {

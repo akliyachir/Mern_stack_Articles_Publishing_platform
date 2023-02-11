@@ -19,18 +19,16 @@ export default function RootLayout() {
     }
   }, []);
   return (
-    <CreateArticleContextProvider>
-      <div className='RootLayout'>
-        <div className='RootLayoutContent'>
-          <nav>
-            <HeaderContainer />
-          </nav>
-          <main>
-            <Outlet />
-          </main>
-          <FooterHomePage />
-        </div>
+    <div className='RootLayout'>
+      <div className='RootLayoutContent'>
+        <nav>
+          <HeaderContainer />
+        </nav>
+        <main>
+          <Outlet />
+        </main>
+        <FooterHomePage />
       </div>
-    </CreateArticleContextProvider>
+    </div>
   );
 }
