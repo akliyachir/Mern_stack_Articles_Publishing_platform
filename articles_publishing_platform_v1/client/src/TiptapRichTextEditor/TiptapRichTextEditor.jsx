@@ -2,7 +2,8 @@ import './TiptapRichTextEditor.css'
 import TipTapEditor from './TipTapRichFromSource'
 
 export default function TiptapRichTextEditor({
-	setCreateArticleFormData,
+	getContentFromTheTextEditor,
+	setgetContentFromTheTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
 }) {
@@ -10,8 +11,10 @@ export default function TiptapRichTextEditor({
 		<div className='TiptapRichTextEditor'>
 			<div className='TiptapRichTextEditorContent'>
 				<TipTapEditor
-					setCreateArticleFormData={setCreateArticleFormData}
+					getContentFromTheTextEditor={getContentFromTheTextEditor}
+					setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
 					setarticleLengthCheck={setarticleLengthCheck}
+					articleLengthCheck={articleLengthCheck}
 				/>
 				{articleLengthCheck.length > 8000 && (
 					<div className='bodyTextEditorErrorMessage'>

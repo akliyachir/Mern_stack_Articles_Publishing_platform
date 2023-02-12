@@ -1,12 +1,5 @@
 import './CreateArticle.css'
-import {
-	useState,
-	useRef,
-	useEffect,
-	createContext,
-	useContext,
-	useReducer,
-} from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
@@ -32,9 +25,11 @@ export default function CreateArticle() {
 	const {
 		article_title,
 		article_image_url,
+		article_image_height,
 		article_body,
 		article_body_shorten_for_card,
-		article_image_height,
+		article_id,
+		article_is_public,
 	} = createArticleFormData
 
 	const handleInputOnChange = (e) => {
@@ -42,9 +37,10 @@ export default function CreateArticle() {
 			...createArticleFormData,
 			[e.target.name]: e.target.value,
 		})
+		console.log(createArticleFormData)
 	}
 
-	//-- create response area
+	//-- create server response area
 	const [serverResponse, setServerResponse] = useState('')
 	//-- at least 300 character response area
 	const [atLeast300CharactersMessage, setatLeast300CharactersMessage] =
@@ -195,7 +191,8 @@ export default function CreateArticle() {
 					>
 						>
 						<TiptapRichTextEditor
-							setCreateArticleFormData={setCreateArticleFormData}
+							getContentFromTheTextEditor={getContentFromTheTextEditor}
+							setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
 							setarticleLengthCheck={setarticleLengthCheck}
 							articleLengthCheck={articleLengthCheck}
 						/>
