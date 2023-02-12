@@ -1,11 +1,14 @@
 import './CreateArticle.css'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 // -- create a context, my last resort :'(
 
 export default function CreateArticle() {
+	const synchroAttempt = useRef()
+	console.log(synchroAttempt.current)
+
 	const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] = useState(
 		{ html: '', plainTextShorten: '' }
 	)
@@ -47,6 +50,8 @@ export default function CreateArticle() {
 		useState('')
 	// -- and redirect in case of success
 	const navigate = useNavigate()
+
+	// -- synchronise text editir with reste for form data
 
 	//-- handle submitNewArticleData
 	const handleOnSubmitCreateNewArticle = async (e) => {
@@ -191,6 +196,7 @@ export default function CreateArticle() {
 					>
 						>
 						<TiptapRichTextEditor
+							ref={synchroAttempt}
 							getContentFromTheTextEditor={getContentFromTheTextEditor}
 							setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
 							setarticleLengthCheck={setarticleLengthCheck}

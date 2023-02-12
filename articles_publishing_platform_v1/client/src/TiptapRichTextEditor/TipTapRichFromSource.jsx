@@ -128,9 +128,10 @@ const TipTapEditor = ({
 
 			setarticleLengthCheck(plainText)
 
-			console.log('html-> ' + html)
-			console.log('plainText-> ' + plainText)
-			console.log('plainTextShorten-> ' + plainTextShorten)
+			setgetContentFromTheTextEditor({
+				html: html,
+				plainTextShorten: plainTextShorten,
+			})
 		},
 	})
 
