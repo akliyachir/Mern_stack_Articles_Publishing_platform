@@ -79,7 +79,7 @@ export default function CreateArticle() {
 
 			setTimeout(() => {
 				setatLeast300CharactersMessage('')
-			}, 5000)
+			}, 3000)
 
 			return
 		}
@@ -112,7 +112,7 @@ export default function CreateArticle() {
 			setTimeout(() => {
 				setatLeast300CharactersMessage('')
 				setServerResponse('')
-			}, 10000)
+			}, 3000)
 			return
 		}
 
