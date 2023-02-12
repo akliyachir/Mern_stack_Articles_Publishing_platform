@@ -58,29 +58,31 @@ export default function CreateArticle() {
 			article_body: getContentFromTheTextEditor.html,
 			article_body_shorten_for_card: getContentFromTheTextEditor.plainTextShorten,
 		})
-		if (articleLengthCheck.length < 300) {
-			setServerResponse('Must be at least a 300 characters')
-			setatLeast300CharactersMessage('Must be at least a 300 characters!')
-			setTimeout(() => {
-				setServerResponse('')
-				setatLeast300CharactersMessage('')
-			}, 3000)
 
-			setTimeout(() => {
-				setatLeast300CharactersMessage('')
-			}, 3000)
+		setTimeout(() => {
+			if (articleLengthCheck.length < 300) {
+				setServerResponse('Must be at least a 300 characters')
+				setatLeast300CharactersMessage('Must be at least a 300 characters!')
+				setTimeout(() => {
+					setServerResponse('')
+					setatLeast300CharactersMessage('')
+				}, 3000)
 
-			return
-		}
+				setTimeout(() => {
+					setatLeast300CharactersMessage('')
+				}, 3000)
 
-		if (articleLengthCheck.length > 8000) {
-			setServerResponse('You exceeded 8000 characters!')
-			setTimeout(() => {
-				setServerResponse('')
-			}, 3000)
-			return
-		}
+				return
+			}
 
+			if (articleLengthCheck.length > 8000) {
+				setServerResponse('You exceeded 8000 characters!')
+				setTimeout(() => {
+					setServerResponse('')
+				}, 3000)
+				return
+			}
+		}, 5)
 		// -- get token from localStorage
 		const { token } = await JSON.parse(globalThis.localStorage.getItem('user'))
 
