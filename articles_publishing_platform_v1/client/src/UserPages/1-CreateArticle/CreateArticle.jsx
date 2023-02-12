@@ -1,13 +1,11 @@
 import './CreateArticle.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 // -- create a context, my last resort :'(
 
 export default function CreateArticle() {
-	const synchroAttempt = useRef()
-
 	const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] = useState(
 		{ html: '', plainTextShorten: '' }
 	)
@@ -50,9 +48,7 @@ export default function CreateArticle() {
 	const navigate = useNavigate()
 
 	//-- handle submitNewArticleData
-	const handleOnSubmitCreateNewArticle = async (e) => {
-		e.preventDefault()
-
+	const handleOnSubmitCreateNewArticle = async () => {
 		setCreateArticleFormData({
 			...createArticleFormData,
 			article_body: getContentFromTheTextEditor.html,
@@ -66,59 +62,53 @@ export default function CreateArticle() {
 				setServerResponse('')
 				setatLeast300CharactersMessage('')
 			}, 3000)
-
-			setTimeout(() => {
-				setatLeast300CharactersMessage('')
-			}, 3000)
-
 			return
-		}
-
-		if (articleLengthCheck.length > 8000) {
+		} else if (articleLengthCheck.length > 8000) {
 			setServerResponse('You exceeded 8000 characters!')
 			setTimeout(() => {
 				setServerResponse('')
 			}, 3000)
 			return
-		}
+		} else {
+			// -- get token from localStorage
 
-		// -- get token from localStorage
-		const { token } = await JSON.parse(globalThis.localStorage.getItem('user'))
+			const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
 
-		const response = await fetch(backendUrl + 'user_article', {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-				authorization: JSON.stringify(`Bearer ${token}`),
-			},
-			body: JSON.stringify(createArticleFormData),
-		})
+			const response = await fetch(backendUrl + 'user_article', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+					authorization: JSON.stringify(`Bearer ${token}`),
+				},
+				body: JSON.stringify(createArticleFormData),
+			})
 
-		const result = await response.json()
+			const result = await response.json()
 
-		if (!response.ok) {
-			setServerResponse(result.message)
-			setatLeast300CharactersMessage(result.message)
-			setTimeout(() => {
-				setatLeast300CharactersMessage('')
-				setServerResponse('')
-			}, 3000)
-			return
-		}
+			if (!response.ok) {
+				setServerResponse(result.message)
+				setatLeast300CharactersMessage(result.message)
+				setTimeout(() => {
+					setatLeast300CharactersMessage('')
+					setServerResponse('')
+				}, 3000)
+				return
+			}
 
-		if (response.ok) {
-			setServerResponse(result.message)
-			setatLeast300CharactersMessage(result.message)
-			navigate('/user_articles')
-			setTimeout(() => {
-				setCreateArticleFormData({
-					article_title: '',
-					article_image_url: '',
-					article_image_height: 50,
-					article_body: '',
-					article_id: crypto.randomUUID(),
-				})
-			}, 3000)
+			if (response.ok) {
+				setatLeast300CharactersMessage(result.message)
+				setServerResponse(result.message)
+				setTimeout(() => {
+					setCreateArticleFormData({
+						article_title: '',
+						article_image_url: '',
+						article_image_height: 50,
+						article_body: '',
+						article_id: crypto.randomUUID(),
+					})
+					navigate('/user_articles')
+				}, 3000)
+			}
 		}
 	}
 
@@ -185,7 +175,6 @@ export default function CreateArticle() {
 						}
 					>
 						<TiptapRichTextEditor
-							ref={synchroAttempt}
 							getContentFromTheTextEditor={getContentFromTheTextEditor}
 							setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
 							setarticleLengthCheck={setarticleLengthCheck}
@@ -200,7 +189,23 @@ export default function CreateArticle() {
 					<button
 						type='submit'
 						className='buttonOnSubmitCreateNewArticle'
-						onClick={handleOnSubmitCreateNewArticle}
+						onClick={(e) => {
+							e.preventDefault()
+							setCreateArticleFormData({
+								article_title,
+								article_image_url,
+								article_image_height,
+								article_body: getContentFromTheTextEditor.html,
+								article_body_shorten_for_card:
+									getContentFromTheTextEditor.plainTextShorten,
+								article_id,
+								article_is_public,
+								...createArticleFormData,
+							})
+							setTimeout(() => {
+								handleOnSubmitCreateNewArticle()
+							}, 0)
+						}}
 					>
 						Submit
 					</button>
