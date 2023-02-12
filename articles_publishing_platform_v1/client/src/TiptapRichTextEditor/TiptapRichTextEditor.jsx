@@ -2,8 +2,8 @@ import './TiptapRichTextEditor.css'
 import TipTapEditor from './TipTapRichFromSource'
 
 export default function TiptapRichTextEditor({
-	getContentFromTheTextEditor,
-	setgetContentFromTheTextEditor,
+	getContentFromTextEditor,
+	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
 }) {
@@ -11,8 +11,8 @@ export default function TiptapRichTextEditor({
 		<div className='TiptapRichTextEditor'>
 			<div className='TiptapRichTextEditorContent'>
 				<TipTapEditor
-					getContentFromTheTextEditor={getContentFromTheTextEditor}
-					setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
+					getContentFromTextEditor={getContentFromTextEditor}
+					setGetContentFromTextEditor={setGetContentFromTextEditor}
 					setarticleLengthCheck={setarticleLengthCheck}
 					articleLengthCheck={articleLengthCheck}
 				/>

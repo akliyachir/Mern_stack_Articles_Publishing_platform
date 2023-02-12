@@ -1,15 +1,16 @@
 import './CreateArticle.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 // -- create a context, my last resort :'(
 
 export default function CreateArticle() {
-	const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] = useState(
-		{ html: '', plainTextShorten: '' }
-	)
-
+	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
+		html: '',
+		plainTextShorten: '',
+	})
+	const { html, plainTextShorten } = getContentFromTextEditor
 	const [articleLengthCheck, setarticleLengthCheck] = useState('')
 
 	const [createArticleFormData, setCreateArticleFormData] = useState({
@@ -47,17 +48,9 @@ export default function CreateArticle() {
 	const navigate = useNavigate()
 
 	//-- handle submitNewArticleData
-	const handleOnSubmitCreateNewArticle = async () => {
-		setCreateArticleFormData({
-			article_title,
-			article_image_url,
-			article_image_height,
-			article_body: getContentFromTheTextEditor.html,
-			article_body_shorten_for_card: getContentFromTheTextEditor.plainTextShorten,
-			article_id,
-			article_is_public,
-			...createArticleFormData,
-		})
+	const handleOnSubmitCreateNewArticle = async (e) => {
+		e.preventDefault()
+
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters')
 			setatLeast300CharactersMessage('Must be at least a 300 characters!')
@@ -66,52 +59,56 @@ export default function CreateArticle() {
 				setatLeast300CharactersMessage('')
 			}, 3000)
 			return
-		} else if (articleLengthCheck.length > 8000) {
+		}
+		if (articleLengthCheck.length > 8000) {
 			setServerResponse('You exceeded 8000 characters!')
 			setTimeout(() => {
 				setServerResponse('')
 			}, 3000)
 			return
-		} else {
-			// -- get token from localStorage
+		}
 
-			const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
-			console.log(createArticleFormData)
-			const response = await fetch(backendUrl + 'user_article', {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-					authorization: JSON.stringify(`Bearer ${token}`),
-				},
-				body: JSON.stringify(createArticleFormData),
-			})
+		const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
+		console.log(createArticleFormData)
+		const response = await fetch(backendUrl + 'user_article', {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+				authorization: JSON.stringify(`Bearer ${token}`),
+			},
+			body: JSON.stringify({
+				...createArticleFormData,
+				article_body: html,
+				article_body_shorten_for_card: plainTextShorten,
+				article_id,
+			}),
+		})
 
-			const result = await response.json()
+		const result = await response.json()
 
-			if (!response.ok) {
-				setServerResponse(result.message)
-				setatLeast300CharactersMessage(result.message)
-				setTimeout(() => {
-					setatLeast300CharactersMessage('')
-					setServerResponse('')
-				}, 3000)
-				return
-			}
+		if (!response.ok) {
+			setServerResponse(result.message)
+			setatLeast300CharactersMessage(result.message)
+			setTimeout(() => {
+				setatLeast300CharactersMessage('')
+				setServerResponse('')
+			}, 3000)
+			return
+		}
 
-			if (response.ok) {
-				setatLeast300CharactersMessage(result.message)
-				setServerResponse(result.message)
-				setTimeout(() => {
-					setCreateArticleFormData({
-						article_title: '',
-						article_image_url: '',
-						article_image_height: 50,
-						article_body: '',
-						article_id: crypto.randomUUID(),
-					})
-					navigate('/user_articles')
-				}, 3000)
-			}
+		if (response.ok) {
+			setatLeast300CharactersMessage(result.message)
+			setServerResponse(result.message)
+			setTimeout(() => {
+				setCreateArticleFormData({
+					article_title: '',
+					article_image_url: '',
+					article_image_height: 50,
+					article_body: '',
+					article_id: crypto.randomUUID(),
+				})
+				navigate('/user_articles')
+			}, 3000)
 		}
 	}
 
@@ -121,7 +118,10 @@ export default function CreateArticle() {
 	return (
 		<div className='CreateArticle'>
 			<div className='CreateArticleContent'>
-				<form className='formCreateArticle'>
+				<form
+					className='formCreateArticle'
+					onSubmit={handleOnSubmitCreateNewArticle}
+				>
 					<div className='createArticlePageName'>
 						{serverResponse ? serverResponse : <h1>Create an article</h1>}
 					</div>
@@ -178,8 +178,8 @@ export default function CreateArticle() {
 						}
 					>
 						<TiptapRichTextEditor
-							getContentFromTheTextEditor={getContentFromTheTextEditor}
-							setgetContentFromTheTextEditor={setgetContentFromTheTextEditor}
+							getContentFromTextEditor={getContentFromTextEditor}
+							setGetContentFromTextEditor={setGetContentFromTextEditor}
 							setarticleLengthCheck={setarticleLengthCheck}
 							articleLengthCheck={articleLengthCheck}
 						/>
@@ -192,28 +192,7 @@ export default function CreateArticle() {
 					<button
 						type='submit'
 						className='buttonOnSubmitCreateNewArticle'
-						onClick={(e) => {
-							e.preventDefault()
-
-							const createSomething = () => {
-								setCreateArticleFormData({
-									...createArticleFormData,
-									article_body: getContentFromTheTextEditor.html,
-									article_body_shorten_for_card:
-										getContentFromTheTextEditor.plainTextShorten,
-									article_id,
-								})
-							}
-							createSomething()
-							setTimeout(() => {
-								createSomething()
-								console.log(createArticleFormData)
-							}, 0)
-
-							/* 			 setTimeout(() => {
-								// handleOnSubmitCreateNewArticle()
-							}, 0)  */
-						}}
+						onClick={handleOnSubmitCreateNewArticle}
 					>
 						Submit
 					</button>

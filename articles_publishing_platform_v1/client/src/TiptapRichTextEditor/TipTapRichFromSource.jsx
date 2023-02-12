@@ -113,10 +113,9 @@ const MenuBar = ({ editor }) => {
 let editor
 
 const TipTapEditor = ({
-	getContentFromTheTextEditor,
-	setgetContentFromTheTextEditor,
+	getContentFromTextEditor,
+	setGetContentFromTextEditor,
 	setarticleLengthCheck,
-	articleLengthCheck,
 }) => {
 	editor = useEditor({
 		extensions: [StarterKit],
@@ -125,13 +124,15 @@ const TipTapEditor = ({
 			const html = editor.getHTML()
 			const plainText = editor.getText().replace(/['\n']/gi, ' ')
 			const plainTextShorten = plainText.slice(0, 180)
-
-			setarticleLengthCheck(plainText)
-
-			setgetContentFromTheTextEditor({
-				html: html,
-				plainTextShorten: plainTextShorten,
+			globalThis.localStorage.setItem(
+				'textEditor',
+				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
+			)
+			setGetContentFromTextEditor({
+				html,
+				plainTextShorten,
 			})
+			setarticleLengthCheck(plainText)
 		},
 	})
 
