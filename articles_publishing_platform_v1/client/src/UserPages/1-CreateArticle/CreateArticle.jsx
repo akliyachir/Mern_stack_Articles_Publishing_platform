@@ -59,30 +59,29 @@ export default function CreateArticle() {
 			article_body_shorten_for_card: getContentFromTheTextEditor.plainTextShorten,
 		})
 
-		setTimeout(() => {
-			if (articleLengthCheck.length < 300) {
-				setServerResponse('Must be at least a 300 characters')
-				setatLeast300CharactersMessage('Must be at least a 300 characters!')
-				setTimeout(() => {
-					setServerResponse('')
-					setatLeast300CharactersMessage('')
-				}, 3000)
+		if (articleLengthCheck.length < 300) {
+			setServerResponse('Must be at least a 300 characters')
+			setatLeast300CharactersMessage('Must be at least a 300 characters!')
+			setTimeout(() => {
+				setServerResponse('')
+				setatLeast300CharactersMessage('')
+			}, 3000)
 
-				setTimeout(() => {
-					setatLeast300CharactersMessage('')
-				}, 3000)
+			setTimeout(() => {
+				setatLeast300CharactersMessage('')
+			}, 3000)
 
-				return
-			}
+			return
+		}
 
-			if (articleLengthCheck.length > 8000) {
-				setServerResponse('You exceeded 8000 characters!')
-				setTimeout(() => {
-					setServerResponse('')
-				}, 3000)
-				return
-			}
-		}, 5)
+		if (articleLengthCheck.length > 8000) {
+			setServerResponse('You exceeded 8000 characters!')
+			setTimeout(() => {
+				setServerResponse('')
+			}, 3000)
+			return
+		}
+
 		// -- get token from localStorage
 		const { token } = await JSON.parse(globalThis.localStorage.getItem('user'))
 
@@ -110,6 +109,7 @@ export default function CreateArticle() {
 		if (response.ok) {
 			setServerResponse(result.message)
 			setatLeast300CharactersMessage(result.message)
+			navigate('/user_articles')
 			setTimeout(() => {
 				setCreateArticleFormData({
 					article_title: '',
@@ -118,7 +118,6 @@ export default function CreateArticle() {
 					article_body: '',
 					article_id: crypto.randomUUID(),
 				})
-				navigate('/user_articles')
 			}, 3000)
 		}
 	}
@@ -129,20 +128,7 @@ export default function CreateArticle() {
 	return (
 		<div className='CreateArticle'>
 			<div className='CreateArticleContent'>
-				<form
-					onSubmit={(e) => {
-						setCreateArticleFormData({
-							...createArticleFormData,
-							article_body: getContentFromTheTextEditor.html,
-							article_body_shorten_for_card:
-								getContentFromTheTextEditor.plainTextShorten,
-						})
-						setTimeout(() => {
-							handleOnSubmitCreateNewArticle(e)
-						}, 0)
-					}}
-					className='formCreateArticle'
-				>
+				<form className='formCreateArticle'>
 					<div className='createArticlePageName'>
 						{serverResponse ? serverResponse : <h1>Create an article</h1>}
 					</div>
@@ -214,17 +200,7 @@ export default function CreateArticle() {
 					<button
 						type='submit'
 						className='buttonOnSubmitCreateNewArticle'
-						onClick={(e) => {
-							setCreateArticleFormData({
-								...createArticleFormData,
-								article_body: getContentFromTheTextEditor.html,
-								article_body_shorten_for_card:
-									getContentFromTheTextEditor.plainTextShorten,
-							})
-							setTimeout(() => {
-								handleOnSubmitCreateNewArticle(e)
-							}, 0)
-						}}
+						onClick={handleOnSubmitCreateNewArticle}
 					>
 						Submit
 					</button>
