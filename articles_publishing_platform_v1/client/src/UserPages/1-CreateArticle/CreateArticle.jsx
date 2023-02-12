@@ -9,7 +9,6 @@ export default function CreateArticle() {
 	const [getContentFromTheTextEditor, setgetContentFromTheTextEditor] = useState(
 		{ html: '', plainTextShorten: '' }
 	)
-	const { html, plainTextShorten } = getContentFromTheTextEditor
 
 	const [articleLengthCheck, setarticleLengthCheck] = useState('')
 
@@ -50,11 +49,15 @@ export default function CreateArticle() {
 	//-- handle submitNewArticleData
 	const handleOnSubmitCreateNewArticle = async () => {
 		setCreateArticleFormData({
-			...createArticleFormData,
+			article_title,
+			article_image_url,
+			article_image_height,
 			article_body: getContentFromTheTextEditor.html,
 			article_body_shorten_for_card: getContentFromTheTextEditor.plainTextShorten,
+			article_id,
+			article_is_public,
+			...createArticleFormData,
 		})
-
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters')
 			setatLeast300CharactersMessage('Must be at least a 300 characters!')
@@ -73,7 +76,7 @@ export default function CreateArticle() {
 			// -- get token from localStorage
 
 			const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
-
+			console.log(createArticleFormData)
 			const response = await fetch(backendUrl + 'user_article', {
 				method: 'POST',
 				headers: {
@@ -191,20 +194,25 @@ export default function CreateArticle() {
 						className='buttonOnSubmitCreateNewArticle'
 						onClick={(e) => {
 							e.preventDefault()
-							setCreateArticleFormData({
-								article_title,
-								article_image_url,
-								article_image_height,
-								article_body: getContentFromTheTextEditor.html,
-								article_body_shorten_for_card:
-									getContentFromTheTextEditor.plainTextShorten,
-								article_id,
-								article_is_public,
-								...createArticleFormData,
-							})
+
+							const createSomething = () => {
+								setCreateArticleFormData({
+									...createArticleFormData,
+									article_body: getContentFromTheTextEditor.html,
+									article_body_shorten_for_card:
+										getContentFromTheTextEditor.plainTextShorten,
+									article_id,
+								})
+							}
+							createSomething()
 							setTimeout(() => {
-								handleOnSubmitCreateNewArticle()
+								createSomething()
+								console.log(createArticleFormData)
 							}, 0)
+
+							/* 			 setTimeout(() => {
+								// handleOnSubmitCreateNewArticle()
+							}, 0)  */
 						}}
 					>
 						Submit
