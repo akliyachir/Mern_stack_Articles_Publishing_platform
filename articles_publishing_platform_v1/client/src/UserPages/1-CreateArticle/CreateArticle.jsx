@@ -39,7 +39,6 @@ export default function CreateArticle() {
 			...createArticleFormData,
 			[e.target.name]: e.target.value,
 		})
-		console.log(createArticleFormData)
 	}
 
 	//-- create server response area
@@ -49,16 +48,6 @@ export default function CreateArticle() {
 		useState('')
 	// -- and redirect in case of success
 	const navigate = useNavigate()
-
-	// -- synchronise text editir with reste for form data
-
-	useEffect(() => {
-		setCreateArticleFormData({
-			...createArticleFormData,
-			article_body: getContentFromTheTextEditor.html,
-			article_body_shorten_for_card: getContentFromTheTextEditor.plainTextShorten,
-		})
-	}, [synchroAttempt])
 
 	//-- handle submitNewArticleData
 	const handleOnSubmitCreateNewArticle = async (e) => {
@@ -93,7 +82,7 @@ export default function CreateArticle() {
 		}
 
 		// -- get token from localStorage
-		const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
+		const { token } = await JSON.parse(globalThis.localStorage.getItem('user'))
 
 		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
@@ -132,12 +121,24 @@ export default function CreateArticle() {
 		}
 	}
 
+	// -- synchronise text editir with reste for form data
+
 	//-- return jsx
 	return (
 		<div className='CreateArticle'>
 			<div className='CreateArticleContent'>
 				<form
-					onSubmit={handleOnSubmitCreateNewArticle}
+					onSubmit={(e) => {
+						setCreateArticleFormData({
+							...createArticleFormData,
+							article_body: getContentFromTheTextEditor.html,
+							article_body_shorten_for_card:
+								getContentFromTheTextEditor.plainTextShorten,
+						})
+						setTimeout(() => {
+							handleOnSubmitCreateNewArticle(e)
+						}, 0)
+					}}
 					className='formCreateArticle'
 				>
 					<div className='createArticlePageName'>
@@ -211,7 +212,17 @@ export default function CreateArticle() {
 					<button
 						type='submit'
 						className='buttonOnSubmitCreateNewArticle'
-						onClick={handleOnSubmitCreateNewArticle}
+						onClick={(e) => {
+							setCreateArticleFormData({
+								...createArticleFormData,
+								article_body: getContentFromTheTextEditor.html,
+								article_body_shorten_for_card:
+									getContentFromTheTextEditor.plainTextShorten,
+							})
+							setTimeout(() => {
+								handleOnSubmitCreateNewArticle(e)
+							}, 0)
+						}}
 					>
 						Submit
 					</button>
