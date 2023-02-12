@@ -112,7 +112,12 @@ const MenuBar = ({ editor }) => {
 
 let editor
 
-const TipTapEditor = ({ setarticleLengthCheck, setCreateArticleFormData }) => {
+const TipTapEditor = ({
+	getContentFromTheTextEditor,
+	setgetContentFromTheTextEditor,
+	setarticleLengthCheck,
+	articleLengthCheck,
+}) => {
 	editor = useEditor({
 		extensions: [StarterKit],
 		content: '',
