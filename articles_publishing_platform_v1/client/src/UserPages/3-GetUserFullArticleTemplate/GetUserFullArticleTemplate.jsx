@@ -134,11 +134,13 @@ export default function GetUserFullArticleTemplate() {
 					>
 						<FaRegTrashAlt />
 					</div>
-					<NavLink to={`/user_article_update/${user_article_id}`}>
-						<div className='deleteIcon'>
-							<FaEdit />
-						</div>
-					</NavLink>
+					<div className='updateArticleIcon'>
+						<NavLink to={`/user_article_update/${user_article_id}`}>
+							<div className='deleteIcon'>
+								<FaEdit />
+							</div>
+						</NavLink>
+					</div>
 					<p className='article_is_public'>
 						{article_is_public ? 'Public' : 'Privet'}
 					</p>
