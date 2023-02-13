@@ -13,6 +13,7 @@ export default function GetUserFullArticleTemplate() {
 	const [isLoading, setisLoading] = useState(true)
 	const [articleDeleted, setarticleDeleted] = useState(false)
 
+	// -- get full article
 	useEffect(() => {
 		const userLocalStorage = window.localStorage.getItem('user')
 		const { token } = JSON.parse(userLocalStorage)

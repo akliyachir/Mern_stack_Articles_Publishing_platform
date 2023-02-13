@@ -1,11 +1,51 @@
 import './UpdateUserArticle.css'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 
 export default function UpdateUserArticle() {
+	// -- the article id
+	const { article_update_id } = useParams()
+
+	// -- get full article
+	useEffect(() => {
+		const userLocalStorage = window.localStorage.getItem('user')
+		const { token } = JSON.parse(userLocalStorage)
+		const fetchTheArticle = async () => {
+			setisLoading(true)
+			try {
+				const response = await fetch(
+					`${backendUrl}user_article/${article_update_id}`,
+					{
+						headers: {
+							authorization: JSON.stringify(`Bearer ${token}`),
+						},
+					}
+				)
+				const result = await response.json()
+
+				//-- ok
+				if (response.ok) {
+					setUserArticleContent(result.message)
+					setisLoading(false)
+				}
+
+				//-- not ok
+				if (!response.ok) {
+					console.log(result.message)
+				}
+			} catch (error) {
+				console.error(error.message)
+			}
+		}
+
+		fetchTheArticle()
+	}, [])
+
+	// -- update article controller
+
 	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
 		html: '',
 		plainTextShorten: '',
@@ -112,7 +152,6 @@ export default function UpdateUserArticle() {
 		}
 	}
 
-	const { article_update_id } = useParams()
 	return (
 		<div className='UpdateUserArticle'>
 			<div className='UpdateUserArticleContent'>
