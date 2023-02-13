@@ -3,14 +3,10 @@ import TipTapEditor from './TipTapRichFromSource';
 import { useEffect } from 'react';
 
 export default function TiptapRichTextEditor({
-	isMounted,
-	setisMounted,
-	editorFetchedContent,
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
-	article_update_id,
 }) {
 	useEffect(() => {
 		setisMounted(true);
@@ -20,10 +16,6 @@ export default function TiptapRichTextEditor({
 			<div className='TiptapRichTextEditor'>
 				<div className='TiptapRichTextEditorContent'>
 					<TipTapEditor
-						isMounted={isMounted}
-						setisMounted={setisMounted}
-						article_update_id={article_update_id}
-						editorFetchedContent={editorFetchedContent}
 						getContentFromTextEditor={getContentFromTextEditor}
 						setGetContentFromTextEditor={setGetContentFromTextEditor}
 						setarticleLengthCheck={setarticleLengthCheck}

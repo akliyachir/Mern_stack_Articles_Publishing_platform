@@ -119,53 +119,11 @@ const TipTapEditor = ({
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
-	article_update_id,
+	articleLengthCheck,
 }) => {
-	const [isLoading, setisLoading] = useState(true);
-	const [editorFetchedContent, setEditorFetchedContent] = useState(null);
-	useEffect(() => {
-		if (article_update_id) {
-			const userLocalStorage = window.localStorage.getItem('user');
-			const { token } = JSON.parse(userLocalStorage);
-			const fetchTheArticle = async () => {
-				setisLoading(true);
-				try {
-					const response = await fetch(
-						`${backendUrl}user_article/${article_update_id}`,
-						{
-							headers: {
-								authorization: JSON.stringify(`Bearer ${token}`),
-							},
-						}
-					);
-					const result = await response.json();
-
-					//-- ok
-					if (response.ok) {
-						setTimeout(() => {
-							setEditorFetchedContent(result.message.article_body);
-						}, 1);
-
-						console.log(result.message);
-						//	setisLoading(false)
-						setEditorFetchedContent(result.message.article_body);
-					}
-
-					//-- not ok
-					if (!response.ok) {
-						console.log(result.message);
-					}
-				} catch (error) {
-					console.error(error.message);
-				}
-			};
-
-			fetchTheArticle();
-		}
-	}, []);
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: editorFetchedContent,
+		content: '',
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');

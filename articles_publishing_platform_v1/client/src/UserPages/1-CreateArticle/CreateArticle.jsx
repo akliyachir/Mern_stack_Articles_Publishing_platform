@@ -1,16 +1,16 @@
-import './CreateArticle.css'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import backendUrl from '../../listsAndReusedConsts/backendUrl'
-import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
+import './CreateArticle.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
 export default function CreateArticle() {
 	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
 		html: '',
 		plainTextShorten: '',
-	})
-	const { html, plainTextShorten } = getContentFromTextEditor
-	const [articleLengthCheck, setarticleLengthCheck] = useState('')
+	});
+	const { html, plainTextShorten } = getContentFromTextEditor;
+	const [articleLengthCheck, setarticleLengthCheck] = useState('');
 
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
@@ -20,7 +20,7 @@ export default function CreateArticle() {
 		article_body_shorten_for_card: '',
 		article_id: crypto.randomUUID(),
 		article_is_public: true,
-	})
+	});
 	const {
 		article_title,
 		article_image_url,
@@ -29,46 +29,46 @@ export default function CreateArticle() {
 		article_body_shorten_for_card,
 		article_id,
 		article_is_public,
-	} = createArticleFormData
+	} = createArticleFormData;
 
 	const handleInputOnChange = (e) => {
 		setCreateArticleFormData({
 			...createArticleFormData,
 			[e.target.name]: e.target.value,
-		})
-	}
+		});
+	};
 
 	//-- create server response area
-	const [serverResponse, setServerResponse] = useState('')
+	const [serverResponse, setServerResponse] = useState('');
 	//-- at least 300 character response area
 	const [atLeast300CharactersMessage, setatLeast300CharactersMessage] =
-		useState('')
+		useState('');
 	// -- and redirect in case of success
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	//-- handle submitNewArticleData
 	const handleOnSubmitCreateNewArticle = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
 
 		if (articleLengthCheck.length < 300) {
-			setServerResponse('Must be at least a 300 characters')
-			setatLeast300CharactersMessage('Must be at least a 300 characters!')
+			setServerResponse('Must be at least a 300 characters');
+			setatLeast300CharactersMessage('Must be at least a 300 characters!');
 			setTimeout(() => {
-				setServerResponse('')
-				setatLeast300CharactersMessage('')
-			}, 3000)
-			return
+				setServerResponse('');
+				setatLeast300CharactersMessage('');
+			}, 3000);
+			return;
 		}
 		if (articleLengthCheck.length > 8000) {
-			setServerResponse('You exceeded 8000 characters!')
+			setServerResponse('You exceeded 8000 characters!');
 			setTimeout(() => {
-				setServerResponse('')
-			}, 3000)
-			return
+				setServerResponse('');
+			}, 3000);
+			return;
 		}
 
-		const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
-		console.log(createArticleFormData)
+		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
+		console.log(createArticleFormData);
 		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
 			headers: {
@@ -81,23 +81,23 @@ export default function CreateArticle() {
 				article_body_shorten_for_card: plainTextShorten,
 				article_id,
 			}),
-		})
+		});
 
-		const result = await response.json()
+		const result = await response.json();
 
 		if (!response.ok) {
-			setServerResponse(result.message)
-			setatLeast300CharactersMessage(result.message)
+			setServerResponse(result.message);
+			setatLeast300CharactersMessage(result.message);
 			setTimeout(() => {
-				setatLeast300CharactersMessage('')
-				setServerResponse('')
-			}, 3000)
-			return
+				setatLeast300CharactersMessage('');
+				setServerResponse('');
+			}, 3000);
+			return;
 		}
 
 		if (response.ok) {
-			setatLeast300CharactersMessage(result.message)
-			setServerResponse(result.message)
+			setatLeast300CharactersMessage(result.message);
+			setServerResponse(result.message);
 			setTimeout(() => {
 				setCreateArticleFormData({
 					article_title: '',
@@ -105,11 +105,11 @@ export default function CreateArticle() {
 					article_image_height: 50,
 					article_body: '',
 					article_id: crypto.randomUUID(),
-				})
-				navigate('/user_articles')
-			}, 3000)
+				});
+				navigate('/user_articles');
+			}, 3000);
 		}
-	}
+	};
 
 	//-- return jsx
 	return (
@@ -162,7 +162,7 @@ export default function CreateArticle() {
 									setCreateArticleFormData({
 										...createArticleFormData,
 										article_image_height: e.target.value,
-									})
+									});
 								}}
 							/>
 						</div>
@@ -196,5 +196,5 @@ export default function CreateArticle() {
 				</form>
 			</div>
 		</div>
-	)
+	);
 }
