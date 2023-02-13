@@ -1,6 +1,7 @@
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useContext } from 'react'
+import { TextEditorContent } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle'
 import {
 	GrBold,
 	GrItalic,
@@ -117,6 +118,8 @@ const TipTapEditor = ({
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 }) => {
+	const { TextEditorContent } = useContext()
+
 	editor = useEditor({
 		extensions: [StarterKit],
 		content: `<p>Ingarden se lie rapidement à Husserl et devient…ionnel que de manière contingente.</p>`,

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 
-const TextEditorContent = createContext('')
+export const TextEditorContent = createContext('')
 
 export default function UpdateUserArticle() {
 	// -- the article id
