@@ -11,6 +11,6 @@ router.get('/', getUserArticles)
 router.get('/:user_article_id', getOneUserArticle)
 router.delete('/:user_article_id', deleteUserArticle)
 router.patch('/:user_article_id', updateUserArticle)
-router.post('/', updateUserArticle)
+router.post('/', createUserArticle)
 
 export default router

@@ -9,7 +9,6 @@ export default async function updateUserArticle(req, res) {
 		article_image_height,
 		article_body,
 		article_body_shorten_for_card,
-		article_is_public,
 	} = req.body
 
 	if (!article_title) {
@@ -33,17 +32,16 @@ export default async function updateUserArticle(req, res) {
 		const user = await User.findOne({ _id: id })
 
 		if (!user) {
-			res.status(400).json({ message: 'not authorized' })
+			res.status(400).json({ message: 'not authorized, you have to be connected' })
 			return
 		}
 
 		const article = await Article.updateOne({
 			...req.body,
-			user_id: id,
 			article_user_publisher: user.name,
 		})
 
-		res.status(200).json({ message: 'acticle created' })
+		res.status(200).json({ message: 'acticle updated' })
 	} catch (error) {
 		console.error(error.message)
 		res.status(400).json({ message: error.message })

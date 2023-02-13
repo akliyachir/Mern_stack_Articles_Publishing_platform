@@ -10,6 +10,25 @@ export default function UpdateUserArticle() {
 	const { article_update_id } = useParams()
 	// -- default loader
 	const [isLoading, setisLoading] = useState(true)
+	// -- form data
+
+	const [createArticleFormData, setCreateArticleFormData] = useState({
+		article_title: '',
+		article_image_url: '',
+		article_image_height: 50,
+		article_body: '',
+		article_body_shorten_for_card: '',
+		article_is_public: true,
+	})
+	const {
+		article_title,
+		article_image_url,
+		article_image_height,
+		article_body,
+		article_body_shorten_for_card,
+		article_id,
+		article_is_public,
+	} = createArticleFormData
 
 	// -- get full article
 	useEffect(() => {
@@ -30,7 +49,7 @@ export default function UpdateUserArticle() {
 
 				//-- ok
 				if (response.ok) {
-					setUserArticleContent(result.message)
+					setCreateArticleFormData(result.message)
 					setisLoading(false)
 				}
 
@@ -55,25 +74,6 @@ export default function UpdateUserArticle() {
 	const { html, plainTextShorten } = getContentFromTextEditor
 	const [articleLengthCheck, setarticleLengthCheck] = useState('')
 
-	const [createArticleFormData, setCreateArticleFormData] = useState({
-		article_title: '',
-		article_image_url: '',
-		article_image_height: 50,
-		article_body: '',
-		article_body_shorten_for_card: '',
-		article_id: crypto.randomUUID(),
-		article_is_public: true,
-	})
-	const {
-		article_title,
-		article_image_url,
-		article_image_height,
-		article_body,
-		article_body_shorten_for_card,
-		article_id,
-		article_is_public,
-	} = createArticleFormData
-
 	const handleInputOnChange = (e) => {
 		setCreateArticleFormData({
 			...createArticleFormData,
@@ -89,7 +89,14 @@ export default function UpdateUserArticle() {
 	// -- and redirect in case of success
 	const navigate = useNavigate()
 
-	//-- handle submitNewArticleData
+	//-- handle update the article
+	console.log({
+		...createArticleFormData,
+		article_body: html,
+		article_body_shorten_for_card: plainTextShorten,
+		article_id,
+	})
+	return
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault()
 
