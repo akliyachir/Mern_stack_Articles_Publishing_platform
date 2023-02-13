@@ -1,9 +1,12 @@
 import './UpdateUserArticle.css'
+import '../1-CreateArticle/CreateArticle.css'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
+
+const TextEditorContent = createContext('')
 
 export default function UpdateUserArticle() {
 	// -- the article id
@@ -49,6 +52,7 @@ export default function UpdateUserArticle() {
 
 				//-- ok
 				if (response.ok) {
+					console.log(result.message)
 					setCreateArticleFormData(result.message)
 					setisLoading(false)
 				}
@@ -90,15 +94,16 @@ export default function UpdateUserArticle() {
 	const navigate = useNavigate()
 
 	//-- handle update the article
-	console.log({
-		...createArticleFormData,
-		article_body: html,
-		article_body_shorten_for_card: plainTextShorten,
-		article_id,
-	})
-	return
+
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault()
+		console.log({
+			...createArticleFormData,
+			article_body: html,
+			article_body_shorten_for_card: plainTextShorten,
+			article_id,
+		})
+		return
 
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters')
@@ -162,91 +167,89 @@ export default function UpdateUserArticle() {
 	}
 
 	return (
-		<div className='UpdateUserArticle'>
-			<div className='UpdateUserArticleContent'>
-				<div className='CreateArticle'>
-					<div className='CreateArticleContent'>
-						<form
-							className='formCreateArticle'
-							onSubmit={handleOnSubmitCreateNewArticle}
-						>
-							<div className='createArticlePageName'>
-								{serverResponse ? serverResponse : <h1>Create an article</h1>}
-							</div>
-							<div className='InputFormTemplateContainer'>
-								<label htmlFor='article_title'>Title</label>
-								<input
-									type='text'
-									name='article_title'
-									id='article_title'
-									value={article_title}
-									onChange={handleInputOnChange}
-								/>
-							</div>
-							<div className='InputFormTemplateContainer paddingBottomToSeparate'>
-								<label htmlFor='article_image_url'>Image link</label>
-								<input
-									type='text'
-									name='article_image_url'
-									id='article_image_url'
-									value={article_image_url}
-									onChange={handleInputOnChange}
-								/>
-							</div>
-							{!!article_image_url && (
-								<div className='imagePreviewFromLinkCreateArticle'>
-									<div
-										className='previewImage'
-										style={{
-											backgroundImage: `url(${article_image_url})`,
-											backgroundPositionY: `${article_image_height}%`,
-										}}
-									></div>
-									<input
-										className='article_image_height'
-										min='0'
-										max='100'
-										type='range'
-										name='article_image_height'
-										id='article_image_height'
-										onChange={(e) => {
-											setCreateArticleFormData({
-												...createArticleFormData,
-												article_image_height: e.target.value,
-											})
-										}}
-									/>
-								</div>
-							)}
-							<div
-								className={
-									articleLengthCheck && articleLengthCheck.length > 8000
-										? 'errorTextEditor'
-										: 'NoErrorTextEditor'
-								}
-							>
-								<TiptapRichTextEditor
-									getContentFromTextEditor={getContentFromTextEditor}
-									setGetContentFromTextEditor={setGetContentFromTextEditor}
-									setarticleLengthCheck={setarticleLengthCheck}
-									articleLengthCheck={articleLengthCheck}
-								/>
-								{!!atLeast300CharactersMessage && (
-									<div className='ThreeHundredCharactersMEssageArea'>
-										{atLeast300CharactersMessage}
-									</div>
-								)}
-							</div>
-							<button
-								type='submit'
-								className='buttonOnSubmitCreateNewArticle'
-								onClick={handleOnSubmitCreateNewArticle}
-							>
-								Submit
-							</button>
-						</form>
+		<div className='CreateArticle'>
+			<div className='CreateArticleContent'>
+				<form
+					className='formCreateArticle'
+					onSubmit={handleOnSubmitCreateNewArticle}
+				>
+					<div className='createArticlePageName'>
+						{serverResponse ? serverResponse : <h1>Create an article</h1>}
 					</div>
-				</div>
+					<div className='InputFormTemplateContainer'>
+						<label htmlFor='article_title'>Title</label>
+						<input
+							type='text'
+							name='article_title'
+							id='article_title'
+							value={article_title}
+							onChange={handleInputOnChange}
+						/>
+					</div>
+					<div className='InputFormTemplateContainer paddingBottomToSeparate'>
+						<label htmlFor='article_image_url'>Image link</label>
+						<input
+							type='text'
+							name='article_image_url'
+							id='article_image_url'
+							value={article_image_url}
+							onChange={handleInputOnChange}
+						/>
+					</div>
+					{!!article_image_url && (
+						<div className='imagePreviewFromLinkCreateArticle'>
+							<div
+								className='previewImage'
+								style={{
+									backgroundImage: `url(${article_image_url})`,
+									backgroundPositionY: `${article_image_height}%`,
+								}}
+							></div>
+							<input
+								className='article_image_height'
+								min='0'
+								max='100'
+								type='range'
+								name='article_image_height'
+								id='article_image_height'
+								onChange={(e) => {
+									setCreateArticleFormData({
+										...createArticleFormData,
+										article_image_height: e.target.value,
+									})
+								}}
+							/>
+						</div>
+					)}
+					<div
+						className={
+							articleLengthCheck && articleLengthCheck.length > 8000
+								? 'errorTextEditor'
+								: 'NoErrorTextEditor'
+						}
+					>
+						<TextEditorContent.Provider value={article_body}>
+							<TiptapRichTextEditor
+								getContentFromTextEditor={getContentFromTextEditor}
+								setGetContentFromTextEditor={setGetContentFromTextEditor}
+								setarticleLengthCheck={setarticleLengthCheck}
+								articleLengthCheck={articleLengthCheck}
+							/>
+						</TextEditorContent.Provider>
+						{!!atLeast300CharactersMessage && (
+							<div className='ThreeHundredCharactersMEssageArea'>
+								{atLeast300CharactersMessage}
+							</div>
+						)}
+					</div>
+					<button
+						type='submit'
+						className='buttonOnSubmitCreateNewArticle'
+						onClick={handleOnSubmitCreateNewArticle}
+					>
+						Submit
+					</button>
+				</form>
 			</div>
 		</div>
 	)

@@ -119,7 +119,7 @@ const TipTapEditor = ({
 }) => {
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: '',
+		content: `<p>Ingarden se lie rapidement à Husserl et devient…ionnel que de manière contingente.</p>`,
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML()
 			const plainText = editor.getText().replace(/['\n']/gi, ' ')
