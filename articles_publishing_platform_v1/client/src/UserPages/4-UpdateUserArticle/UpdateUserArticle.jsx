@@ -8,6 +8,8 @@ import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEdito
 export default function UpdateUserArticle() {
 	// -- the article id
 	const { article_update_id } = useParams()
+	// -- default loader
+	const [isLoading, setisLoading] = useState(true)
 
 	// -- get full article
 	useEffect(() => {

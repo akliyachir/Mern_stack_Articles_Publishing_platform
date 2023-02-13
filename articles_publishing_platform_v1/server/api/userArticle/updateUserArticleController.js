@@ -2,15 +2,22 @@ import Article from '../../models/userArticleModel.js'
 import User from '../../models/userModel.js'
 import jsonwebtoken from 'jsonwebtoken'
 
-const createUserArticle = async (req, res) => {
-	const { article_title, article_body } = req.body
+export default async function updateUserArticle(req, res) {
+	const {
+		article_title,
+		article_image_url,
+		article_image_height,
+		article_body,
+		article_body_shorten_for_card,
+		article_is_public,
+	} = req.body
 
 	if (!article_title) {
-		res.status(400).json({ message: "can't create an article without a title" })
+		res.status(400).json({ message: "can't update an article without a title" })
 		return
 	}
 	if (!article_body) {
-		res.status(400).json({ message: "can't create an article without content" })
+		res.status(400).json({ message: "can't update an article without content" })
 		return
 	}
 
@@ -30,7 +37,7 @@ const createUserArticle = async (req, res) => {
 			return
 		}
 
-		const article = await Article.create({
+		const article = await Article.updateOne({
 			...req.body,
 			user_id: id,
 			article_user_publisher: user.name,
@@ -42,5 +49,3 @@ const createUserArticle = async (req, res) => {
 		res.status(400).json({ message: error.message })
 	}
 }
-
-export { createUserArticle }
