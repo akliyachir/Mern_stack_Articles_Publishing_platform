@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 
-export const TextEditorContent = createContext('')
+export const TextEditorContent = createContext(`<div>my context content</div>`)
 
 export default function UpdateUserArticle() {
 	// -- the article id
@@ -103,7 +103,6 @@ export default function UpdateUserArticle() {
 			article_body_shorten_for_card: plainTextShorten,
 			article_id,
 		})
-		return
 
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters')
@@ -131,10 +130,11 @@ export default function UpdateUserArticle() {
 				authorization: JSON.stringify(`Bearer ${token}`),
 			},
 			body: JSON.stringify({
-				...createArticleFormData,
+				...article_title,
+				article_image_url,
+				article_image_height,
 				article_body: html,
 				article_body_shorten_for_card: plainTextShorten,
-				article_id,
 			}),
 		})
 

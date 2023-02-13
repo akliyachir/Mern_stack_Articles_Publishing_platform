@@ -118,11 +118,11 @@ const TipTapEditor = ({
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 }) => {
-	const { TextEditorContent } = useContext()
-
+	const myEditorContext = useContext(TextEditorContent)
+	console.log(myEditorContext)
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: `<p>Ingarden se lie rapidement à Husserl et devient…ionnel que de manière contingente.</p>`,
+		content: myEditorContext,
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML()
 			const plainText = editor.getText().replace(/['\n']/gi, ' ')
