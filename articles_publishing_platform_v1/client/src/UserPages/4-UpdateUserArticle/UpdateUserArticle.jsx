@@ -13,8 +13,10 @@ export default function UpdateUserArticle() {
 	const { article_update_id } = useParams()
 	// -- default loader
 	const [isLoading, setisLoading] = useState(true)
+	// -- separate state to populate text editor
+	const [editorFetchedContent, setEditorFetchedContent] =
+		useState('is loading...')
 	// -- form data
-
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
 		article_image_url: '',
@@ -228,7 +230,7 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						<TextEditorContent.Provider value={article_body}>
+						<TextEditorContent.Provider value={editorFetchedContent}>
 							<TiptapRichTextEditor
 								getContentFromTextEditor={getContentFromTextEditor}
 								setGetContentFromTextEditor={setGetContentFromTextEditor}
