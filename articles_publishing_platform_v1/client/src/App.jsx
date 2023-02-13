@@ -61,7 +61,7 @@ const router = createBrowserRouter(
 				errorElement={<ErrorPage />}
 			/>
 			<Route
-				path='/update_article:article_update_id'
+				path='/user_article_update/:article_update_id'
 				element={<UpdateUserArticle />}
 				errorElement={<ErrorPage />}
 			/>
