@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
-import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
+import TiptapRichTextEditorBis from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 
 export const TextEditorContent = createContext(`<div>my context content</div>`)
 
@@ -14,8 +14,7 @@ export default function UpdateUserArticle() {
 	// -- default loader
 	const [isLoading, setisLoading] = useState(true)
 	// -- separate state to populate text editor
-	const [editorFetchedContent, setEditorFetchedContent] =
-		useState('is loading...')
+	const [editorFetchedContent, setEditorFetchedContent] = useState(null)
 	// -- form data
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
@@ -57,6 +56,7 @@ export default function UpdateUserArticle() {
 					console.log(result.message)
 					setCreateArticleFormData(result.message)
 					setisLoading(false)
+					setEditorFetchedContent(result.message.article_body)
 				}
 
 				//-- not ok
@@ -230,14 +230,14 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						<TextEditorContent.Provider value={editorFetchedContent}>
-							<TiptapRichTextEditor
-								getContentFromTextEditor={getContentFromTextEditor}
-								setGetContentFromTextEditor={setGetContentFromTextEditor}
-								setarticleLengthCheck={setarticleLengthCheck}
-								articleLengthCheck={articleLengthCheck}
-							/>
-						</TextEditorContent.Provider>
+						<TiptapRichTextEditorBis
+							editorFetchedContent={editorFetchedContent}
+							getContentFromTextEditor={getContentFromTextEditor}
+							setGetContentFromTextEditor={setGetContentFromTextEditor}
+							setarticleLengthCheck={setarticleLengthCheck}
+							articleLengthCheck={articleLengthCheck}
+						/>
+
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>
 								{atLeast300CharactersMessage}
