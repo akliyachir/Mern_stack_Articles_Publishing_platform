@@ -125,7 +125,6 @@ const TipTapEditor = ({
 	const [editorFetchedContent, setEditorFetchedContent] = useState(null)
 	useEffect(() => {
 		if (article_update_id) {
-			console.log('la la la')
 			const userLocalStorage = window.localStorage.getItem('user')
 			const { token } = JSON.parse(userLocalStorage)
 			const fetchTheArticle = async () => {
@@ -143,10 +142,10 @@ const TipTapEditor = ({
 
 					//-- ok
 					if (response.ok) {
-						console.log(
-							'ce dont j ai besoin lala land ->',
-							result.message.article_body
-						)
+						setTimeout(() => {
+							setEditorFetchedContent(result.message.article_body)
+						}, 1)
+
 						console.log(result.message)
 						//	setisLoading(false)
 						setEditorFetchedContent(result.message.article_body)

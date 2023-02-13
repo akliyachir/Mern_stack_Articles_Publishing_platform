@@ -235,6 +235,7 @@ export default function UpdateUserArticle() {
 						{isMounted && (
 							<TiptapRichTextEditor
 								isMounted={isMounted}
+								setisMounted={setisMounted}
 								article_update_id={article_update_id}
 								getContentFromTextEditor={getContentFromTextEditor}
 								setGetContentFromTextEditor={setGetContentFromTextEditor}
