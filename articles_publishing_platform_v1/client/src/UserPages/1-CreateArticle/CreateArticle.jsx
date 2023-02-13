@@ -111,8 +111,6 @@ export default function CreateArticle() {
 		}
 	}
 
-	// -- synchronise text editir with reste for form data
-
 	//-- return jsx
 	return (
 		<div className='CreateArticle'>
