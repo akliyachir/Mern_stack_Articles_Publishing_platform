@@ -134,7 +134,7 @@ export default function GetUserFullArticleTemplate() {
 					>
 						<FaRegTrashAlt />
 					</div>
-					<NavLink to={`user_article_update/${user_article_id}`}>
+					<NavLink to={`/user_article_update/${user_article_id}`}>
 						<div className='deleteIcon'>
 							<FaEdit />
 						</div>

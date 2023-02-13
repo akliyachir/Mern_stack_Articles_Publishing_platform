@@ -7,28 +7,28 @@ import { UserContext } from '../../Contexts/UserContext'
 import CreateArticleContextProvider from '../../contexts/CreateArticleContext'
 
 export default function RootLayout() {
-  const { userState, userDispatch } = useContext(UserContext)
+	const { userState, userDispatch } = useContext(UserContext)
 
-  useEffect(() => {
-    const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user')
-    if (userFromLocalStorageAsJson) {
-      const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson)
-      const { name, email, token } = userFromLocalStorage
-      userDispatch({ type: 'SIGN_IN', payload: { name, email, token } })
-      console.log(userState)
-    }
-  }, [])
-  return (
-    <div className='RootLayout'>
-      <div className='RootLayoutContent'>
-        <nav>
-          <HeaderContainer />
-        </nav>
-        <main>
-          <Outlet />
-        </main>
-        <FooterHomePage />
-      </div>
-    </div>
-  )
+	useEffect(() => {
+		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user')
+		if (userFromLocalStorageAsJson) {
+			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson)
+			const { name, email, token } = userFromLocalStorage
+			userDispatch({ type: 'SIGN_IN', payload: { name, email, token } })
+			console.log(userState)
+		}
+	}, [])
+	return (
+		<div className='RootLayout'>
+			<div className='RootLayoutContent'>
+				<nav>
+					<HeaderContainer />
+				</nav>
+				<main className='mainAllOutputedArticles'>
+					<Outlet />
+				</main>
+				<FooterHomePage />
+			</div>
+		</div>
+	)
 }

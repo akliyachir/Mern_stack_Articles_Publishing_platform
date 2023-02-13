@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
-// -- create a context, my last resort :'(
 
 export default function CreateArticle() {
 	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
@@ -135,7 +134,7 @@ export default function CreateArticle() {
 							onChange={handleInputOnChange}
 						/>
 					</div>
-					<div className='InputFormTemplateContainer'>
+					<div className='InputFormTemplateContainer paddingBottomToSeparate'>
 						<label htmlFor='article_image_url'>Image link</label>
 						<input
 							type='text'
