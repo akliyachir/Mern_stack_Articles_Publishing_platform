@@ -1,7 +1,8 @@
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useContext, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TextEditorContent } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle'
+import backendUrl from '../listsAndReusedConsts/backendUrl'
 import {
 	GrBold,
 	GrItalic,
@@ -10,6 +11,7 @@ import {
 	GrUnorderedList,
 	GrRedo,
 	GrUndo,
+	GrVirtualStorage,
 } from 'react-icons/gr'
 
 import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri'
@@ -114,11 +116,54 @@ const MenuBar = ({ editor }) => {
 let editor
 
 const TipTapEditor = ({
-	editorFetchedContent,
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
+	article_update_id,
 }) => {
+	const [isLoading, setisLoading] = useState(true)
+	const [editorFetchedContent, setEditorFetchedContent] = useState(null)
+	useEffect(() => {
+		if (article_update_id) {
+			console.log('la la la')
+			const userLocalStorage = window.localStorage.getItem('user')
+			const { token } = JSON.parse(userLocalStorage)
+			const fetchTheArticle = async () => {
+				setisLoading(true)
+				try {
+					const response = await fetch(
+						`${backendUrl}user_article/${article_update_id}`,
+						{
+							headers: {
+								authorization: JSON.stringify(`Bearer ${token}`),
+							},
+						}
+					)
+					const result = await response.json()
+
+					//-- ok
+					if (response.ok) {
+						console.log(
+							'ce dont j ai besoin lala land ->',
+							result.message.article_body
+						)
+						console.log(result.message)
+						//	setisLoading(false)
+						setEditorFetchedContent(result.message.article_body)
+					}
+
+					//-- not ok
+					if (!response.ok) {
+						console.log(result.message)
+					}
+				} catch (error) {
+					console.error(error.message)
+				}
+			}
+
+			fetchTheArticle()
+		}
+	}, [])
 	editor = useEditor({
 		extensions: [StarterKit],
 		content: editorFetchedContent,

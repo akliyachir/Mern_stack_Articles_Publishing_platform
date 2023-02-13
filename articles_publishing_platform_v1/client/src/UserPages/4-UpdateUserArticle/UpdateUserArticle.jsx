@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import backendUrl from '../../listsAndReusedConsts/backendUrl'
-import TiptapRichTextEditorBis from '../../TiptapRichTextEditor/TiptapRichTextEditor'
+import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
 
 export const TextEditorContent = createContext(`<div>my context content</div>`)
 
@@ -13,8 +13,11 @@ export default function UpdateUserArticle() {
 	const { article_update_id } = useParams()
 	// -- default loader
 	const [isLoading, setisLoading] = useState(true)
-	// -- separate state to populate text editor
-	const [editorFetchedContent, setEditorFetchedContent] = useState(null)
+	// -- a variable to force mouting the text editor
+	const [isMounted, setisMounted] = useState(false)
+	useEffect(() => {
+		setisMounted(true)
+	}, [])
 	// -- form data
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
@@ -56,7 +59,6 @@ export default function UpdateUserArticle() {
 					console.log(result.message)
 					setCreateArticleFormData(result.message)
 					setisLoading(false)
-					setEditorFetchedContent(result.message.article_body)
 				}
 
 				//-- not ok
@@ -230,14 +232,16 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						<TiptapRichTextEditorBis
-							editorFetchedContent={editorFetchedContent}
-							getContentFromTextEditor={getContentFromTextEditor}
-							setGetContentFromTextEditor={setGetContentFromTextEditor}
-							setarticleLengthCheck={setarticleLengthCheck}
-							articleLengthCheck={articleLengthCheck}
-						/>
-
+						{isMounted && (
+							<TiptapRichTextEditor
+								isMounted={isMounted}
+								article_update_id={article_update_id}
+								getContentFromTextEditor={getContentFromTextEditor}
+								setGetContentFromTextEditor={setGetContentFromTextEditor}
+								setarticleLengthCheck={setarticleLengthCheck}
+								articleLengthCheck={articleLengthCheck}
+							/>
+						)}
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>
 								{atLeast300CharactersMessage}

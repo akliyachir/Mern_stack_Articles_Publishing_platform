@@ -7,11 +7,13 @@ export default function TiptapRichTextEditor({
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
+	article_update_id,
 }) {
 	return (
 		<div className='TiptapRichTextEditor'>
 			<div className='TiptapRichTextEditorContent'>
 				<TipTapEditor
+					article_update_id={article_update_id}
 					editorFetchedContent={editorFetchedContent}
 					getContentFromTextEditor={getContentFromTextEditor}
 					setGetContentFromTextEditor={setGetContentFromTextEditor}
