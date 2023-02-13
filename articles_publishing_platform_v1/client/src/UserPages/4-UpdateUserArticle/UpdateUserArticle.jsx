@@ -1,23 +1,47 @@
-import './UpdateUserArticle.css'
-import '../1-CreateArticle/CreateArticle.css'
-import { useParams } from 'react-router-dom'
-import { useState, useEffect, createContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import backendUrl from '../../listsAndReusedConsts/backendUrl'
-import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor'
+import './UpdateUserArticle.css';
+import '../1-CreateArticle/CreateArticle.css';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect, createContext, useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
+import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
-export const TextEditorContent = createContext(`<div>my context content</div>`)
+export const TextEditorContentContext = createContext(
+	`<div>my context content</div>`
+);
+const textEditorDefaultState = {
+	textEditorContentToPopulate: '',
+};
+const textEditorReducer = (textEditorDefaultState, action) => {
+	switch (action.type) {
+		case 'SET_TEXT_EDITOR_CONTENT':
+			return {
+				...textEditorDefaultState,
+				textEditorContentToPopulate: action.payload,
+			};
+		default:
+			return {
+				...textEditorDefaultState,
+			};
+	}
+};
 
 export default function UpdateUserArticle() {
+	// -- use reducer to propulate the text editor area
+	const [textEditorState, textEditorDispatch] = useReducer(
+		textEditorReducer,
+		textEditorDefaultState
+	);
+
 	// -- the article id
-	const { article_update_id } = useParams()
+	const { article_update_id } = useParams();
 	// -- default loader
-	const [isLoading, setisLoading] = useState(true)
+	const [isLoading, setisLoading] = useState(true);
 	// -- a variable to force mouting the text editor
-	const [isMounted, setisMounted] = useState(false)
+	const [isMounted, setisMounted] = useState(false);
 	useEffect(() => {
-		setisMounted(true)
-	}, [])
+		setisMounted(true);
+	}, []);
 	// -- form data
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
@@ -26,7 +50,7 @@ export default function UpdateUserArticle() {
 		article_body: '',
 		article_body_shorten_for_card: '',
 		article_is_public: true,
-	})
+	});
 	const {
 		article_title,
 		article_image_url,
@@ -35,14 +59,14 @@ export default function UpdateUserArticle() {
 		article_body_shorten_for_card,
 		article_id,
 		article_is_public,
-	} = createArticleFormData
+	} = createArticleFormData;
 
 	// -- get full article
 	useEffect(() => {
-		const userLocalStorage = window.localStorage.getItem('user')
-		const { token } = JSON.parse(userLocalStorage)
+		const userLocalStorage = window.localStorage.getItem('user');
+		const { token } = JSON.parse(userLocalStorage);
 		const fetchTheArticle = async () => {
-			setisLoading(true)
+			setisLoading(true);
 			try {
 				const response = await fetch(
 					`${backendUrl}user_article/${article_update_id}`,
@@ -51,82 +75,82 @@ export default function UpdateUserArticle() {
 							authorization: JSON.stringify(`Bearer ${token}`),
 						},
 					}
-				)
-				const result = await response.json()
+				);
+				const result = await response.json();
 
 				//-- ok
 				if (response.ok) {
-					console.log(result.message)
-					setCreateArticleFormData(result.message)
-					setisLoading(false)
+					console.log(result.message);
+					setCreateArticleFormData(result.message);
+					setisLoading(false);
 				}
 
 				//-- not ok
 				if (!response.ok) {
-					console.log(result.message)
+					console.log(result.message);
 				}
 			} catch (error) {
-				console.error(error.message)
+				console.error(error.message);
 			}
-		}
+		};
 
-		fetchTheArticle()
-	}, [])
+		fetchTheArticle();
+	}, []);
 
 	// -- update article controller
 
 	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
 		html: '',
 		plainTextShorten: '',
-	})
-	const { html, plainTextShorten } = getContentFromTextEditor
-	const [articleLengthCheck, setarticleLengthCheck] = useState('')
+	});
+	const { html, plainTextShorten } = getContentFromTextEditor;
+	const [articleLengthCheck, setarticleLengthCheck] = useState('');
 
 	const handleInputOnChange = (e) => {
 		setCreateArticleFormData({
 			...createArticleFormData,
 			[e.target.name]: e.target.value,
-		})
-	}
+		});
+	};
 
 	//-- create server response area
-	const [serverResponse, setServerResponse] = useState('')
+	const [serverResponse, setServerResponse] = useState('');
 	//-- at least 300 character response area
 	const [atLeast300CharactersMessage, setatLeast300CharactersMessage] =
-		useState('')
+		useState('');
 	// -- and redirect in case of success
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	//-- handle update the article
 
 	const handleOnSubmitCreateNewArticle = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		console.log({
 			...createArticleFormData,
 			article_body: html,
 			article_body_shorten_for_card: plainTextShorten,
 			article_id,
-		})
+		});
 
 		if (articleLengthCheck.length < 300) {
-			setServerResponse('Must be at least a 300 characters')
-			setatLeast300CharactersMessage('Must be at least a 300 characters!')
+			setServerResponse('Must be at least a 300 characters');
+			setatLeast300CharactersMessage('Must be at least a 300 characters!');
 			setTimeout(() => {
-				setServerResponse('')
-				setatLeast300CharactersMessage('')
-			}, 3000)
-			return
+				setServerResponse('');
+				setatLeast300CharactersMessage('');
+			}, 3000);
+			return;
 		}
 		if (articleLengthCheck.length > 8000) {
-			setServerResponse('You exceeded 8000 characters!')
+			setServerResponse('You exceeded 8000 characters!');
 			setTimeout(() => {
-				setServerResponse('')
-			}, 3000)
-			return
+				setServerResponse('');
+			}, 3000);
+			return;
 		}
 
-		const { token } = JSON.parse(globalThis.localStorage.getItem('user'))
-		console.log(createArticleFormData)
+		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
+		console.log(createArticleFormData);
 		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
 			headers: {
@@ -140,23 +164,23 @@ export default function UpdateUserArticle() {
 				article_body: html,
 				article_body_shorten_for_card: plainTextShorten,
 			}),
-		})
+		});
 
-		const result = await response.json()
+		const result = await response.json();
 
 		if (!response.ok) {
-			setServerResponse(result.message)
-			setatLeast300CharactersMessage(result.message)
+			setServerResponse(result.message);
+			setatLeast300CharactersMessage(result.message);
 			setTimeout(() => {
-				setatLeast300CharactersMessage('')
-				setServerResponse('')
-			}, 3000)
-			return
+				setatLeast300CharactersMessage('');
+				setServerResponse('');
+			}, 3000);
+			return;
 		}
 
 		if (response.ok) {
-			setatLeast300CharactersMessage(result.message)
-			setServerResponse(result.message)
+			setatLeast300CharactersMessage(result.message);
+			setServerResponse(result.message);
 			setTimeout(() => {
 				setCreateArticleFormData({
 					article_title: '',
@@ -164,11 +188,11 @@ export default function UpdateUserArticle() {
 					article_image_height: 50,
 					article_body: '',
 					article_id: crypto.randomUUID(),
-				})
-				navigate('/user_articles')
-			}, 3000)
+				});
+				navigate('/user_articles');
+			}, 3000);
 		}
-	}
+	};
 
 	return (
 		<div className='CreateArticle'>
@@ -220,7 +244,7 @@ export default function UpdateUserArticle() {
 									setCreateArticleFormData({
 										...createArticleFormData,
 										article_image_height: e.target.value,
-									})
+									});
 								}}
 							/>
 						</div>
@@ -232,17 +256,13 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						{isMounted && (
-							<TiptapRichTextEditor
-								isMounted={isMounted}
-								setisMounted={setisMounted}
-								article_update_id={article_update_id}
-								getContentFromTextEditor={getContentFromTextEditor}
-								setGetContentFromTextEditor={setGetContentFromTextEditor}
-								setarticleLengthCheck={setarticleLengthCheck}
-								articleLengthCheck={articleLengthCheck}
-							/>
-						)}
+						<TiptapRichTextEditor
+							getContentFromTextEditor={getContentFromTextEditor}
+							setGetContentFromTextEditor={setGetContentFromTextEditor}
+							setarticleLengthCheck={setarticleLengthCheck}
+							articleLengthCheck={articleLengthCheck}
+						/>
+
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>
 								{atLeast300CharactersMessage}
@@ -259,7 +279,7 @@ export default function UpdateUserArticle() {
 				</form>
 			</div>
 		</div>
-	)
+	);
 }
 
 /* 			Update Article <span>{article_update_id}</span> */
