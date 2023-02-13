@@ -202,7 +202,7 @@ export default function UpdateUserArticle() {
 					onSubmit={handleOnSubmitCreateNewArticle}
 				>
 					<div className='createArticlePageName'>
-						{serverResponse ? serverResponse : <h1>Create an article</h1>}
+						{serverResponse ? serverResponse : <h1>update the article</h1>}
 					</div>
 					<div className='InputFormTemplateContainer'>
 						<label htmlFor='article_title'>Title</label>

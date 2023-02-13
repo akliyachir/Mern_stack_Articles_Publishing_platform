@@ -1,8 +1,5 @@
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useEffect, useState } from 'react';
-import { TextEditorContent } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle';
-import backendUrl from '../listsAndReusedConsts/backendUrl';
 import {
 	GrBold,
 	GrItalic,
