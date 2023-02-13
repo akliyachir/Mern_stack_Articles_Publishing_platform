@@ -1,8 +1,8 @@
-import { EditorContent, useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import { useEffect, useState } from 'react'
-import { TextEditorContent } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle'
-import backendUrl from '../listsAndReusedConsts/backendUrl'
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { useEffect, useState } from 'react';
+import { TextEditorContent } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle';
+import backendUrl from '../listsAndReusedConsts/backendUrl';
 import {
 	GrBold,
 	GrItalic,
@@ -12,13 +12,13 @@ import {
 	GrRedo,
 	GrUndo,
 	GrVirtualStorage,
-} from 'react-icons/gr'
+} from 'react-icons/gr';
 
-import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri'
+import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
 const MenuBar = ({ editor }) => {
 	if (!editor) {
-		return null
+		return null;
 	}
 
 	return (
@@ -110,10 +110,10 @@ const MenuBar = ({ editor }) => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-let editor
+let editor;
 
 const TipTapEditor = ({
 	getContentFromTextEditor,
@@ -121,14 +121,14 @@ const TipTapEditor = ({
 	setarticleLengthCheck,
 	article_update_id,
 }) => {
-	const [isLoading, setisLoading] = useState(true)
-	const [editorFetchedContent, setEditorFetchedContent] = useState(null)
+	const [isLoading, setisLoading] = useState(true);
+	const [editorFetchedContent, setEditorFetchedContent] = useState(null);
 	useEffect(() => {
 		if (article_update_id) {
-			const userLocalStorage = window.localStorage.getItem('user')
-			const { token } = JSON.parse(userLocalStorage)
+			const userLocalStorage = window.localStorage.getItem('user');
+			const { token } = JSON.parse(userLocalStorage);
 			const fetchTheArticle = async () => {
-				setisLoading(true)
+				setisLoading(true);
 				try {
 					const response = await fetch(
 						`${backendUrl}user_article/${article_update_id}`,
@@ -137,57 +137,57 @@ const TipTapEditor = ({
 								authorization: JSON.stringify(`Bearer ${token}`),
 							},
 						}
-					)
-					const result = await response.json()
+					);
+					const result = await response.json();
 
 					//-- ok
 					if (response.ok) {
 						setTimeout(() => {
-							setEditorFetchedContent(result.message.article_body)
-						}, 1)
+							setEditorFetchedContent(result.message.article_body);
+						}, 1);
 
-						console.log(result.message)
+						console.log(result.message);
 						//	setisLoading(false)
-						setEditorFetchedContent(result.message.article_body)
+						setEditorFetchedContent(result.message.article_body);
 					}
 
 					//-- not ok
 					if (!response.ok) {
-						console.log(result.message)
+						console.log(result.message);
 					}
 				} catch (error) {
-					console.error(error.message)
+					console.error(error.message);
 				}
-			}
+			};
 
-			fetchTheArticle()
+			fetchTheArticle();
 		}
-	}, [])
+	}, []);
 	editor = useEditor({
 		extensions: [StarterKit],
 		content: editorFetchedContent,
 		onUpdate: ({ editor }) => {
-			const html = editor.getHTML()
-			const plainText = editor.getText().replace(/['\n']/gi, ' ')
-			const plainTextShorten = plainText.slice(0, 180)
+			const html = editor.getHTML();
+			const plainText = editor.getText().replace(/['\n']/gi, ' ');
+			const plainTextShorten = plainText.slice(0, 180);
 			globalThis.localStorage.setItem(
 				'textEditor',
 				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
-			)
+			);
 			setGetContentFromTextEditor({
 				html,
 				plainTextShorten,
-			})
-			setarticleLengthCheck(plainText)
+			});
+			setarticleLengthCheck(plainText);
 		},
-	})
+	});
 
 	return (
 		<div>
 			<MenuBar editor={editor} />
 			<EditorContent editor={editor} />
 		</div>
-	)
-}
+	);
+};
 
-export default TipTapEditor
+export default TipTapEditor;

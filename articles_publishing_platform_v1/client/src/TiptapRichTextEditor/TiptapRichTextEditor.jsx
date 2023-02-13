@@ -1,6 +1,6 @@
-import './TiptapRichTextEditor.css'
-import TipTapEditor from './TipTapRichFromSource'
-import { useEffect } from 'react'
+import './TiptapRichTextEditor.css';
+import TipTapEditor from './TipTapRichFromSource';
+import { useEffect } from 'react';
 
 export default function TiptapRichTextEditor({
 	isMounted,
@@ -13,8 +13,8 @@ export default function TiptapRichTextEditor({
 	article_update_id,
 }) {
 	useEffect(() => {
-		setisMounted(true)
-	}, [])
+		setisMounted(true);
+	}, []);
 	return (
 		isMounted && (
 			<div className='TiptapRichTextEditor'>
@@ -38,5 +38,5 @@ export default function TiptapRichTextEditor({
 				</div>
 			</div>
 		)
-	)
+	);
 }
