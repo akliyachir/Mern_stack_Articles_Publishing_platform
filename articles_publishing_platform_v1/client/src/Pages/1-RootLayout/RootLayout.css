@@ -40,7 +40,18 @@
 	text-align: center;
 	text-transform: uppercase;
 	padding-inline: 0.5rem;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
 }
 
 .RootWebsiteTitleClosed {
+	transform: translateY(-10rem);
+	padding-block: 1.5rem;
+	background-color: var(--clr-5);
+	color: var(--clr-2);
+	text-align: center;
+	text-transform: uppercase;
+	padding-inline: 0.5rem;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
 }

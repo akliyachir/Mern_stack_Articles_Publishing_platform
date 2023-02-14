@@ -8,7 +8,13 @@ import { UserContext } from '../../Contexts/UserContext';
 export default function RootLayout() {
 	const { userState, userDispatch } = useContext(UserContext);
 	const [WebsiteTitleDesapearing, setWebsiteTitleDesapearing] = useState(false);
+	useState = [displayNone, setdisplayNone] = useState;
 	useEffect(() => {
+		setWebsiteTitleDesapearing(false);
+		setTimeout(() => {
+			setWebsiteTitleDesapearing(true);
+		}, 3000);
+		setWebsiteTitleDesapearing(true);
 		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
 		if (userFromLocalStorageAsJson) {
 			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
@@ -22,7 +28,11 @@ export default function RootLayout() {
 				<nav>
 					<HeaderContainer />
 				</nav>
-				<h1 className={false ? 'RootWebsiteTitleClosed' : 'RootWebsiteTitle'}>
+				<h1
+					className={
+						WebsiteTitleDesapearing ? 'RootWebsiteTitleClosed' : 'RootWebsiteTitle'
+					}
+				>
 					The best way to publish your Article
 				</h1>
 				<main className='mainAllOutputedArticles'>
