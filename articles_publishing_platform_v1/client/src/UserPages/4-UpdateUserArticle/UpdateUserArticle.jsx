@@ -5,12 +5,19 @@ import { useState, useEffect, createContext, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { MenuBar } from '../../TiptapRichTextEditor/TipTapRichFromSource';
 
 export const TextEditorContentContext = createContext('');
 const textEditorDefaultState = {
 	textEditorContentToPopulate: '',
 	article_update_id: '',
 };
+
+let editor;
+let textEditorContentVariable;
+
 const textEditorReducer = (textEditorDefaultState, action) => {
 	switch (action.type) {
 		case 'SET_TEXT_EDITOR_CONTENT':
@@ -81,6 +88,8 @@ export default function UpdateUserArticle() {
 				//-- ok
 				if (response.ok) {
 					setCreateArticleFormData(result.message);
+					textEditorContentVariable = result.message.article_body;
+					console.log('the variable -> ', textEditorContentVariable);
 					textEditorDispatch({
 						type: 'SET_TEXT_EDITOR_CONTENT',
 						payload: { article_body: result.message.article_body, article_update_id },
@@ -252,16 +261,24 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						{!!textEditorState.textEditorContentToPopulate && (
-							<TextEditorContentContext.Provider value={textEditorState}>
-								<TiptapRichTextEditor
-									getContentFromTextEditor={getContentFromTextEditor}
-									setGetContentFromTextEditor={setGetContentFromTextEditor}
-									setarticleLengthCheck={setarticleLengthCheck}
-									articleLengthCheck={articleLengthCheck}
-								/>
-							</TextEditorContentContext.Provider>
-						)}
+						{
+							<div className='TiptapRichTextEditor'>
+								<div className='TiptapRichTextEditorContent'>
+									<TipTapEditor
+										getContentFromTextEditor={getContentFromTextEditor}
+										setGetContentFromTextEditor={setGetContentFromTextEditor}
+										setarticleLengthCheck={setarticleLengthCheck}
+										articleLengthCheck={articleLengthCheck}
+									/>
+									{articleLengthCheck.length > 8000 && (
+										<div className='bodyTextEditorErrorMessage'>
+											<p>Too much content</p>
+											<p>Exceeding 8000 characters!</p>
+										</div>
+									)}
+								</div>
+							</div>
+						}
 
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>
@@ -282,44 +299,19 @@ export default function UpdateUserArticle() {
 	);
 }
 
-/* tiptap container */
+/* text editor */
 
-function TiptapRichTextEditor({
-	getContentFromTextEditor,
-	setGetContentFromTextEditor,
-	setarticleLengthCheck,
-	articleLengthCheck,
-}) {
-	return (
-		<div className='TiptapRichTextEditor'>
-			<div className='TiptapRichTextEditorContent'>
-				<TipTapEditor
-					getContentFromTextEditor={getContentFromTextEditor}
-					setGetContentFromTextEditor={setGetContentFromTextEditor}
-					setarticleLengthCheck={setarticleLengthCheck}
-					articleLengthCheck={articleLengthCheck}
-				/>
-				{articleLengthCheck.length > 8000 && (
-					<div className='bodyTextEditorErrorMessage'>
-						<p>Too much content</p>
-						<p>Exceeding 8000 characters!</p>
-					</div>
-				)}
-			</div>
-		</div>
-	);
-}
-
-/* tiptap editor */
 const TipTapEditor = ({
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
 }) => {
+	const [ContentContent, setContentContent] = useState('');
+	setContentContent(textEditorContentVariable);
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: '',
+		content: ContentContent,
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');

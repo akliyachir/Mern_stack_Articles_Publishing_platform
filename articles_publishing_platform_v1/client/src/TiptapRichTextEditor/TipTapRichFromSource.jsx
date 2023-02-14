@@ -12,7 +12,7 @@ import {
 
 import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
-const MenuBar = ({ editor }) => {
+export const MenuBar = ({ editor }) => {
 	if (!editor) {
 		return null;
 	}
