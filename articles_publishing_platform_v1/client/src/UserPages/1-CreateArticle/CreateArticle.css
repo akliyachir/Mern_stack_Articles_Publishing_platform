@@ -323,9 +323,6 @@
 	color: #4b3434;
 }
 
-.CreateArticle .article_image_url_label {
-}
-
 .CreateArticle .article_image_url_label a {
 	display: inline;
 	color: var(--clr-3);
