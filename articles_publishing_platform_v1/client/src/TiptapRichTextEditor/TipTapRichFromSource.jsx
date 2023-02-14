@@ -9,8 +9,6 @@ import {
 	GrRedo,
 	GrUndo,
 } from 'react-icons/gr';
-import { useContext, useEffect, useState } from 'react';
-import { TextEditorContentContext } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle';
 
 import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
@@ -111,20 +109,8 @@ const MenuBar = ({ editor }) => {
 	);
 };
 
+let editor;
 
-export default function TiptapRichTextEditor({
-	getContentFromTextEditor,
-	setGetContentFromTextEditor,
-	setarticleLengthCheck,
-	articleLengthCheck,
-}) {
-
-	return (
-		!!myReturnedContext.textEditorContentToPopulate && (
-			<div className='TiptapRichTextEditor'>
-				<div className='TiptapRichTextEditorContent'>
-		{/* aca */}
-		
 const TipTapEditor = ({
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
@@ -158,15 +144,4 @@ const TipTapEditor = ({
 	);
 };
 
-		{/* aca */}
-					{articleLengthCheck.length > 8000 && (
-						<div className='bodyTextEditorErrorMessage'>
-							<p>Too much content</p>
-							<p>Exceeding 8000 characters!</p>
-						</div>
-					)}
-				</div>
-			</div>
-		)
-	);
-}
+export default TipTapEditor;
