@@ -9,29 +9,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { MenuBar } from '../../TiptapRichTextEditor/TipTapRichFromSource';
 
-export const TextEditorContentContext = createContext('');
-const textEditorDefaultState = {
-	textEditorContentToPopulate: '',
-	article_update_id: '',
-};
-
 let editor;
-let textEditorContentVariable;
-
-const textEditorReducer = (textEditorDefaultState, action) => {
-	switch (action.type) {
-		case 'SET_TEXT_EDITOR_CONTENT':
-			return {
-				...textEditorDefaultState,
-				textEditorContentToPopulate: action.payload.article_body,
-				article_update_id: action.payload.article_update_id,
-			};
-		default:
-			return {
-				...textEditorDefaultState,
-			};
-	}
-};
 
 export default function UpdateUserArticle() {
 	// -- use reducer to propulate the text editor area
@@ -88,8 +66,7 @@ export default function UpdateUserArticle() {
 				//-- ok
 				if (response.ok) {
 					setCreateArticleFormData(result.message);
-					textEditorContentVariable = result.message.article_body;
-					console.log('the variable -> ', textEditorContentVariable);
+
 					textEditorDispatch({
 						type: 'SET_TEXT_EDITOR_CONTENT',
 						payload: { article_body: result.message.article_body, article_update_id },
@@ -198,6 +175,28 @@ export default function UpdateUserArticle() {
 			}, 3000);
 		}
 	};
+	// -- TEXT EDITOR START
+	const [ContentContent, setContentContent] = useState('');
+	editor = useEditor({
+		extensions: [StarterKit],
+		content: createArticleFormData.article_body,
+		onUpdate: ({ editor }) => {
+			const html = editor.getHTML();
+			const plainText = editor.getText().replace(/['\n']/gi, ' ');
+			const plainTextShorten = plainText.slice(0, 180);
+			globalThis.localStorage.setItem(
+				'textEditor',
+				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
+			);
+			setGetContentFromTextEditor({
+				html,
+				plainTextShorten,
+			});
+			setarticleLengthCheck(plainText);
+		},
+	});
+
+	// -- TEXT EDITOR END
 
 	return (
 		<div className='CreateArticle'>
@@ -264,12 +263,11 @@ export default function UpdateUserArticle() {
 						{
 							<div className='TiptapRichTextEditor'>
 								<div className='TiptapRichTextEditorContent'>
-									<TipTapEditor
-										getContentFromTextEditor={getContentFromTextEditor}
-										setGetContentFromTextEditor={setGetContentFromTextEditor}
-										setarticleLengthCheck={setarticleLengthCheck}
-										articleLengthCheck={articleLengthCheck}
-									/>
+									<div>
+										<MenuBar editor={editor} />
+										<EditorContent editor={editor} />
+									</div>
+
 									{articleLengthCheck.length > 8000 && (
 										<div className='bodyTextEditorErrorMessage'>
 											<p>Too much content</p>
@@ -300,38 +298,3 @@ export default function UpdateUserArticle() {
 }
 
 /* text editor */
-
-const TipTapEditor = ({
-	getContentFromTextEditor,
-	setGetContentFromTextEditor,
-	setarticleLengthCheck,
-	articleLengthCheck,
-}) => {
-	const [ContentContent, setContentContent] = useState('');
-	setContentContent(textEditorContentVariable);
-	editor = useEditor({
-		extensions: [StarterKit],
-		content: ContentContent,
-		onUpdate: ({ editor }) => {
-			const html = editor.getHTML();
-			const plainText = editor.getText().replace(/['\n']/gi, ' ');
-			const plainTextShorten = plainText.slice(0, 180);
-			globalThis.localStorage.setItem(
-				'textEditor',
-				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
-			);
-			setGetContentFromTextEditor({
-				html,
-				plainTextShorten,
-			});
-			setarticleLengthCheck(plainText);
-		},
-	});
-
-	return (
-		<div>
-			<MenuBar editor={editor} />
-			<EditorContent editor={editor} />
-		</div>
-	);
-};
