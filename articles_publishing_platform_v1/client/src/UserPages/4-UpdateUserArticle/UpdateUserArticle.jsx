@@ -10,8 +10,21 @@ import StarterKit from '@tiptap/starter-kit';
 import { MenuBar } from '../../TiptapRichTextEditor/TipTapRichFromSource';
 
 let editor;
-
+const defaultState = { articleContent: '' };
+const reducer = (state, action) => {
+	switch (action.type) {
+		case 'TEXT_EDITOR_CONTENT':
+			return { articleContent: action.payload };
+		default:
+			return { defaultState };
+	}
+};
 export default function UpdateUserArticle() {
+	// -- useReducer
+	const [state, dispatch] = useReducer(reducer, defaultState);
+	// -- article body separate state to make sure that render
+	const [article_body_fetched_content, setArticle_body_fetched_content] =
+		useState('');
 	// -- the article id
 	const { article_update_id } = useParams();
 	// -- default loader
@@ -55,7 +68,14 @@ export default function UpdateUserArticle() {
 
 				//-- ok
 				if (response.ok) {
-					setCreateArticleFormData(result.message);
+					setCreateArticleFormData({
+						...setCreateArticleFormData,
+						...result.message,
+					});
+					dispatch({
+						type: 'TEXT_EDITOR_CONTENT',
+						payload: result.message.article_body,
+					});
 					setisLoading(false);
 				}
 
@@ -161,10 +181,10 @@ export default function UpdateUserArticle() {
 		}
 	};
 	// -- TEXT EDITOR START
-	const [ContentContent, setContentContent] = useState('');
+
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: createArticleFormData.article_body,
+		content: state.articleContent,
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');
@@ -216,31 +236,32 @@ export default function UpdateUserArticle() {
 							onChange={handleInputOnChange}
 						/>
 					</div>
-					{/* text editor start */}
-					<div className='imagePreviewFromLinkCreateArticle'>
-						<div
-							className='previewImage'
-							style={{
-								backgroundImage: `url(${article_image_url})`,
-								backgroundPositionY: `${article_image_height}%`,
-							}}
-						></div>
-						<input
-							className='article_image_height'
-							min='0'
-							max='100'
-							type='range'
-							name='article_image_height'
-							id='article_image_height'
-							onChange={(e) => {
-								setCreateArticleFormData({
-									...createArticleFormData,
-									article_image_height: e.target.value,
-								});
-							}}
-						/>
-					</div>
-					{/* text editor start */}
+
+					{
+						<div className='imagePreviewFromLinkCreateArticle'>
+							<div
+								className='previewImage'
+								style={{
+									backgroundImage: `url(${article_image_url})`,
+									backgroundPositionY: `${article_image_height}%`,
+								}}
+							></div>
+							<input
+								className='article_image_height'
+								min='0'
+								max='100'
+								type='range'
+								name='article_image_height'
+								id='article_image_height'
+								onChange={(e) => {
+									setCreateArticleFormData({
+										...createArticleFormData,
+										article_image_height: e.target.value,
+									});
+								}}
+							/>
+						</div>
+					}
 
 					<div
 						className={
@@ -249,24 +270,22 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						{
-							<div className='TiptapRichTextEditor'>
-								<div className='TiptapRichTextEditorContent'>
-									<div>
-										<MenuBar editor={editor} />
-										<EditorContent editor={editor} />
-									</div>
-
-									{articleLengthCheck.length > 8000 && (
-										<div className='bodyTextEditorErrorMessage'>
-											<p>Too much content</p>
-											<p>Exceeding 8000 characters!</p>
-										</div>
-									)}
+						{/* editor start */}(
+						<div className='TiptapRichTextEditor'>
+							<div className='TiptapRichTextEditorContent'>
+								<div>
+									<MenuBar editor={editor} />
+									<EditorContent editor={editor} />
 								</div>
+								{/* editor end */}
+								{articleLengthCheck.length > 8000 && (
+									<div className='bodyTextEditorErrorMessage'>
+										<p>Too much content</p>
+										<p>Exceeding 8000 characters!</p>
+									</div>
+								)}
 							</div>
-						}
-
+						</div>
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>
 								{atLeast300CharactersMessage}
