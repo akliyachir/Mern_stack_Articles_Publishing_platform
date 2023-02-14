@@ -75,7 +75,7 @@ export default function UpdateUserArticle() {
 						...setCreateArticleFormData,
 						...result.message,
 					});
-					tryToUpdateTextEditorContent.current = message.article_body;
+					tryToUpdateTextEditorContent.current = result.message.article_body;
 					dispatch({
 						type: 'TEXT_EDITOR_CONTENT',
 						payload: result.message.article_body,
@@ -142,20 +142,23 @@ export default function UpdateUserArticle() {
 		}
 
 		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
-		const response = await fetch(backendUrl + 'user_article', {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-				authorization: JSON.stringify(`Bearer ${token}`),
-			},
-			body: JSON.stringify({
-				...article_title,
-				article_image_url,
-				article_image_height,
-				article_body: html,
-				article_body_shorten_for_card: plainTextShorten,
-			}),
-		});
+		const response = await fetch(
+			`${backendUrl}user_article/${article_update_id}`,
+			{
+				method: 'PATCH',
+				headers: {
+					'Content-type': 'application/json',
+					authorization: JSON.stringify(`Bearer ${token}`),
+				},
+				body: JSON.stringify({
+					...article_title,
+					article_image_url,
+					article_image_height,
+					article_body: html,
+					article_body_shorten_for_card: plainTextShorten,
+				}),
+			}
+		);
 
 		const result = await response.json();
 
@@ -188,7 +191,7 @@ export default function UpdateUserArticle() {
 
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: state.articleContent,
+		content: tryToUpdateTextEditorContent.current,
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');
@@ -278,7 +281,7 @@ export default function UpdateUserArticle() {
 						<div className='TiptapRichTextEditor'>
 							<div className='TiptapRichTextEditorContent'>
 								<div>
-									<MenuBar editor={editor} ref={tryToUpdateTextEditorContent} />
+									<MenuBar editor={editor} />
 									<EditorContent editor={editor} />
 								</div>
 								{/* editor end */}
