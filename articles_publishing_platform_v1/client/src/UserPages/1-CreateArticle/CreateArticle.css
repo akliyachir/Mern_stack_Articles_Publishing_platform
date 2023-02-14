@@ -322,3 +322,18 @@
 	text-align: center;
 	color: #4b3434;
 }
+
+.CreateArticle .article_image_url {
+	white-space: nowrap;
+	background-color: red;
+}
+
+.CreateArticle .article_image_url a {
+	display: inline;
+	background-color: ;
+	font-size: 0.8rem;
+}
+
+.CreateArticle .article_image_url span {
+	font-size: 0.8rem;
+}

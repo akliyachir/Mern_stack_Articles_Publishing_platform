@@ -40,7 +40,7 @@
 	text-align: center;
 	text-transform: uppercase;
 	padding-inline: 0.5rem;
-	transition-duration: 200ms;
+	transition-duration: 400ms;
 	transition-timing-function: ease-in-out;
 }
 
@@ -52,8 +52,10 @@
 	text-align: center;
 	text-transform: uppercase;
 	padding-inline: 0.5rem;
-	transition-duration: 200ms;
+	transition-duration: 400ms;
 	transition-timing-function: ease-in-out;
+	height: 0;
+	padding: 0;
 }
 
 .displayNone {

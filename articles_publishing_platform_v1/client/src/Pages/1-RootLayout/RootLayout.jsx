@@ -7,23 +7,22 @@ import { UserContext } from '../../Contexts/UserContext';
 
 export default function RootLayout() {
 	const { userState, userDispatch } = useContext(UserContext);
-	const [WebsiteTitleDesapearing, setWebsiteTitleDesapearing] = useState(false);
-	const [displayNone, setdisplayNone] = useState({ display: 'block' });
+	const [WebsiteTitleDesapearing, setWebsiteTitleDesapearing] = useState(true);
+
 	useEffect(() => {
-		setWebsiteTitleDesapearing(false);
-		setTimeout(() => {
-			setWebsiteTitleDesapearing(true);
-			setTimeout(() => {
-				setdisplayNone;
-			}, 100);
-		}, 1000);
-		setWebsiteTitleDesapearing(true);
 		const userFromLocalStorageAsJson = globalThis.localStorage.getItem('user');
 		if (userFromLocalStorageAsJson) {
 			const userFromLocalStorage = JSON.parse(userFromLocalStorageAsJson);
 			const { name, email, token } = userFromLocalStorage;
 			userDispatch({ type: 'SIGN_IN', payload: { name, email, token } });
 		}
+		setWebsiteTitleDesapearing(true);
+		setTimeout(() => {
+			setWebsiteTitleDesapearing(false);
+			setTimeout(() => {
+				setWebsiteTitleDesapearing(true);
+			}, 6000);
+		}, 1000);
 	}, []);
 	return (
 		<div className='RootLayout'>
@@ -35,7 +34,6 @@ export default function RootLayout() {
 					className={
 						WebsiteTitleDesapearing ? 'RootWebsiteTitleClosed' : 'RootWebsiteTitle'
 					}
-					style={{ style: `${displayNone}` }}
 				>
 					The best way to publish your Article
 				</h1>

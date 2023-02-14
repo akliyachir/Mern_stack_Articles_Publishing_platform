@@ -10,12 +10,7 @@ export const userMenuItemsList = [
 		url: '/user_articles',
 	},
 	{
-		menu_item_id: 5,
-		title: 'Delete my account',
-		url: '/talk_with_us',
-	},
-	{
-		menu_item_id: 6,
+		menu_item_id: 3,
 		title: 'Disconnect',
 		url: '/disconnect',
 	},

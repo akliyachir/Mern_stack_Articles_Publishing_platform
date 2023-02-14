@@ -10,6 +10,7 @@
 	box-shadow: 0 0 1px #333333;
 	width: 100%;
 	max-width: 780px;
+	background-color: var(--clr-1);
 }
 
 .GetUserFullArticleTemplateContent .article_image_url {
@@ -62,6 +63,7 @@
 	justify-content: space-between;
 	align-items: flex-end;
 	box-shadow: 0 0 1px #333;
+	background-color: var(--clr-2);
 }
 
 .GetUserFullArticleTemplateContent .pivetDeletionAndModifyContainer {
