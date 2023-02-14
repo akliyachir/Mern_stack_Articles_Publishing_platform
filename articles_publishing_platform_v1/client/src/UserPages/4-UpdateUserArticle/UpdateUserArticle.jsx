@@ -12,21 +12,11 @@ import { MenuBar } from '../../TiptapRichTextEditor/TipTapRichFromSource';
 let editor;
 
 export default function UpdateUserArticle() {
-	// -- use reducer to propulate the text editor area
-	const [textEditorState, textEditorDispatch] = useReducer(
-		textEditorReducer,
-		textEditorDefaultState
-	);
-
 	// -- the article id
 	const { article_update_id } = useParams();
 	// -- default loader
 	const [isLoading, setisLoading] = useState(true);
 	// -- a variable to force mouting the text editor
-	const [isMounted, setisMounted] = useState(false);
-	useEffect(() => {
-		setisMounted(true);
-	}, []);
 	// -- form data
 	const [createArticleFormData, setCreateArticleFormData] = useState({
 		article_title: '',
@@ -66,11 +56,6 @@ export default function UpdateUserArticle() {
 				//-- ok
 				if (response.ok) {
 					setCreateArticleFormData(result.message);
-
-					textEditorDispatch({
-						type: 'SET_TEXT_EDITOR_CONTENT',
-						payload: { article_body: result.message.article_body, article_update_id },
-					});
 					setisLoading(false);
 				}
 
@@ -188,10 +173,13 @@ export default function UpdateUserArticle() {
 				'textEditor',
 				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
 			);
-			setGetContentFromTextEditor({
-				html,
-				plainTextShorten,
+			setCreateArticleFormData({
+				...createArticleFormData,
+				article_body: html,
+				article_body_shorten_for_card: plainTextShorten,
 			});
+			console.log(article_body_shorten_for_card);
+			console.log(plainTextShorten);
 			setarticleLengthCheck(plainText);
 		},
 	});
@@ -228,31 +216,32 @@ export default function UpdateUserArticle() {
 							onChange={handleInputOnChange}
 						/>
 					</div>
-					{!!article_image_url && (
-						<div className='imagePreviewFromLinkCreateArticle'>
-							<div
-								className='previewImage'
-								style={{
-									backgroundImage: `url(${article_image_url})`,
-									backgroundPositionY: `${article_image_height}%`,
-								}}
-							></div>
-							<input
-								className='article_image_height'
-								min='0'
-								max='100'
-								type='range'
-								name='article_image_height'
-								id='article_image_height'
-								onChange={(e) => {
-									setCreateArticleFormData({
-										...createArticleFormData,
-										article_image_height: e.target.value,
-									});
-								}}
-							/>
-						</div>
-					)}
+					{/* text editor start */}
+					<div className='imagePreviewFromLinkCreateArticle'>
+						<div
+							className='previewImage'
+							style={{
+								backgroundImage: `url(${article_image_url})`,
+								backgroundPositionY: `${article_image_height}%`,
+							}}
+						></div>
+						<input
+							className='article_image_height'
+							min='0'
+							max='100'
+							type='range'
+							name='article_image_height'
+							id='article_image_height'
+							onChange={(e) => {
+								setCreateArticleFormData({
+									...createArticleFormData,
+									article_image_height: e.target.value,
+								});
+							}}
+						/>
+					</div>
+					{/* text editor start */}
+
 					<div
 						className={
 							articleLengthCheck && articleLengthCheck.length > 8000
