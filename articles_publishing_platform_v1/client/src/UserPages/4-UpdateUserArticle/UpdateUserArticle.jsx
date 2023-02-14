@@ -6,9 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
 
-export const TextEditorContentContext = createContext(
-	`<div>my context content</div>`
-);
+export const TextEditorContentContext = createContext('');
 const textEditorDefaultState = {
 	textEditorContentToPopulate: '',
 };
@@ -80,7 +78,6 @@ export default function UpdateUserArticle() {
 
 				//-- ok
 				if (response.ok) {
-					console.log('fetched data -> ', result.message.article_body);
 					setCreateArticleFormData(result.message);
 					textEditorDispatch({
 						type: 'SET_TEXT_EDITOR_CONTENT',
@@ -129,12 +126,6 @@ export default function UpdateUserArticle() {
 
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
-		console.log({
-			...createArticleFormData,
-			article_body: html,
-			article_body_shorten_for_card: plainTextShorten,
-			article_id,
-		});
 
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters');
@@ -154,7 +145,6 @@ export default function UpdateUserArticle() {
 		}
 
 		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
-		console.log(createArticleFormData);
 		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
 			headers: {
@@ -260,12 +250,16 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						<TiptapRichTextEditor
-							getContentFromTextEditor={getContentFromTextEditor}
-							setGetContentFromTextEditor={setGetContentFromTextEditor}
-							setarticleLengthCheck={setarticleLengthCheck}
-							articleLengthCheck={articleLengthCheck}
-						/>
+						{!!textEditorState && (
+							<TextEditorContentContext.Provider value={textEditorState}>
+								<TiptapRichTextEditor
+									getContentFromTextEditor={getContentFromTextEditor}
+									setGetContentFromTextEditor={setGetContentFromTextEditor}
+									setarticleLengthCheck={setarticleLengthCheck}
+									articleLengthCheck={articleLengthCheck}
+								/>
+							</TextEditorContentContext.Provider>
+						)}
 
 						{!!atLeast300CharactersMessage && (
 							<div className='ThreeHundredCharactersMEssageArea'>

@@ -8,8 +8,9 @@ import {
 	GrUnorderedList,
 	GrRedo,
 	GrUndo,
-	GrVirtualStorage,
 } from 'react-icons/gr';
+import { useContext } from 'react';
+import { TextEditorContentContext } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle';
 
 import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
 
@@ -118,9 +119,12 @@ const TipTapEditor = ({
 	setarticleLengthCheck,
 	articleLengthCheck,
 }) => {
+	const myReturnedContext = useContext(TextEditorContentContext);
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: '',
+		content: !!myReturnedContext.textEditorContentToPopulate
+			? myReturnedContext.textEditorContentToPopulate
+			: '',
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');
