@@ -111,25 +111,29 @@ const MenuBar = ({ editor }) => {
 	);
 };
 
-let editor;
 
+export default function TiptapRichTextEditor({
+	getContentFromTextEditor,
+	setGetContentFromTextEditor,
+	setarticleLengthCheck,
+	articleLengthCheck,
+}) {
+
+	return (
+		!!myReturnedContext.textEditorContentToPopulate && (
+			<div className='TiptapRichTextEditor'>
+				<div className='TiptapRichTextEditorContent'>
+		{/* aca */}
+		
 const TipTapEditor = ({
 	getContentFromTextEditor,
 	setGetContentFromTextEditor,
 	setarticleLengthCheck,
 	articleLengthCheck,
 }) => {
-	const myReturnedContext = useContext(TextEditorContentContext);
-	const [getAndSetEditorContent, setgetAndSetEditorContent] = useState('');
-	useEffect(() => {
-		setgetAndSetEditorContent('loading...');
-		setTimeout(() => {
-			setgetAndSetEditorContent(myReturnedContext.textEditorContentToPopulate);
-		}, 3000);
-	}, []);
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: !!getAndSetEditorContent ? getAndSetEditorContent : '',
+		content: '',
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');
@@ -154,4 +158,15 @@ const TipTapEditor = ({
 	);
 };
 
-export default TipTapEditor;
+		{/* aca */}
+					{articleLengthCheck.length > 8000 && (
+						<div className='bodyTextEditorErrorMessage'>
+							<p>Too much content</p>
+							<p>Exceeding 8000 characters!</p>
+						</div>
+					)}
+				</div>
+			</div>
+		)
+	);
+}

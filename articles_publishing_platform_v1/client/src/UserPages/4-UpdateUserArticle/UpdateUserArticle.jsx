@@ -9,13 +9,15 @@ import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEdito
 export const TextEditorContentContext = createContext('');
 const textEditorDefaultState = {
 	textEditorContentToPopulate: '',
+	article_update_id: '',
 };
 const textEditorReducer = (textEditorDefaultState, action) => {
 	switch (action.type) {
 		case 'SET_TEXT_EDITOR_CONTENT':
 			return {
 				...textEditorDefaultState,
-				textEditorContentToPopulate: action.payload,
+				textEditorContentToPopulate: action.payload.article_body,
+				article_update_id: action.payload.article_update_id,
 			};
 		default:
 			return {
@@ -81,7 +83,7 @@ export default function UpdateUserArticle() {
 					setCreateArticleFormData(result.message);
 					textEditorDispatch({
 						type: 'SET_TEXT_EDITOR_CONTENT',
-						payload: result.message.article_body,
+						payload: { article_body: result.message.article_body, article_update_id },
 					});
 					setisLoading(false);
 				}
@@ -250,7 +252,7 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						{!!textEditorState && (
+						{!!textEditorState.textEditorContentToPopulate && (
 							<TextEditorContentContext.Provider value={textEditorState}>
 								<TiptapRichTextEditor
 									getContentFromTextEditor={getContentFromTextEditor}
@@ -281,3 +283,36 @@ export default function UpdateUserArticle() {
 }
 
 /* 			Update Article <span>{article_update_id}</span> */
+
+const TipTapEditor = ({
+	getContentFromTextEditor,
+	setGetContentFromTextEditor,
+	setarticleLengthCheck,
+	articleLengthCheck,
+}) => {
+	editor = useEditor({
+		extensions: [StarterKit],
+		content: '',
+		onUpdate: ({ editor }) => {
+			const html = editor.getHTML();
+			const plainText = editor.getText().replace(/['\n']/gi, ' ');
+			const plainTextShorten = plainText.slice(0, 180);
+			globalThis.localStorage.setItem(
+				'textEditor',
+				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
+			);
+			setGetContentFromTextEditor({
+				html,
+				plainTextShorten,
+			});
+			setarticleLengthCheck(plainText);
+		},
+	});
+
+	return (
+		<div>
+			<MenuBar editor={editor} />
+			<EditorContent editor={editor} />
+		</div>
+	);
+};
