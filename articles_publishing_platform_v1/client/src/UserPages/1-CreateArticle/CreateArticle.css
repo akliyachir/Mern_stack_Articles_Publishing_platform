@@ -323,17 +323,16 @@
 	color: #4b3434;
 }
 
-.CreateArticle .article_image_url {
-	white-space: nowrap;
-	background-color: red;
+.CreateArticle .article_image_url_label {
 }
 
-.CreateArticle .article_image_url a {
+.CreateArticle .article_image_url_label a {
 	display: inline;
-	background-color: ;
+	color: var(--clr-3);
 	font-size: 0.8rem;
 }
 
-.CreateArticle .article_image_url span {
+.CreateArticle .article_image_url_label span {
+	color: var(--clr-4);
 	font-size: 0.8rem;
 }

@@ -133,12 +133,12 @@ export default function CreateArticle() {
 						/>
 					</div>
 					<div className='InputFormTemplateContainer paddingBottomToSeparate'>
-						<label htmlFor='article_image_url'>
+						<label htmlFor='article_image_url' className='article_image_url_label'>
 							Image link{' '}
 							<span>
 								(we recommend{' '}
 								<a
-									href='http://https://www.pexels.com/'
+									href='https://www.pexels.com/'
 									target='_blank'
 									rel='noopener noreferrer'
 								>
