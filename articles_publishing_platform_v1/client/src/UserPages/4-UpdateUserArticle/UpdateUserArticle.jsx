@@ -21,8 +21,10 @@ const reducer = (state, action) => {
 	}
 };
 export default function UpdateUserArticle() {
+	const [textEditorBodyAndShortenBody, settextEditorBodyAndShortenBody] =
+		useState({ html: '', plainTextShorten: '' });
 	const tryToUpdateTextEditorContent = useRef();
-	console.log(tryToUpdateTextEditorContent.pro);
+
 	// -- useReducer
 	const [state, dispatch] = useReducer(reducer, defaultState);
 	// -- article body separate state to make sure that render
@@ -98,11 +100,6 @@ export default function UpdateUserArticle() {
 
 	// -- update article controller
 
-	const [getContentFromTextEditor, setGetContentFromTextEditor] = useState({
-		html: '',
-		plainTextShorten: '',
-	});
-	const { html, plainTextShorten } = getContentFromTextEditor;
 	const [articleLengthCheck, setarticleLengthCheck] = useState('');
 
 	const handleInputOnChange = (e) => {
@@ -124,14 +121,6 @@ export default function UpdateUserArticle() {
 
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
-		console.log(
-			'my sent content->',
-			article_title,
-			article_image_url,
-			article_image_height,
-			article_body,
-			article_body_shorten_for_card
-		);
 
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters');
@@ -149,7 +138,7 @@ export default function UpdateUserArticle() {
 			}, 3000);
 			return;
 		}
-
+		console.log(`${backendUrl}user_article/${article_update_id}`);
 		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
 		const response = await fetch(
 			`${backendUrl}user_article/${article_update_id}`,
@@ -163,12 +152,23 @@ export default function UpdateUserArticle() {
 					article_title,
 					article_image_url,
 					article_image_height,
-					article_body,
-					article_body_shorten_for_card,
+					article_body: textEditorBodyAndShortenBody.html,
+					article_body_shorten_for_card:
+						textEditorBodyAndShortenBody.plainTextShorten,
 				}),
 			}
 		);
-
+		console.log(
+			'string -> ',
+			JSON.stringify({
+				article_title,
+				article_image_url,
+				article_image_height,
+				article_body: textEditorBodyAndShortenBody.html,
+				article_body_shorten_for_card:
+					textEditorBodyAndShortenBody.plainTextShorten,
+			})
+		);
 		const result = await response.json();
 
 		if (!response.ok) {
@@ -209,11 +209,7 @@ export default function UpdateUserArticle() {
 				'textEditor',
 				JSON.stringify({ html: html, plainTextShorten: plainTextShorten })
 			);
-			setCreateArticleFormData({
-				...createArticleFormData,
-				article_body: html,
-				article_body_shorten_for_card: plainTextShorten,
-			});
+			settextEditorBodyAndShortenBody({ html, plainTextShorten });
 
 			setarticleLengthCheck(plainText);
 		},
