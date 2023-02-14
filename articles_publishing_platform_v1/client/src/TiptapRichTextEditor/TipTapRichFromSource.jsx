@@ -9,7 +9,7 @@ import {
 	GrRedo,
 	GrUndo,
 } from 'react-icons/gr';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TextEditorContentContext } from '../UserPages/4-UpdateUserArticle/UpdateUserArticle';
 
 import { RiH1, RiH2, RiTextWrap } from 'react-icons/ri';
@@ -120,11 +120,16 @@ const TipTapEditor = ({
 	articleLengthCheck,
 }) => {
 	const myReturnedContext = useContext(TextEditorContentContext);
+	const [getAndSetEditorContent, setgetAndSetEditorContent] = useState('');
+	useEffect(() => {
+		setgetAndSetEditorContent('loading...');
+		setTimeout(() => {
+			setgetAndSetEditorContent(myReturnedContext.textEditorContentToPopulate);
+		}, 3000);
+	}, []);
 	editor = useEditor({
 		extensions: [StarterKit],
-		content: !!myReturnedContext.textEditorContentToPopulate
-			? myReturnedContext.textEditorContentToPopulate
-			: '',
+		content: !!getAndSetEditorContent ? getAndSetEditorContent : '',
 		onUpdate: ({ editor }) => {
 			const html = editor.getHTML();
 			const plainText = editor.getText().replace(/['\n']/gi, ' ');
