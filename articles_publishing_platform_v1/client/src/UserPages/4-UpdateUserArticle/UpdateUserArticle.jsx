@@ -80,8 +80,12 @@ export default function UpdateUserArticle() {
 
 				//-- ok
 				if (response.ok) {
-					console.log(result.message);
+					console.log('fetched data -> ', result.message.article_body);
 					setCreateArticleFormData(result.message);
+					textEditorDispatch({
+						type: 'SET_TEXT_EDITOR_CONTENT',
+						payload: result.message.article_body,
+					});
 					setisLoading(false);
 				}
 
@@ -202,7 +206,7 @@ export default function UpdateUserArticle() {
 					onSubmit={handleOnSubmitCreateNewArticle}
 				>
 					<div className='createArticlePageName'>
-						{serverResponse ? serverResponse : <h1>update the article</h1>}
+						{serverResponse ? serverResponse : <h1>Update my article</h1>}
 					</div>
 					<div className='InputFormTemplateContainer'>
 						<label htmlFor='article_title'>Title</label>
