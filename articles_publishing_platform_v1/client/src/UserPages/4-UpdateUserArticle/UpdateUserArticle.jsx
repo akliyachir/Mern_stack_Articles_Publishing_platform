@@ -1,7 +1,7 @@
 import './UpdateUserArticle.css';
 import '../1-CreateArticle/CreateArticle.css';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect, createContext, useReducer } from 'react';
+import { useState, useEffect, useRef, createContext, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../../listsAndReusedConsts/backendUrl';
 import TiptapRichTextEditor from '../../TiptapRichTextEditor/TiptapRichTextEditor';
@@ -16,10 +16,13 @@ const reducer = (state, action) => {
 		case 'TEXT_EDITOR_CONTENT':
 			return { articleContent: action.payload };
 		default:
+			s;
 			return { defaultState };
 	}
 };
 export default function UpdateUserArticle() {
+	const tryToUpdateTextEditorContent = useRef();
+	console.log(tryToUpdateTextEditorContent.pro);
 	// -- useReducer
 	const [state, dispatch] = useReducer(reducer, defaultState);
 	// -- article body separate state to make sure that render
@@ -72,6 +75,7 @@ export default function UpdateUserArticle() {
 						...setCreateArticleFormData,
 						...result.message,
 					});
+					tryToUpdateTextEditorContent.current = message.article_body;
 					dispatch({
 						type: 'TEXT_EDITOR_CONTENT',
 						payload: result.message.article_body,
@@ -270,11 +274,11 @@ export default function UpdateUserArticle() {
 								: 'NoErrorTextEditor'
 						}
 					>
-						{/* editor start */}(
+						{/* editor start */}
 						<div className='TiptapRichTextEditor'>
 							<div className='TiptapRichTextEditorContent'>
 								<div>
-									<MenuBar editor={editor} />
+									<MenuBar editor={editor} ref={tryToUpdateTextEditorContent} />
 									<EditorContent editor={editor} />
 								</div>
 								{/* editor end */}
