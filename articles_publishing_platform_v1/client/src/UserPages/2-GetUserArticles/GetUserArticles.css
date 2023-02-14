@@ -1,15 +1,16 @@
 .GetUserArticles {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 100%;
+	background-color: var(--clr-2);
 }
 .GetUserArticlesContainer {
-  padding-top: 1.7rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 16rem);
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 1rem;
+	padding-top: 1.7rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 16rem);
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 1rem;
 }
