@@ -68,7 +68,7 @@ export default function CreateArticle() {
 		}
 
 		const { token } = JSON.parse(globalThis.localStorage.getItem('user'));
-		console.log(createArticleFormData);
+
 		const response = await fetch(backendUrl + 'user_article', {
 			method: 'POST',
 			headers: {

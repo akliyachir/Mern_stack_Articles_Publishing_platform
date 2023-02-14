@@ -68,7 +68,6 @@ export default function GetUserFullArticleTemplate() {
 
 			//-- ok
 			if (response.ok) {
-				console.log(result.message);
 				setarticleDeleted(true);
 				setTimeout(() => {
 					navigate('/user_articles');
