@@ -6,7 +6,7 @@ export const menuItemsList = [
 	},
 	{
 		menu_item_id: 2,
-		title: 'Create an acount',
+		title: 'Create an account',
 		url: '/signup',
 	},
 
