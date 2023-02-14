@@ -75,6 +75,7 @@ export default function UpdateUserArticle() {
 						...setCreateArticleFormData,
 						...result.message,
 					});
+					1;
 					tryToUpdateTextEditorContent.current = result.message.article_body;
 					dispatch({
 						type: 'TEXT_EDITOR_CONTENT',
@@ -123,6 +124,14 @@ export default function UpdateUserArticle() {
 
 	const handleOnSubmitCreateNewArticle = async (e) => {
 		e.preventDefault();
+		console.log(
+			'my sent content->',
+			article_title,
+			article_image_url,
+			article_image_height,
+			article_body,
+			article_body_shorten_for_card
+		);
 
 		if (articleLengthCheck.length < 300) {
 			setServerResponse('Must be at least a 300 characters');
@@ -151,11 +160,11 @@ export default function UpdateUserArticle() {
 					authorization: JSON.stringify(`Bearer ${token}`),
 				},
 				body: JSON.stringify({
-					...article_title,
+					article_title,
 					article_image_url,
 					article_image_height,
-					article_body: html,
-					article_body_shorten_for_card: plainTextShorten,
+					article_body,
+					article_body_shorten_for_card,
 				}),
 			}
 		);
@@ -205,8 +214,7 @@ export default function UpdateUserArticle() {
 				article_body: html,
 				article_body_shorten_for_card: plainTextShorten,
 			});
-			console.log(article_body_shorten_for_card);
-			console.log(plainTextShorten);
+
 			setarticleLengthCheck(plainText);
 		},
 	});
