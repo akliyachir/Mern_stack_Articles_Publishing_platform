@@ -1,24 +1,24 @@
-import './GetUserFullArticleTemplate.css'
-import { useParams, useNavigate, NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import backendUrl from '../../listsAndReusedConsts/backendUrl'
-import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
-import parser from 'html-react-parser'
+import './GetUserFullArticleTemplate.css';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import backendUrl from '../../listsAndReusedConsts/backendUrl';
+import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
+import parser from 'html-react-parser';
 
 export default function GetUserFullArticleTemplate() {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
-	const { user_article_id } = useParams()
-	const [userArticleContent, setUserArticleContent] = useState({})
-	const [isLoading, setisLoading] = useState(true)
-	const [articleDeleted, setarticleDeleted] = useState(false)
+	const { user_article_id } = useParams();
+	const [userArticleContent, setUserArticleContent] = useState({});
+	const [isLoading, setisLoading] = useState(true);
+	const [articleDeleted, setarticleDeleted] = useState(false);
 
 	// -- get full article
 	useEffect(() => {
-		const userLocalStorage = window.localStorage.getItem('user')
-		const { token } = JSON.parse(userLocalStorage)
+		const userLocalStorage = window.localStorage.getItem('user');
+		const { token } = JSON.parse(userLocalStorage);
 		const fetchTheArticle = async () => {
-			setisLoading(true)
+			setisLoading(true);
 			try {
 				const response = await fetch(
 					`${backendUrl}user_article/${user_article_id}`,
@@ -27,32 +27,32 @@ export default function GetUserFullArticleTemplate() {
 							authorization: JSON.stringify(`Bearer ${token}`),
 						},
 					}
-				)
-				const result = await response.json()
+				);
+				const result = await response.json();
 
 				//-- ok
 				if (response.ok) {
-					setUserArticleContent(result.message)
-					setisLoading(false)
+					setUserArticleContent(result.message);
+					setisLoading(false);
 				}
 
 				//-- not ok
 				if (!response.ok) {
-					console.log(result.message)
+					console.log(result.message);
 				}
 			} catch (error) {
-				console.error(error.message)
+				console.error(error.message);
 			}
-		}
+		};
 
-		fetchTheArticle()
-	}, [])
+		fetchTheArticle();
+	}, []);
 
 	// -- handle handleOnClickDeleteArticle
 
 	async function handleOnClickDeleteArticle() {
-		const userLocalStorage = window.localStorage.getItem('user')
-		const { token } = JSON.parse(userLocalStorage)
+		const userLocalStorage = window.localStorage.getItem('user');
+		const { token } = JSON.parse(userLocalStorage);
 
 		try {
 			const response = await fetch(
@@ -63,24 +63,24 @@ export default function GetUserFullArticleTemplate() {
 						authorization: JSON.stringify(`Bearer ${token}`),
 					},
 				}
-			)
-			const result = await response.json()
+			);
+			const result = await response.json();
 
 			//-- ok
 			if (response.ok) {
-				console.log(result.message)
-				setarticleDeleted(true)
+				console.log(result.message);
+				setarticleDeleted(true);
 				setTimeout(() => {
-					navigate('/user_articles')
-				}, 2000)
+					navigate('/user_articles');
+				}, 2000);
 			}
 
 			//-- not ok
 			if (!response.ok) {
-				console.log(result.message)
+				console.log(result.message);
 			}
 		} catch (error) {
-			console.error(error.message)
+			console.error(error.message);
 		}
 	}
 
@@ -92,7 +92,7 @@ export default function GetUserFullArticleTemplate() {
 		article_creation_date,
 		article_id,
 		article_is_public,
-	} = userArticleContent
+	} = userArticleContent;
 
 	return isLoading ? (
 		<article className='GetUserFullArticleTemplate'>
@@ -130,25 +130,19 @@ export default function GetUserFullArticleTemplate() {
 					<div
 						className='deleteIcon'
 						onClick={() => {
-							handleOnClickDeleteArticle()
+							handleOnClickDeleteArticle();
 						}}
 					>
 						<FaRegTrashAlt />
 					</div>
-					<div className='updateArticleIcon'>
-						<NavLink to={`/user_article_update/${user_article_id}`}>
-							<div className='deleteIcon'>
-								<FaEdit />
-							</div>
-						</NavLink>
-					</div>
+
 					<p className='article_is_public'>
 						{article_is_public ? 'Public' : 'Privet'}
 					</p>
 				</div>
 			</div>
 		</article>
-	)
+	);
 }
 
 /* 
