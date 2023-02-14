@@ -75,7 +75,17 @@
 	height: 0.2rem;
 	border-radius: 0.1rem;
 	background-color: var(--clr-2);
-	transform: rotate(45deg) translateY(-0.5rem);
+	transform: rotate(45deg) translateY(-0.6rem);
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+.hamburgerIconmMenuOpen span:nth-last-of-type(2) {
+	display: block;
+	width: 2rem;
+	height: 0.2rem;
+	border-radius: 0.1rem;
+	background-color: var(--clr-2);
+	opacity: 0;
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
 }
@@ -85,7 +95,7 @@
 	height: 0.2rem;
 	border-radius: 0.1rem;
 	background-color: var(--clr-2);
-	transform: rotate(-45deg) translateY(0.4rem);
+	transform: rotate(-45deg) translateY(0.5rem);
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
 }
