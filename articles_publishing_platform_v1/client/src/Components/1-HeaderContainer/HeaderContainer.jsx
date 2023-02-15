@@ -65,7 +65,7 @@ export default function HeaderContainer() {
 						<div className='toggleUserMenu'>
 							<FaUserAstronaut />
 						</div>
-						<div>{userState.name.split(' ')[1].slice(0, 20)}</div>
+						<div>{userState.name.split(' ')[0]}</div>
 					</div>
 				)}
 

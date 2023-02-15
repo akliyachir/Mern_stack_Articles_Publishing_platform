@@ -3,7 +3,6 @@ import { getUserArticles } from './getUserArticlesController.js';
 import { createUserArticle } from './createUserArticleController.js';
 import getOneUserArticle from './getOneUserArticleController.js';
 import deleteUserArticle from './deleteUserArticleController.js';
-import updateUserArticle from './updateUserArticleController.js';
 
 const router = Router();
 
