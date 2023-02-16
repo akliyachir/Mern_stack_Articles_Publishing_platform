@@ -18,6 +18,7 @@ import GetUserFullArticleTemplate from './UserPages/3-GetUserFullArticleTemplate
 import ShowAllPublicArticles from './Pages/5-ShowAllPublicArticles/ShowAllPublicArticles';
 import FullPublicArticle from './TemplatePages/2-FullPublicArticle/FullPublicArticle';
 import UserDisconnect from './UserPages/0-UserDisconnect/UserDisconnect';
+import Contact from './Pages/6-Contact/Contact';
 
 // -- user routes import
 //-- create router
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
 				element={<ShowAllPublicArticles />}
 				errorElement={<ErrorPage />}
 			/>
+			<Route path='/contact' element={<Contact />} errorElement={<ErrorPage />} />
 			<Route
 				path='/article/:public_article_id'
 				element={<FullPublicArticle />}

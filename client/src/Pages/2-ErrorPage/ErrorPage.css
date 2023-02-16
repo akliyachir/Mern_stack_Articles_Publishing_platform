@@ -14,6 +14,8 @@
 	gap: 0.5rem;
 	width: 17.5rem;
 	box-shadow: var(--sh-b-1) inset;
+	
+	background-color: var(--clr-1);
 }
 .ErrorPageContent p {
 	padding: 1rem 2rem;
