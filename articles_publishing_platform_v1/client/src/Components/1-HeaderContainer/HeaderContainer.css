@@ -163,6 +163,17 @@
 	scale: 1.03;
 }
 
+.MenuExpanded {
+	display: flex;
+	width: 80%;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
 
-MenuExpanded
-headerMenuItemExpanded
+.MenuExpanded a {
+	padding-inline: 1.5rem;
+	color: var(--clr-2);
+	text-decoration: none;
+}

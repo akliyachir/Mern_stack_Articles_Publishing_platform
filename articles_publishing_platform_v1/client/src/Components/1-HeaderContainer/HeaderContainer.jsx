@@ -71,7 +71,7 @@ export default function HeaderContainer() {
 					</NavLink>
 				</span>
 
-				{windowSize <= 600 && !!userState.email && (
+				{windowSize < 600 ? (
 					<div
 						onClick={handleUserToggleSideBar}
 						className='userToggleMenuLogoAndName'
@@ -81,6 +81,12 @@ export default function HeaderContainer() {
 						</div>
 						<div>{userState.name.split(' ')[0]}</div>
 					</div>
+				) : (
+					<MenuExpanded
+						userState={userState}
+						userMenuItemsList={userMenuItemsList}
+						menuItemsList={menuItemsList}
+					/>
 				)}
 
 				<div
@@ -110,23 +116,23 @@ export default function HeaderContainer() {
 	);
 }
 
-export function MenuExpanded({ userState }) {
+export function MenuExpanded({ userState, userMenuItemsList, menuItemsList }) {
 	return !!userState.email ? (
-		<div className='PublicMenuExpanded'>
-			{menuItemsList.map((item) => {
+		<div className='MenuExpanded'>
+			{userMenuItemsList.map((item) => {
 				return (
-					<div className='MenuExpanded' key={item.menu_item_id}>
-						<NavLink to={item.url}></NavLink>
+					<div key={item.menu_item_id}>
+						<NavLink to={item.url}>{item.title}</NavLink>
 					</div>
 				);
 			})}
 		</div>
 	) : (
-		<div className='PublicMenuExpanded'>
-			{userMenuItemsList.map((item) => {
+		<div className='MenuExpanded'>
+			{menuItemsList.map((item) => {
 				return (
 					<div className='MenuExpanded' key={item.menu_item_id}>
-						<NavLink to={item.url}></NavLink>
+						<NavLink to={item.url}>{item.title}</NavLink>
 					</div>
 				);
 			})}
