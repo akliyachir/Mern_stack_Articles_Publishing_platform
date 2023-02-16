@@ -35,19 +35,22 @@
 
 .RootWebsiteTitle {
 	padding-block: 1.5rem;
-	background-color: var(--clr-5);
+	margin-top: 2.5rem;
+	background-color: var(--clr-3);
 	color: var(--clr-2);
 	text-align: center;
 	text-transform: uppercase;
 	padding-inline: 0.5rem;
 	transition-duration: 400ms;
 	transition-timing-function: ease-in-out;
+	width: 100%;
 }
 
 .RootWebsiteTitleClosed {
 	transform: translateY(-10rem);
 	padding-block: 1.5rem;
-	background-color: var(--clr-5);
+
+	background-color: var(--clr-3);
 	color: var(--clr-2);
 	text-align: center;
 	text-transform: uppercase;

@@ -26,17 +26,18 @@ export default function RootLayout() {
 	}, []);
 	return (
 		<div className='RootLayout'>
+			<h1
+				className={
+					WebsiteTitleDesapearing ? 'RootWebsiteTitleClosed' : 'RootWebsiteTitle'
+				}
+			>
+				The best way to publish your Article
+			</h1>
 			<div className='RootLayoutContent'>
 				<nav>
 					<HeaderContainer />
 				</nav>
-				<h1
-					className={
-						WebsiteTitleDesapearing ? 'RootWebsiteTitleClosed' : 'RootWebsiteTitle'
-					}
-				>
-					The best way to publish your Article
-				</h1>
+
 				<main className='mainAllOutputedArticles'>
 					<Outlet />
 				</main>
