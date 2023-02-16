@@ -72,15 +72,17 @@ export default function HeaderContainer() {
 				</span>
 
 				{windowSize < 600 ? (
-					<div
-						onClick={handleUserToggleSideBar}
-						className='userToggleMenuLogoAndName'
-					>
-						<div className='toggleUserMenu'>
-							<FaUserAstronaut />
+					!!userState.email && (
+						<div
+							onClick={handleUserToggleSideBar}
+							className='userToggleMenuLogoAndName'
+						>
+							<div className='toggleUserMenu'>
+								<FaUserAstronaut />
+							</div>
+							<div>{userState.name.split(' ')[0]}</div>
 						</div>
-						<div>{userState.name.split(' ')[0]}</div>
-					</div>
+					)
 				) : (
 					<MenuExpanded
 						userState={userState}
