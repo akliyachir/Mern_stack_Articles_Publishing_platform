@@ -1,4 +1,6 @@
 .RootLayout {
+	background-image: url('../../icons_background/7950.jpg');
+	background-blend-mode: lighten;
 	background-color: var(--clr-2);
 	position: relative;
 	display: flex;

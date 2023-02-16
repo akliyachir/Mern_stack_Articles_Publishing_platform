@@ -25,8 +25,6 @@ export default function RootLayout() {
 		}, 1000);
 	}, []);
 
-	useEffect(() => {}, []);
-
 	return (
 		<div className='RootLayout'>
 			<h1
