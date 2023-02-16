@@ -1,7 +1,7 @@
 import './HeaderContainer.css';
-import { MdLibraryBooks } from 'react-icons/md';
 import { FaUserAstronaut } from 'react-icons/fa';
 
+import { menuItemsList } from '../../listsAndReusedConsts/SideBarMenuItems';
 import { FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import SideBarMenu from '../2-SideBarMenu/SideBarMenu';
@@ -106,4 +106,8 @@ export default function HeaderContainer() {
 			/>
 		</div>
 	);
+}
+
+export function MenuExpanded() {
+	return <div PublicManuItems>{menuItemsList}</div>;
 }
