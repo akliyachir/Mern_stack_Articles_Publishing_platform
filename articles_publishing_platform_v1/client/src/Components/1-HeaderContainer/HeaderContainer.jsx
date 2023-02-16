@@ -9,6 +9,7 @@ import UserSideBarMenu from '../3-UserSideBarMenu/UserSideBarMenu';
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
 import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
+import { userMenuItemsList } from '../../listsAndReusedConsts/UserSideBarMenuItems';
 
 export default function HeaderContainer() {
 	// -- set window size state
@@ -20,6 +21,7 @@ export default function HeaderContainer() {
 	// -- st window size at page resize
 	globalThis.addEventListener('resize', () => {
 		setWindowSize(globalThis.innerWidth);
+		console.log(windowSize);
 	});
 
 	const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -109,5 +111,25 @@ export default function HeaderContainer() {
 }
 
 export function MenuExpanded() {
-	return <div PublicManuItems>{menuItemsList}</div>;
+	return !!userState.email ? (
+		<div className='PublicMenuExpanded'>
+			{menuItemsList.map((item) => {
+				return (
+					<div className='MenuExpanded' key={item.menu_item_id}>
+						<NavLink to={item.url}></NavLink>
+					</div>
+				);
+			})}
+		</div>
+	) : (
+		<div className='PublicMenuExpanded'>
+			{userMenuItemsList.map((item) => {
+				return (
+					<div className='MenuExpanded' key={item.menu_item_id}>
+						<NavLink to={item.url}></NavLink>
+					</div>
+				);
+			})}
+		</div>
+	);
 }
