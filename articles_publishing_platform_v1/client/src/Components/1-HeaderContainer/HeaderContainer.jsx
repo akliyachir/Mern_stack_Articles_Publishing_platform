@@ -6,13 +6,25 @@ import { FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import SideBarMenu from '../2-SideBarMenu/SideBarMenu';
 import UserSideBarMenu from '../3-UserSideBarMenu/UserSideBarMenu';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../Contexts/UserContext';
 import GlobalVoileCloseMenu from './GlobalVoileCloseMenu';
 
 export default function HeaderContainer() {
+	// -- set window size state
+	const [windowSize, setWindowSize] = useState(globalThis.innerWidth);
+	// -- st window size at page load
+	useEffect(() => {
+		setWindowSize(globalThis.innerWidth);
+	}, []);
+	// -- st window size at page resize
+	globalThis.addEventListener('resize', () => {
+		setWindowSize(globalThis.innerWidth);
+	});
+
 	const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	const handleToggleSideBar = () => {
 		setIsMenuOpen((isMenuOpen) => !isMenuOpen);
 		if (isUserMenuOpen === true) {
