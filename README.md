@@ -9,7 +9,9 @@ set connection string and a strong password for jwt
 
 in server folder and client folder
 
-```npm i && npm run dev
+```
+
+npm i && npm run dev
 
 
 ```
