@@ -49,7 +49,6 @@
 .RootWebsiteTitleClosed {
 	transform: translateY(-10rem);
 	padding-block: 1.5rem;
-
 	background-color: var(--clr-3);
 	color: var(--clr-2);
 	text-align: center;
