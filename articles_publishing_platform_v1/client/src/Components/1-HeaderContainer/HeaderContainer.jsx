@@ -71,7 +71,7 @@ export default function HeaderContainer() {
 					</NavLink>
 				</span>
 
-				{!!userState.email && (
+				{windowSize <= 600 && !!userState.email && (
 					<div
 						onClick={handleUserToggleSideBar}
 						className='userToggleMenuLogoAndName'
@@ -110,7 +110,7 @@ export default function HeaderContainer() {
 	);
 }
 
-export function MenuExpanded() {
+export function MenuExpanded({ userState }) {
 	return !!userState.email ? (
 		<div className='PublicMenuExpanded'>
 			{menuItemsList.map((item) => {
