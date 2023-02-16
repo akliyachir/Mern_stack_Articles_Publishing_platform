@@ -1,7 +1,7 @@
 .RootLayout {
-	background-image: url('../../icons_background/7950.jpg');
-	background-blend-mode: lighten;
-	background-color: var(--clr-2);
+	background-image: url('../../icons_background/pattern.png');
+	background-blend-mode: screen;
+	background-color: #abaaac;
 	position: relative;
 	display: flex;
 	justify-content: flex-start;
