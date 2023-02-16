@@ -1,0 +1,67 @@
+.RootLayout {
+	background-image: url('../../icons_background/pattern.png');
+	background-blend-mode: screen;
+	background-color: #abaaac;
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+	height: 100%;
+	width: 100%;
+}
+
+.RootLayoutContent {
+	flex-direction: column;
+	padding-top: 2.5rem;
+	max-width: 960px;
+	padding-bottom: 5.5rem;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mainAllOutputedArticles {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+.RootLayoutContent > * {
+	width: 100%;
+}
+
+.RootWebsiteTitle {
+	padding-block: 1.5rem;
+	margin-top: 2.5rem;
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	text-align: center;
+	text-transform: uppercase;
+	padding-inline: 0.5rem;
+	transition-duration: 400ms;
+	transition-timing-function: ease-in-out;
+	width: 100%;
+}
+
+.RootWebsiteTitleClosed {
+	transform: translateY(-10rem);
+	padding-block: 1.5rem;
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	text-align: center;
+	text-transform: uppercase;
+	padding-inline: 0.5rem;
+	transition-duration: 400ms;
+	transition-timing-function: ease-in-out;
+	height: 0;
+	padding: 0;
+}
+
+.displayNone {
+	display: none;
+}

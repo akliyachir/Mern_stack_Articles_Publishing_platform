@@ -1,0 +1,45 @@
+.ErrorPage {
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.ErrorPageContent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.5rem;
+	width: 17.5rem;
+	box-shadow: var(--sh-b-1) inset;
+}
+.ErrorPageContent p {
+	padding: 1rem 2rem;
+}
+.ErrorPageContent h1 {
+	padding: 1rem 2rem;
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	width: 100%;
+	text-align: center;
+}
+
+.NavLinkErrorToHome {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.NavLinkErrorToHome a {
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+	padding: 0.9rem 0 0.3rem 0;
+	font-size: 2rem;
+}

@@ -1,0 +1,10 @@
+.TestComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.TestComponent > * {
+  border: 1px solid #333;
+}

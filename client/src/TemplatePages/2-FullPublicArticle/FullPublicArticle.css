@@ -1,0 +1,44 @@
+.FullPublicArticle {
+	background-color: var(--clr-2);
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.FullPublicArticleContent {
+	box-shadow: 0 0 1px var(--clr-3);
+	background-color: var(--clr-1);
+	width: 100%;
+	max-width: 780px;
+}
+
+.FullPublicArticle .article_image_url {
+	width: 100%;
+	aspect-ratio: calc(16 / 9);
+	background-color: var(--clr-3, #333);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.FullPublicArticle .article_title {
+	padding: 1rem;
+	font-size: 1.5rem;
+}
+
+.FullPublicArticle .article_body {
+	padding: 1rem;
+}
+.FullPublicArticle .article_creation_date {
+	padding: 1rem;
+	background-color: #fff;
+	color: var(--clr-3);
+	text-align: right;
+}
+
+.dateAndAuthorDisplayOfFullPublicArticle {
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--clr-2);
+}
