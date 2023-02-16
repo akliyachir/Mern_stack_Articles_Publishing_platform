@@ -1,7 +1,7 @@
 # articles publishing platform
 
 with user authentification, hashed password, tokens, validations, mongoose, express...
-at the client side, react-router-dom 6.8, regular forms and tiptap for text editor
+at the client side, react-router-dom 6.8,  forms and tiptap for text editor
 
 ## usage :
 
@@ -16,4 +16,4 @@ npm i && npm run dev
 
 ```
 
-# enjoy!
+### enjoy!
