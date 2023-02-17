@@ -1,5 +1,7 @@
 # articles publishing platform
 
+with user registration and authentification. Password encryption, token and local storage. Foreign keys, and crud operations
+
 #### front end published at :
 
 ```
