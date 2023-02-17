@@ -21,7 +21,6 @@ export default function HeaderContainer() {
 	// -- st window size at page resize
 	globalThis.addEventListener('resize', () => {
 		setWindowSize(globalThis.innerWidth);
-		console.log(windowSize);
 	});
 
 	const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
