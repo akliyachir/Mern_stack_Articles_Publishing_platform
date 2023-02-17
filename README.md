@@ -4,11 +4,7 @@ with user registration and authentification. Password encryption, token and loca
 
 #### front end published at :
 
-```
-
 https://my-article-online.netlify.app/
-
-```
 
 #### back end at cyclic & database at mongodb atlas
 
