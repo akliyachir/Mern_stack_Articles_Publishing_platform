@@ -101,6 +101,7 @@
 }
 
 .GlobalVoileCloseMenuOpen {
+	user-select: none;
 	position: fixed;
 	top: 2.5rem;
 	left: 0;
@@ -114,6 +115,7 @@
 	opacity: 100;
 }
 .GlobalVoileCloseMenuClosed {
+	user-select: none;
 	position: fixed;
 	top: 2.5rem;
 	left: 50%;

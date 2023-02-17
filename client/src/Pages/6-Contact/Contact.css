@@ -1,0 +1,46 @@
+.githubLink {
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+	box-shadow: var(--sh-b-1) inset;
+}
+.githubLink:hover {
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+
+.githubLink a {
+	text-align: center;
+	padding-block: 0.5rem;
+	padding-top: 1rem;
+	color: inherit;
+	font-size: 2rem;
+}
+
+.contactMeRectangle {
+	background-color: var(--clr-1);
+	padding: 0.2rem;
+	box-shadow: var(--sh-b-1) inset;
+}
+
+.contactMeRectangle > * {
+	margin-block: 0.1rem;
+}
+
+.contactMeRectangle h1 {
+	box-shadow: var(--sh-b-1);
+
+	padding-block: 1rem;
+	text-align: center;
+	width: 100%;
+	background-color: var(--clr-3);
+	color: var(--clr-2);
+	padding-inline: 2rem;
+}
+
+.contactMeRectangle p {
+	box-shadow: var(--sh-b-1) inset;
+	padding-block: 1rem;
+	text-align: center;
+}

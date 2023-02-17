@@ -1,12 +1,23 @@
+import './Contact.css';
+
 import { NavLink } from 'react-router-dom';
-import { FaHome } from 'react-icons/fa';
+import { FaGithub, FaHome } from 'react-icons/fa';
 export default function Contact() {
 	return (
 		<div className='ErrorPage'>
-			<div className='ErrorPageContent'>
+			<div className='contactMeRectangle'>
 				<h1>Akli Yachir</h1>
-				<p>akli.yachir@gmail.com</p>
-				<div className='NavLinkErrorToHome'>
+				<p className='emailForContactMe'>akli.yachir@gmail.com</p>
+				<div className='githubLink '>
+					<a
+						href='https://github.com/akliyachir/'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<FaGithub />
+					</a>
+				</div>
+				<div className='githubLink'>
 					<NavLink to='/'>
 						<FaHome />
 					</NavLink>
